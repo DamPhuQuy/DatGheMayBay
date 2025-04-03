@@ -1,0 +1,10 @@
+
+Thong tin ve ITF001 hien tai: 
+------------------------------------
+ Ma so chuyen bay: ITF2025
+ Ma so ve: ITF001
+ Khach hang: Nguyen Minh Khoa
+ Chuyen bay: Da Nang -> Ho Chi Minh Ngay: 10/04/2025 - Gio: 2:30 PM
+ Gia ve: 1320000 - Ma ghe: A29
+------------------------------------
+
