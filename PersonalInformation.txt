@@ -1,10 +1,10 @@
-Nguyen Minh Khoa,15/06/1998,khoa.nguyen@gmail.com,0987654321,Nam,ITF001
-Nguyen Thao Vy,05/04/2001,vy.nguyen@gmail.com,0909876543,Nu,ITF002
-Tran Anh Dung,20/09/1995,dung.tran@gmail.com,0978123456,Nam,ITF003
-Tran Khanh Linh,18/11/1996,linh.tran@gmail.com,0923456789,Nu,ITF004
-Le Hoang Phuc,03/12/2000,phuc.le@gmail.com,0912345678,Nam,ITF005
-Le Bao Ngoc,30/08/1999,ngoc.le@gmail.com,0945678901,Nu,ITF006
-Pham Quoc Huy,25/07/1997,huy.pham@gmail.com,0965432109,Nam,ITF007
-Pham Thanh Huong,12/03/1998,huong.pham@gmail.com,0956789012,Nu,ITF008
-Dang Gia Bao,10/02/1999,bao.dang@gmail.com,0932123456,Nam,ITF009
-Dang Mai Anh,07/07/2000,mai.dang@gmail.com,0987654321,Nu,ITF010
+Nguyen Minh Khoa,15/06/1998,khoa.nguyen@gmail.com,0987654321,Nam,ITF001,First Class
+Nguyen Thao Vy,05/04/2001,vy.nguyen@gmail.com,0909876543,Nu,ITF002,Economy Class
+Tran Anh Dung,20/09/1995,dung.tran@gmail.com,0978123456,Nam,ITF003,Economy Class
+Tran Khanh Linh,18/11/1996,linh.tran@gmail.com,0923456789,Nu,ITF004,Economy Class
+Le Hoang Phuc,03/12/2000,phuc.le@gmail.com,0912345678,Nam,ITF005,Economy Class
+Le Bao Ngoc,30/08/1999,ngoc.le@gmail.com,0945678901,Nu,ITF006,Economy Class
+Pham Quoc Huy,25/07/1997,huy.pham@gmail.com,0965432109,Nam,ITF007,First Class
+Pham Thanh Huong,12/03/1998,huong.pham@gmail.com,0956789012,Nu,ITF008,First Class
+Dang Gia Bao,10/02/1999,bao.dang@gmail.com,0932123456,Nam,ITF009,Economy Class
+Dang Mai Anh,07/07/2000,mai.dang@gmail.com,0987654321,Nu,ITF010,First Class

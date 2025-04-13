@@ -1,32 +1,4 @@
 
-Thong tin ve ITF001 hien tai: 
-------------------------------------
- Ma so chuyen bay: ITF2025
- Ma so ve: ITF001
- Khach hang: Nguyen Minh Khoa
- Ngay sinh: 15/06/1998 - Gioi tinh: Nam
- Email: khoa.nguyen@gmail.com
- So dien thoai: 0987654321
- Chuyen bay: Da Nang -> Ho Chi Minh Ngay: 10/04/2025
- Gio: 2:30 PM
- Ma so ghe: 1A
-------------------------------------
-
-
-Thong tin ve ITF002 hien tai: 
-------------------------------------
- Ma so chuyen bay: ITF2025
- Ma so ve: ITF002
- Khach hang: Nguyen Thao Vy
- Ngay sinh: 05/04/2001 - Gioi tinh: Nu
- Email: vy.nguyen@gmail.com
- So dien thoai: 0909876543
- Chuyen bay: Da Nang -> Ho Chi Minh Ngay: 10/04/2025
- Gio: 2:30 PM
- Ma so ghe: 22A
-------------------------------------
-
-
 Thong tin ve ITF003 hien tai: 
 ------------------------------------
  Ma so chuyen bay: ITF2025
@@ -35,8 +7,33 @@ Thong tin ve ITF003 hien tai:
  Ngay sinh: 20/09/1995 - Gioi tinh: Nam
  Email: dung.tran@gmail.com
  So dien thoai: 0978123456
- Chuyen bay: Da Nang -> Ho Chi Minh Ngay: 10/04/2025
- Gio: 2:30 PM
- Ma so ghe: 16C
+ Chuyen bay: Da Nang -> Ho Chi Minh Ngay: 10/04/2025 - Gio: 2:30 PM
+ Ma so ghe: 5A
+------------------------------------
+
+
+Thong tin ve ITF001 hien tai: 
+------------------------------------
+ Ma so chuyen bay: ITF2025
+ Ma so ve: ITF001
+ Khach hang: Nguyen Minh Khoa
+ Ngay sinh: 15/06/1998 - Gioi tinh: Nam
+ Email: khoa.nguyen@gmail.com
+ So dien thoai: 0987654321
+ Chuyen bay: Da Nang -> Ho Chi Minh Ngay: 10/04/2025 - Gio: 2:30 PM
+ Ma so ghe: 3A
+------------------------------------
+
+
+Thong tin ve ITF005 hien tai: 
+------------------------------------
+ Ma so chuyen bay: ITF2025
+ Ma so ve: ITF005
+ Khach hang: Le Hoang Phuc
+ Ngay sinh: 03/12/2000 - Gioi tinh: Nam
+ Email: phuc.le@gmail.com
+ So dien thoai: 0912345678
+ Chuyen bay: Da Nang -> Ho Chi Minh Ngay: 10/04/2025 - Gio: 2:30 PM
+ Ma so ghe: 15A
 ------------------------------------
 
