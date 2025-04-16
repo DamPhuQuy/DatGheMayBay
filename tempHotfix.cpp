@@ -9,34 +9,21 @@
 #include <set>
 #include <windows.h> 
 #include <iomanip> 
-#include <conio.h> 
-#include <cstdlib> 
-#include <algorithm> 
 
 const int MaxSeat = 166; 
 using namespace std;
 
 //======================= Data types =======================
 
-typedef struct person {
-    string names;
-    string DoB;
-    string email;
-    string phoneNumber;
-    string gender;
+typedef struct {
+    string names, DoB, email, phoneNumber, gender;
 } person;
 
-typedef struct ticket {
+typedef struct {
     person customer;
-    string flightCode;
-    string ticketCode;
-    string departure;
-    string destination;
-    string time;
-    string date;
-    string seatCode;
-    string classLabel; 
-} ticket; 
+    string flightCode, ticketCode, departure, destination;
+    string time, date, seatCode, classLabel;
+} ticket;
 
 int ticketCount = 1; 
 
@@ -47,22 +34,19 @@ vector<vector<string>> firstClass;
 vector<vector<string>> economyClass; 
 map<string, string> seatStatus; 
 
-void SetColor(int text_color) {
-    HANDLE hStdout = GetStdHandle(STD_OUTPUT_HANDLE);
-    SetConsoleTextAttribute(hStdout, text_color);
-}
-
 void displayFlight(const ticket& flightList) {
 	printf("\n"); 
-	printf("╔════════════════════════════════════════╗\n"); 
-	printf("║          THONG TIN CHUYEN BAY          ║\n"); 
-	printf("╠════════════════════════════════════════╣\n"); 
-	printf("║ Ma so chuyen bay: %s              ║\n", flightList.flightCode.c_str()); 
-	printf("║ Noi xuat phat: %s                 ║\n", flightList.departure.c_str()); 
-	printf("║ Noi den: %s                   ║\n", flightList.destination.c_str()); 
-	printf("║ Ngay xuat phat: %s             ║\n", flightList.date.c_str()); 
-	printf("║ Thoi gian: %s                     ║\n", flightList.time.c_str()); 
-	printf("╚════════════════════════════════════════╝\n"); 
+	printf("╔════════════════════════════════════════════════════════════════════════════════════════════════════════╗\n"); 
+	printf("║                                          THONG TIN CHUYEN BAY                                          ║\n"); 
+	printf("╠════════════════════════════════════════════════════════════════════════════════════════════════════════╣\n"); 
+	printf("║   Ma so chuyen bay : %s                                                                           ║\n", flightList.flightCode.c_str());
+	printf("║                                                                                                        ║\n");  
+	printf("║   Noi xuat phat    : %s -> Noi den: %s                                                   ║\n", flightList.departure.c_str(), flightList.destination.c_str()); 
+	printf("║                                                                                                        ║\n"); 
+	printf("║   Ngay xuat phat   : %s                                                                        ║\n", flightList.date.c_str()); 
+	printf("║                                                                                                        ║\n"); 
+	printf("║   Thoi gian        : %s                                                                           ║\n", flightList.time.c_str()); 
+	printf("╚════════════════════════════════════════════════════════════════════════════════════════════════════════╝\n"); 
 }
 
 int findPassengers(const string& code) {
@@ -117,8 +101,9 @@ void importSeatingChartData() {
 }
 
 void displaySeatingChart() { 
+	cout << endl; 
     cout << "╔════════════════════╦═══════════════════════════════════════════════════════════════════════════════════╗" << endl;
-    cout << "║   First Class      ║                                     Economy Class                                 ║" << endl;
+    cout << "║    First Class     ║                                     Economy Class                                 ║" << endl;
     cout << "╠════════════════════╬═══════════════════════════════════════════════════════════════════════════════════╣" << endl;
     
     cout << "║                    ║ ";
@@ -164,16 +149,7 @@ void displaySeatingChart() {
     cout << "╚════════════════════╩═══════════════════════════════════════════════════════════════════════════════════╝" << endl; 
 
     cout << endl 
-         << "                     [--] hay [---]: Ghe dat dat                 1A: Ghe chua dat " << endl; 
-}
-
-void notify() {
-    cout << endl;
-    cout << " ------------------------------------" << endl;
-    cout << " Lua chon khong hop le hoac ghe da dat" << endl;
-    cout << " Hay chon lai!" << endl;
-    cout << " ------------------------------------" << endl;
-    cout << endl;
+         << "                  [--] hay [---]: Ghe dat dat                 1A: Ghe chua dat " << endl; 
 }
 
 bool isValidSeat(const string& seat) {
@@ -198,16 +174,17 @@ bool isValidSeat(const string& seat) {
 string selectSeat(int index) {
     string choice;
     while (true) {
-        cout << "   → Hay chon ghe: ";
+        cout << " → Hay chon ghe: ";
         getline(cin, choice); 
 
         if (!isValidSeat(choice) && seatStatus.find(choice) != seatStatus.end()) {
-            notify(); 
+            cout << endl;
+            cout << "   ════ Lua chon khong phu hop hoac ghe da dat ═════";
+            cout << endl;
             continue; 
         }
         
         bool foundFirstClass = false, foundEconomyClass = false;  
-
         if (passengers[index].classLabel == "First Class") {
             for (int i = 0; i < firstClass.size(); i++) {
                 for (int j = 0; j < firstClass[i].size(); j++) {
@@ -221,7 +198,7 @@ string selectSeat(int index) {
                 if (foundFirstClass) break; 
             }
             if (!foundFirstClass) {
-                cout << "Ghe chon khong phu hop voi First Class!" << endl; 
+                cout << "   Ghe chon khong phu hop voi First Class!" << endl; 
                 continue; 
             }
         } 
@@ -239,13 +216,13 @@ string selectSeat(int index) {
                 if (foundEconomyClass) break; 
             }
             if (!foundEconomyClass) {
-                cout << "Ghe chon khong phu hop voi Economy Class!" << endl; 
+                cout << "   Ghe chon khong phu hop voi Economy Class!" << endl; 
                 continue; 
             }
         } 
 
         if (foundFirstClass == true || foundEconomyClass == true) {
-            cout << "Chac chan muon chon " << choice << " (Y/N):";
+            cout << "   Chac chan muon chon " << choice << " (Y/N): ";
             string okay;
             getline(cin, okay);
             if (okay[0] == 'Y' || okay[0] == 'y') {
@@ -258,7 +235,9 @@ string selectSeat(int index) {
             }
         } 
         else {
-            notify();
+            cout << endl;
+            cout << "   ════ Lua chon khong phu hop hoac ghe da dat ═════";
+            cout << endl;
             continue;
         }
     }
@@ -267,7 +246,7 @@ string selectSeat(int index) {
 void updateSeatingChartFile() {
     ofstream WriteFile("BookedSeatingChart.txt");
     if (!WriteFile) {
-        cout << "Loi khi mo file BookedSeatingChart" << endl;
+        cout << "   Loi khi mo file BookedSeatingChart" << endl;
         return;
     }
     WriteFile << "First Class:" << endl; 
@@ -305,7 +284,7 @@ void resetSeatingChart() {
     }
     ReadFile.close();
     WriteFile.close();
-    cout << "SO DO GHE DA DUOC RESET" << endl;
+    cout << "   SO DO GHE DA DUOC RESET" << endl;
 }
 
 // ======================= Import =======================
@@ -326,8 +305,9 @@ bool openInputFiles(ifstream& inputFile1, ifstream& inputFile2) {
 }
 
 bool readFlightInformation(ifstream& inputFile2, ticket& data) {
-    cout << endl << "Doc thong tin chuyen bay..." << endl;
-    Sleep(1000);
+    cout << endl
+		 << "   Doc thong tin chuyen bay..." << endl;
+    Sleep(800);
     
     if (!getline(inputFile2, data.flightCode)) {
         cout << "Loi khi doc ma chuyen bay" << endl;
@@ -354,17 +334,17 @@ bool readFlightInformation(ifstream& inputFile2, ticket& data) {
         return false;
     }
     
-    cout << "Dang lay thong tin chuyen bay..." << endl; 
-    Sleep(1000);
-    cout << "Doc thong tin chuyen bay thanh cong!" << endl;
-    Sleep(1000);
+    cout << "   Dang lay thong tin chuyen bay..." << endl; 
+    Sleep(800);
+    cout << "   Lay thong tin chuyen bay thanh cong!" << endl;
+    Sleep(800);
     
     return true;
 }
 
 void readPassengerInformation(ifstream& inputFile1, const ticket& flightData) {
-    cout << endl << "Doc thong tin hanh khach..." << endl;
-    Sleep(1000);
+    cout << endl << "   Doc thong tin hanh khach..." << endl;
+    Sleep(800);
     
     string line;
     while (getline(inputFile1, line)) {
@@ -412,14 +392,14 @@ void readPassengerInformation(ifstream& inputFile1, const ticket& flightData) {
         passengers.push_back(passenger);
     }
 
-    cout << "Dang lay thong tin khach hang..." << endl; 
-    Sleep(1000);
-    cout << "Doc thong tin hanh khach thanh cong!" << endl;
-    Sleep(1000);
+    cout << "   Dang lay thong tin khach hang..." << endl; 
+    Sleep(800);
+    cout << "   Doc thong tin hanh khach thanh cong!" << endl;
+    Sleep(800);
     
-    cout << "Co tat ca " << passengers.size() << " hanh khach trong he thong" << endl;
-    cout << "Ket thuc doc thong tin..." << endl; 
-    Sleep(1000);
+    cout << "   Co tat ca " << passengers.size() << " hanh khach trong he thong" << endl;
+    cout << "   Ket thuc doc thong tin..." << endl; 
+    Sleep(800);
 }
 
 void importPassengersInformation() {
@@ -443,7 +423,7 @@ void importBookedTicket() { // lay thong tin ve da dat cua nhung khach hang truo
 	string line; 
 	vector<string> maSoVe; 
 	if (!inputFile.is_open()) {
-		cout << "Khong mo duoc file!" << endl; 
+		cout << "   Khong mo duoc file!" << endl; 
 		return;
 	}
 	while (getline(inputFile, line)) {
@@ -457,32 +437,32 @@ void importBookedTicket() { // lay thong tin ve da dat cua nhung khach hang truo
 	inputFile.close();
 	
 	cout << endl 
-		 << "Kiem tra thong tin ve da dat..." << endl; 
-	Sleep(1000); 
-	cout << "Kiem tra thanh cong!" << endl; 
-	Sleep(1000);
+		 << "   Kiem tra thong tin ve da dat..." << endl; 
+	Sleep(800); 
+	cout << "   Kiem tra thanh cong!" << endl; 
+	Sleep(800);
 	
 	for (string i : maSoVe) {
 		bookedStore.insert(i); 
 	}
 	int bookedTicket = bookedStore.size(); 
-	cout << "Tong cong: " << bookedTicket << " khach hang da dat ghe" << endl;
+	cout << "   Tong cong: " << bookedTicket << " khach hang da dat ghe" << endl;
 }
 
 void importSeatCode() {
 	importSeatingChartData(); 
     displaySeatingChart(); 
 	
-    cout << endl << "→ So ve may bay can dat: "; 
+    cout << endl << " → So ve may bay can dat: "; 
     
     string num; 
     while(true) {
     	cin >> num;
         if (num.length() != 1) {
-            cout << "Nhap sai, vui long nhap lai!: "; 
+            cout << "   Nhap sai, vui long nhap lai!: "; 
             continue; 
         } else if (!isdigit(num[0])) {
-            cout << "Nhap sai, vui long nhap lai!: "; 
+            cout << "    Nhap sai, vui long nhap lai!: "; 
             continue;
         }  
         else break; 
@@ -492,25 +472,25 @@ void importSeatCode() {
     int number_of_tickets = stoi(num); 
     while (number_of_tickets > 0) {
         if (ticketCount > MaxSeat) {
-            cout << "Het cho!" << endl;
+            cout << "   Het cho!" << endl;
             return; 
         }
         cout << endl
-			 << "STT ve may bay: " << ticketCount << endl;
+			 << "   STT ve may bay: " << ticketCount << endl;
 		string code; 
 		int index;  
 		while (true) {
-			cout << "→ Nhap ma so ve may bay: ";
+			cout << " → Nhap ma so ve may bay: ";
 			getline(cin, code); 
             if (bookedStore.find(code) != bookedStore.end()) {
-                cout << "Ma so nay da dat ghe" << endl; 
-                cout << "Nhap lai!" << endl; 
+                cout << "   Ma so nay da dat ghe" << endl; 
+                cout << "   Nhap lai!" << endl; 
                 continue; 
             }
 	        index = findPassengers(code); 
 	        if (index == -1) {
-	            cout << "Ma so ve may bay khong ton tai" << endl;
-	            cout << "Nhap lai!" << endl;  
+	            cout << "   Ma so ve may bay khong ton tai" << endl;
+	            cout << "   Nhap lai!" << endl;  
 	        }
 	        else break;  
 		}
@@ -529,27 +509,33 @@ void importSeatCode() {
 
 void displayInformation() {
     cout << endl
-         << "THONG TIN KHACH HANG VA GHE NGOI:" << endl;
-	cout << "═══════════════════════════════════════════" << endl;
+         << "╔════════════════════════════════════════════════════════════════════════════════════════════════════════╗" << endl
+         << "║                                     THONG TIN KHACH HANG VA GHE NGOI                                   ║" << endl
+         << "╚════════════════════════════════════════════════════════════════════════════════════════════════════════╝" << endl;
+
+    Sleep(800);
+
     for (int index = 0; index<passengers.size(); index++) {
-    	if (store.find(passengers[index].ticketCode) != store.end()) {
-		    cout << endl
-		         << "Thong tin ve " << passengers[index].ticketCode << " hien tai: " << endl;
-		    cout << "------------------------------------" << endl;
-		    cout << " Ma so chuyen bay: " << passengers[index].flightCode << endl; 
-		    cout << " Ma so ve: " << passengers[index].ticketCode << endl; 
-		    cout << " Khach hang: " << passengers[index].customer.names << endl; 
+        if (store.find(passengers[index].ticketCode) != store.end()) {
+            cout << endl
+                 << "Thong tin ve " << passengers[index].ticketCode << " hien tai: " << endl;
+            cout << "------------------------------------" << endl;
+            cout << " Ma so chuyen bay: " << passengers[index].flightCode << endl; 
+            cout << " Ma so ve: " << passengers[index].ticketCode << endl; 
+            cout << " Khach hang: " << passengers[index].customer.names << endl; 
             cout << " Ngay sinh: " << passengers[index].customer.DoB << " - Gioi tinh: " << passengers[index].customer.gender << endl;
-		    cout << " Email: " << passengers[index].customer.email << endl;
-			cout << " So dien thoai: " << passengers[index].customer.phoneNumber << endl;
-		    cout << " Chuyen bay: " << passengers[index].departure << " -> " << passengers[index].destination << endl;
-		    cout << " Ngay: " << passengers[index].date << " - Gio: " << passengers[index].time << endl;
-		    cout << " Ma so ghe: " << passengers[index].seatCode << endl; 
-		    cout << "------------------------------------" << endl;
-		}
-	}
-	Sleep(2000); 
+            cout << " Email: " << passengers[index].customer.email << endl;
+            cout << " So dien thoai: " << passengers[index].customer.phoneNumber << endl;
+            cout << " Chuyen bay: " << passengers[index].departure << " -> " << passengers[index].destination << endl;
+            cout << " Ngay: " << passengers[index].date << " - Gio: " << passengers[index].time << endl;
+            cout << " Ma so ghe: " << passengers[index].seatCode << endl; 
+            cout << "------------------------------------" << endl;
+        }
+    }
+
+    Sleep(800);
 }
+
 
 void TicketOutput(ofstream& WriteFile, int index) {
 	WriteFile << endl; 
@@ -570,72 +556,61 @@ void TicketOutput(ofstream& WriteFile, int index) {
 
 void printTicket() {
 	ofstream WriteFile("TicketInformation.txt", ios::app); 
-	cout << "Ban muon xuat mot hay toan bo ve da dat: "; 
-	string choice; getline(cin, choice); 
-	if (choice == "mot" || choice == "Mot") {
-		cout << "→ Nhap vao ma so ve: "; 
-		string code; getline(cin, code); 
-		int index = findPassengers(code); 
-		TicketOutput(WriteFile, index); 
-		cout << "Dang luu thong tin..." << endl; 
-		Sleep(1000); 
-		cout << "Thong tin da duoc luu!" << endl;
-		Sleep(1000); 
-	} else {
-		for (int index = 0; index<passengers.size(); index++) {
-			if (store.find(passengers[index].ticketCode) != store.end()) { 
-				TicketOutput(WriteFile, index); 
-			}
+	for (int index = 0; index<passengers.size(); index++) {
+		if (store.find(passengers[index].ticketCode) != store.end()) { 
+			TicketOutput(WriteFile, index); 
 		}
-		cout << "Dang luu thong tin..." << endl; 
-		Sleep(1000); 
-		cout << "Thong tin da duoc luu!" << endl;
-		Sleep(1000); 
-		cout << "Tong so ve luu: " << store.size()<< endl; 
 	}
+	cout << "   Dang luu thong tin..." << endl; 
+	Sleep(800); 
+	cout << "   Thong tin da duoc luu!" << endl;
+	Sleep(800); 
+	cout << "   Tong so ve luu: " << store.size()<< endl; 
 	WriteFile.close(); 
 }
 
 void resetTicketInformation() {
 	ofstream WriteFile("TicketInformation.txt"); 
 	WriteFile.close(); 
-	cout << "DU LIEU VE DA DUOC RESET" << endl; 
+	cout << "   DU LIEU VE DA DUOC RESET" << endl; 
 }
 
 // ======================= Menu =======================
 
 void displayMenu() {
-    cout << endl
-		 << "╔════════════════════════════════════════╗" << endl; 
-    cout << "║  CHAO MUNG DEN VOI HE THONG DAT GHE    ║" << endl; 
-    cout << "║              ITF_AIRWAY                ║" << endl; 
-    cout << "╠════════════════════════════════════════╣" << endl; 
-    cout << "║  1. Hien thi thong tin chuyen bay      ║" << endl; 
-    cout << "║  2. Dat ghe cho khach hang             ║" << endl; 
-    cout << "║  0. Thoat chuong trinh                 ║" << endl; 
-    cout << "╚════════════════════════════════════════╝" << endl; 
+    cout << endl;
+    cout << "╔════════════════════════════════════════════════════════════════════════════════════════════════════════╗" << endl;
+    cout << "║                         CHAO MUNG DEN VOI HE THONG DAT GHE MAY BAY - ITF_AIRWAY                        ║" << endl;
+    cout << "╠════════════════════════════════════════════════════════════════════════════════════════════════════════╣" << endl;
+    cout << "║   1. Hien thi thong tin chuyen bay                                                                     ║" << endl;
+    cout << "║                                                                                                        ║" << endl; 
+    cout << "║   2. Dat ghe cho khach hang                                                                            ║" << endl;
+    cout << "║                                                                                                        ║" << endl; 
+    cout << "║   0. Thoat chuong trinh                                                                                ║" << endl;
+    cout << "╚════════════════════════════════════════════════════════════════════════════════════════════════════════╝" << endl;
 }
 
 void initialization() {
     cout << endl 
-		 << "╔════════════════════════════════════════╗" << endl;
-    cout << "║           DANG NHAP HE THONG           ║" << endl;
-    cout << "╚════════════════════════════════════════╝" << endl;
+		 << "╔════════════════════════════════════════════════════════════════════════════════════════════════════════╗" << endl;
+    cout << "║                                           DANG NHAP HE THONG                                           ║" << endl;
+    cout << "╚════════════════════════════════════════════════════════════════════════════════════════════════════════╝" << endl;
 
     cout << endl 
-		 << " → Nhap ma de bat dau: ";
+		 << " → Nhap mat khau de khoi dong chuong trinh: ";
     string openCode;
     getline(cin, openCode);
     if (openCode != "Open" && openCode != "open" && openCode != "OPEN") {
         cout << endl
-             << "[ERROR] Sai ma khoi dong! Ket thuc!" << endl;
+             << "   [ERROR] Sai ma khoi dong! Ket thuc!" << endl;
         exit(0);
     }
-    cout << endl 
-         << "Dang dang nhap..." << endl;
-    Sleep(1000);
-    cout << "Dang nhap thanh cong!" << endl;
-    Sleep(1000);
+
+    cout << endl
+		 << "   Dang dang nhap..." << endl;
+    Sleep(800);
+    cout << "   Chao mung den voi he thong dat ghe!" << endl;
+    Sleep(800);
 }
 
 void inputFlightCode() {
@@ -645,7 +620,7 @@ void inputFlightCode() {
     getline(cin, flightCode);
     if (flightCode != "ITF2025" && flightCode != "itf2025" && flightCode != "Itf2025") {
         cout << endl 
-             << "[ERROR] Sai ma chuyen bay! Ket thuc!" << endl;
+             << "   [ERROR] Sai ma chuyen bay! Ket thuc!" << endl;
         exit(0);
     }
     importPassengersInformation(); 
@@ -654,25 +629,27 @@ void inputFlightCode() {
 
 void menu() {
     initialization(); 
+    cout << endl
+		 << "   ---------------------------------------------" << endl;
     inputFlightCode(); 
     
     if (passengers.empty()) {
-        cout << "Khong co thong tin hanh khach" << endl; 
+        cout << "   Khong co thong tin hanh khach!" << endl; 
         return; 
     }
     
-	cout << "Dang hien thi menu..." << endl;
-    Sleep(1000); 
+	cout << "   Dang hien thi menu..." << endl;
+    Sleep(800); 
     int choice;  
     do { 
         displayMenu();
     	while (true) {
-    		cout << "→ Vui long nhap lua chon: ";
+    		cout << " → Vui long nhap lua chon: ";
         	cin >> choice; 
     		if (cin.fail()) {
     			cin.clear(); 
     			cin.ignore(1000, '\n'); 
-    			cout << "Nhap sai!" << endl; 
+    			cout << "   Nhap sai!" << endl; 
 			} 
 			else break; 
 		}
@@ -680,42 +657,54 @@ void menu() {
 
         switch(choice) {
             case 0: {
-                cout << "Ban da chon thoat chuong trinh." << endl;
+                cout << "   Ban da chon thoat chuong trinh." << endl;
+                cout << "   Nhap mat khau de tien hanh ket thuc chuong trinh: ";  
+                string endCode; 
+                while(true) {
+                    getline(cin, endCode); 
+                    if (endCode != "close" && endCode != "CLOSE" && endCode != "Close") {
+                        cout << "   Nhap sai mat khau, hay nhap lai: ";
+                        continue;  
+                    } 
+                    else {
+                        break; 
+                    }
+                }
                 break;
             }
             case 1: {
                 if (!passengers.empty()) {
                     displayFlight(passengers[0]);
-                    cout << "Nhan phim bat ki de tiep tuc..." << endl; 
+                    cout << " Nhan phim bat ki de tiep tuc... ";
                     getchar(); 
                 } else {
-                    cout << "Khong co thong tin chuyen bay de hien thi." << endl;
+                    cout << "   Khong co thong tin chuyen bay de hien thi." << endl;
                 }
                 break; 
             }
             case 2: {
                 if (passengers.empty()) {
-                    cout << "Khong co thong tin hanh khach. Khong the dat ghe." << endl;
+                    cout << "   Khong co thong tin hanh khach. Khong the dat ghe." << endl;
                 } else {
                     importSeatCode(); 
                 }
 
                 if (passengers.empty()) {
-                    cout << "Khong co thong tin hanh khach de hien thi." << endl;
+                    cout << "   Khong co thong tin hanh khach de hien thi." << endl;
                     break;
                 }
                 displayInformation(); 
-                cout << "Ban co muon xuat ve: (Y/N) ";  
+                cout << "   Ban co muon xuat ve (Y/N): ";  
                 string out; getline(cin, out); 
                 if (out[0] == 'Y' || out[0] == 'y') {
                     printTicket(); 
                 }
-                cout << "Nhan phim bat ki de tiep tuc..." << endl; 
+                cout << " Nhan phim bat ki de tiep tuc... "; 
                 getchar(); 
                 break; 
             }
             default: {
-                cout << "Lua chon khong hop le. Vui long nhap lai." << endl;
+                cout << "   Lua chon khong hop le. Vui long nhap lai." << endl;
                 break;
             }
         }
@@ -724,20 +713,20 @@ void menu() {
 
 void end() {
     cout << endl;
-    cout << "╔══════════════════════════════════════════╗" << endl;
-    cout << "║   Cam on quy khach da su dung dich vu    ║" << endl;
-    cout << "║               ITF-AIRWAYS                ║" << endl;
-    cout << "╚══════════════════════════════════════════╝" << endl;
+    cout << "╔════════════════════════════════════════════════════════════════════════════════════════════════════════╗" << endl;
+    cout << "║                                    Cam on quy khach da su dung dich vu                                 ║" << endl;
+    cout << "║                                               ITF-AIRWAYS                                              ║" << endl;
+    cout << "╚════════════════════════════════════════════════════════════════════════════════════════════════════════╝" << endl;
     cout << endl;
-    Sleep(500);
+    Sleep(800);
 }
 
 void reset() {
-	cout << "Reset so do ghe? (Y/N) ";
+	cout << "   Reset so do ghe? (Y/N) ";
 	string choice; getline(cin, choice); 
 	if (choice[0] == 'y' || choice[0] == 'Y') {
     	resetSeatingChart(); 
-    	cout << "Reset du lieu ve da dat? (Y/N) "; 
+    	cout << "   Reset du lieu ve da dat? (Y/N) "; 
     	getline(cin, choice); 
     	if (choice[0] == 'y' || choice[0] == 'Y') {
     		resetTicketInformation(); 

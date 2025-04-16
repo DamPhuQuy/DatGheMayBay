@@ -37,3 +37,29 @@ Thong tin ve ITF005 hien tai:
  Ma so ghe: 15A
 ------------------------------------
 
+
+Thong tin ve ITF002 hien tai: 
+------------------------------------
+ Ma so chuyen bay: ITF2025
+ Ma so ve: ITF002
+ Khach hang: Nguyen Thao Vy
+ Ngay sinh: 05/04/2001 - Gioi tinh: Nu
+ Email: vy.nguyen@gmail.com
+ So dien thoai: 0909876543
+ Chuyen bay: Da Nang -> Ho Chi Minh Ngay: 10/04/2025 - Gio: 2:30 PM
+ Ma so ghe: 5D
+------------------------------------
+
+
+Thong tin ve ITF008 hien tai: 
+------------------------------------
+ Ma so chuyen bay: ITF2025
+ Ma so ve: ITF008
+ Khach hang: Pham Thanh Huong
+ Ngay sinh: 12/03/1998 - Gioi tinh: Nu
+ Email: huong.pham@gmail.com
+ So dien thoai: 0956789012
+ Chuyen bay: Da Nang -> Ho Chi Minh Ngay: 10/04/2025 - Gio: 2:30 PM
+ Ma so ghe: 1C
+------------------------------------
+
