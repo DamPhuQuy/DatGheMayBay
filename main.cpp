@@ -5,7 +5,7 @@
 #include <set> 
 #include <windows.h> 
 #include "global.h" 
-#include "printMenu.cpp"
+#include "printMenu.h"
 using namespace std;
 
 int ticketCount = 1; 

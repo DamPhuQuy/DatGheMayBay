@@ -1,4 +1,3 @@
-#pragma once
 #include <iostream>
 #include <string>
 #include <string.h>
@@ -11,9 +10,9 @@
 #include <windows.h>
 #include <iomanip>
 #include "global.h"
-#include "importdata.cpp"
-#include "seatingchart.cpp"
-#include "admin.cpp"
+#include "importdata.h"
+#include "seatingchart.h" 
+#include "admin.h"
 using namespace std; 
 
 void displayFlight(const ticket &flightList)
