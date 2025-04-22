@@ -63,3 +63,29 @@ Thong tin ve ITF008 hien tai:
  Ma so ghe: 1C
 ------------------------------------
 
+
+Thong tin ve ITF010 hien tai: 
+------------------------------------
+ Ma so chuyen bay: ITF2025
+ Ma so ve: ITF010
+ Khach hang: Dang Mai Anh
+ Ngay sinh: 07/07/2000 - Gioi tinh: Nu
+ Email: mai.dang@gmail.com
+ So dien thoai: 0987654321
+ Chuyen bay: Da Nang -> Ho Chi Minh Ngay: 10/04/2025 - Gio: 2:30 PM
+ Ma so ghe: 1A
+------------------------------------
+
+
+Thong tin ve ITF004 hien tai: 
+------------------------------------
+ Ma so chuyen bay: ITF2025
+ Ma so ve: ITF004
+ Khach hang: Tran Khanh Linh
+ Ngay sinh: 18/11/1996 - Gioi tinh: Nu
+ Email: linh.tran@gmail.com
+ So dien thoai: 0923456789
+ Chuyen bay: Da Nang -> Ho Chi Minh Ngay: 10/04/2025 - Gio: 2:30 PM
+ Ma so ghe: 7A
+------------------------------------
+
