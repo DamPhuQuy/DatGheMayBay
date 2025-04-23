@@ -18,12 +18,20 @@ passenger allocation on each flight.
 - The seating layout on the aircraft is described in a file.
 
 
-## Run
+## Run 
+
+Work well with terminal, powershell
 
 Compile: 
 
 ```bash
     g++ main.cpp admin.cpp importdata.cpp seatingchart.cpp printMenu.cpp -o DatGheMayBay
+```
+
+Run DatGheMayBay.exe
+
+```bash
+    DatGheMayBay.exe
 ```
     
 ## Contributor
