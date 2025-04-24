@@ -54,6 +54,8 @@ void importSeatingChartData() {
 }
 
 void displaySeatingChart() { 
+    system("cls");
+
 	cout << endl; 
     cout << "╔════════════════════╦═══════════════════════════════════════════════════════════════════════════════════╗" << endl;
     cout << "║    First Class     ║                                     Economy Class                                 ║" << endl;

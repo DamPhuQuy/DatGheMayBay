@@ -5,14 +5,14 @@
 
 using namespace std;
 
-void loginFrame() {
+void loginFrame() 
+{
     system("cls");
 
     cout << endl
          << "╔════════════════════════════════════════════════════════════════════════════════════════════════════════╗" << endl;
-    cout << "║                                           DANG NHAP HE THONG                                           ║" << endl;
+    cout << "║                         CHAO MUNG DEN VOI HE THONG DAT GHE MAY BAY - ITF_AIRWAY                        ║" << endl;
     cout << "╚════════════════════════════════════════════════════════════════════════════════════════════════════════╝" << endl;
-
 
     cout << "╔══════════════════════════════════════════════════╗" << endl;
     cout << "║                  ADMIN DANG NHAP                 ║" << endl;
@@ -23,13 +23,15 @@ void loginFrame() {
     cout << "╚══════════════════════════════════════════════════╝" << endl;
 }
 
-void Goto(int x, int y) {
+void Goto(int x, int y) 
+{
     COORD coord;
     coord.X = x; coord.Y = y; 
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord); 
 }
 
-bool checkLogin() {
+bool checkLogin() 
+{
     string username, password1, password2; 
     loginFrame(); 
 
@@ -41,47 +43,57 @@ bool checkLogin() {
     password1.clear(); 
     while (true) {
         temp = _getch(); 
-        if (temp == 13) break; 
-        else if (temp == 8 && !password1.empty()) {
+        if (temp == 13) break; // \n = 13 
+        else if (temp == 8 && !password1.empty()) // \b = 8 
+        {
             password1.pop_back();
             cout << "\b \b"; 
         } 
-        else if (isprint(temp)) {
+        else if (isprint(temp)) 
+        {
             password1 += temp; 
             cout << "*"; 
         }
     }
 
     Goto(21, 9); 
-    while (true) {
+    while (true) 
+    {
         temp = _getch(); 
         if (temp == 13) break; 
-        else if (temp == 8 && !password2.empty()) {
+        else if (temp == 8 && !password2.empty()) 
+        {
             password2.pop_back(); 
             cout << "\b \b"; 
         }
-        else if (isprint(temp)) {
+        else if (isprint(temp)) 
+        {
             password2 += temp; 
             cout << "*";
         }
     }
 
-    if (username == "phuquy06") {
-        return (password1 == "Open" && password2 == password1);    
+    if (username == "phuquy06") 
+    {
+        return (password1 == "open" && password2 == password1);    
     } 
-    else if (username == "vinhquang0411") {
-        return (password1 == "ITF" && password2 == password1);
+    else if (username == "vinhquang0411") 
+    {
+        return (password1 == "ITFopen" && password2 == password1);
     } 
     else {
         return false; 
     }
 }
 
-void adminLogin() {
+void adminLogin() 
+{
     int incorrectCount = 0; 
-    while (incorrectCount < 3) {
-        if (checkLogin()) {
-            cout << "\n\n"; 
+    while (incorrectCount < 3) 
+    {
+        if (checkLogin()) 
+        {
+            cout << endl << endl; 
             cout << endl
                  << "   Dang dang nhap..." << endl;
             Sleep(800);
@@ -89,15 +101,62 @@ void adminLogin() {
             Sleep(800);
             return; 
         }
-        else {
-            cout << "\n\n"; 
+        else 
+        {
+            cout << endl << endl; 
             cout << "   Tai khoan hoac mat khau sai!" << endl; 
             cout << "   Vui long nhap lai!" << endl;
             incorrectCount++; 
             Sleep(1500);
         }
     }
+    cout << endl; 
     cout << "   Sai mat khau qua " << incorrectCount << " lan!" << endl;
     cout << "   Dung chuong trinh..." << endl; 
     exit(0); 
+}
+
+bool checkLogout() 
+{
+    string password; 
+    cout << endl << endl; 
+    cout << " → Nhap mat khau de dang xuat: ";
+    char temp; 
+    while (true) {
+        temp = _getch(); 
+        if (temp == 13) break; 
+        else if (temp == 8 && !password.empty()) 
+        {
+            password.pop_back();
+            cout << "\b \b";
+        }
+        else if (isprint(temp)) {
+            password += temp; 
+            cout << "*"; 
+        }
+    }
+    return (password == "close"); 
+}
+
+void adminLogout() 
+{
+    system("cls");
+
+    int incorrectCount = 0;
+    while (incorrectCount < 3) 
+    {
+        if (checkLogout()) 
+        {
+            cout << endl 
+                 << "   Dang xuat... " << endl; 
+            Sleep(800); 
+        } 
+        else
+        {
+            cout << endl 
+                 << "   Sai mat khau!" << endl; 
+            Sleep(800);
+            incorrectCount++;
+        }
+    }
 }

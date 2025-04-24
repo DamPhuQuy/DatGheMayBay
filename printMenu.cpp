@@ -17,6 +17,8 @@ using namespace std;
 
 void displayFlight(const ticket &flightList)
 {
+    system("cls");
+
     printf("\n");
     printf("╔════════════════════════════════════════════════════════════════════════════════════════════════════════╗\n");
     printf("║                                          THONG TIN CHUYEN BAY                                          ║\n");
@@ -49,6 +51,8 @@ void inputFlightCode()
 
 void displayInformation()
 {
+    system("cls");
+
     cout << endl
          << "╔════════════════════════════════════════════════════════════════════════════════════════════════════════╗" << endl
          << "║                                     THONG TIN KHACH HANG VA GHE NGOI                                   ║" << endl
@@ -124,6 +128,8 @@ void resetTicketInformation()
 
 void displayMenu()
 {
+    system("cls");
+
     cout << endl;
     cout << "╔════════════════════════════════════════════════════════════════════════════════════════════════════════╗" << endl;
     cout << "║                         CHAO MUNG DEN VOI HE THONG DAT GHE MAY BAY - ITF_AIRWAY                        ║" << endl;
@@ -151,7 +157,7 @@ void menu()
     }
 
     cout << "   Dang hien thi menu..." << endl;
-    Sleep(800);
+    Sleep(1500);
     int choice;
     do
     {
@@ -176,21 +182,17 @@ void menu()
         case 0:
         {
             cout << "   Ban da chon thoat chuong trinh." << endl;
-            cout << "   Nhap mat khau de tien hanh ket thuc chuong trinh: ";
-            string endCode;
-            while (true)
+            int incorrectCount = 0;
+            while (!checkLogout())
             {
-                getline(cin, endCode);
-                if (endCode != "close" && endCode != "CLOSE" && endCode != "Close")
+                cout << "   Sai mat khau!" << endl; 
+                incorrectCount++;
+                if (incorrectCount == 2) 
                 {
-                    cout << "   Nhap sai mat khau, hay nhap lai: ";
-                    continue;
+                    cout << "   Nhap sai qua 3 lan!" << endl; 
+                    cout << "   Chuong trinh tiep tuc chay... " << endl;
                 }
-                else
-                {
-                    break;
-                }
-            }
+            } 
             break;
         }
         case 1:
@@ -231,6 +233,7 @@ void menu()
             {
                 printTicket();
             }
+            cout << endl; 
             cout << " Nhan phim bat ki de tiep tuc... ";
             getchar();
             break;
@@ -246,6 +249,8 @@ void menu()
 
 void end()
 {
+    system("cls");
+
     cout << endl;
     cout << "╔════════════════════════════════════════════════════════════════════════════════════════════════════════╗" << endl;
     cout << "║                                    Cam on quy khach da su dung dich vu                                 ║" << endl;

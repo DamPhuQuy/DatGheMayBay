@@ -10,3 +10,5 @@ void loginFrame();
 void GoTo(int x, int y);
 bool checkLogin(); 
 void adminLogin();
+bool checkLogout(); 
+void adminLogout();

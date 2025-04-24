@@ -89,3 +89,42 @@ Thong tin ve ITF004 hien tai:
  Ma so ghe: 7A
 ------------------------------------
 
+
+Thong tin ve ITF006 hien tai: 
+------------------------------------
+ Ma so chuyen bay: ITF2025
+ Ma so ve: ITF006
+ Khach hang: Le Bao Ngoc
+ Ngay sinh: 30/08/1999 - Gioi tinh: Nu
+ Email: ngoc.le@gmail.com
+ So dien thoai: 0945678901
+ Chuyen bay: Da Nang -> Ho Chi Minh Ngay: 10/04/2025 - Gio: 2:30 PM
+ Ma so ghe: 8A
+------------------------------------
+
+
+Thong tin ve ITF009 hien tai: 
+------------------------------------
+ Ma so chuyen bay: ITF2025
+ Ma so ve: ITF009
+ Khach hang: Dang Gia Bao
+ Ngay sinh: 10/02/1999 - Gioi tinh: Nam
+ Email: bao.dang@gmail.com
+ So dien thoai: 0932123456
+ Chuyen bay: Da Nang -> Ho Chi Minh Ngay: 10/04/2025 - Gio: 2:30 PM
+ Ma so ghe: 9A
+------------------------------------
+
+
+Thong tin ve ITF007 hien tai: 
+------------------------------------
+ Ma so chuyen bay: ITF2025
+ Ma so ve: ITF007
+ Khach hang: Pham Quoc Huy
+ Ngay sinh: 25/07/1997 - Gioi tinh: Nam
+ Email: huy.pham@gmail.com
+ So dien thoai: 0965432109
+ Chuyen bay: Da Nang -> Ho Chi Minh Ngay: 10/04/2025 - Gio: 2:30 PM
+ Ma so ghe: 3C
+------------------------------------
+
