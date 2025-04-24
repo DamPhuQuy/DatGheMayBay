@@ -1,69 +1,103 @@
 #include <iostream>
 #include <string>
 #include <windows.h> 
+#include <conio.h> 
 
 using namespace std;
 
-void admin()
-{
+void loginFrame() {
+    system("cls");
+
     cout << endl
          << "╔════════════════════════════════════════════════════════════════════════════════════════════════════════╗" << endl;
     cout << "║                                           DANG NHAP HE THONG                                           ║" << endl;
     cout << "╚════════════════════════════════════════════════════════════════════════════════════════════════════════╝" << endl;
 
-    string username; 
+
+    cout << "╔══════════════════════════════════════════════════╗" << endl;
+    cout << "║                  ADMIN DANG NHAP                 ║" << endl;
+    cout << "╠══════════════════════════════════════════════════╣" << endl;
+    cout << "║ Tai khoan:                                       ║" << endl;
+    cout << "║ Mat khau :                                       ║" << endl;
+    cout << "║ Nhap lai mat khau:                               ║" << endl;
+    cout << "╚══════════════════════════════════════════════════╝" << endl;
+}
+
+void Goto(int x, int y) {
+    COORD coord;
+    coord.X = x; coord.Y = y; 
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord); 
+}
+
+bool checkLogin() {
+    string username, password1, password2; 
+    loginFrame(); 
+
+    Goto(13, 7); 
+    getline(cin, username); 
+
+    Goto(13, 8); 
+    char temp; 
+    password1.clear(); 
     while (true) {
-        cout << endl
-             << " → Nhap ten dang nhap: ";
-        getline(cin, username); 
-        
-        if (username.length() > 0) {
-            if (username == "phuquy06" || username == "vinhquang0411") break;
-            else {
-                cout << endl
-                     << "   [ERROR] Ten dang nhap khong hop le!" << endl;
-            }
-        } else {
-            cout << endl
-                 << "   [ERROR] Ten dang nhap khong duoc de trong!" << endl;
+        temp = _getch(); 
+        if (temp == 13) break; 
+        else if (temp == 8 && !password1.empty()) {
+            password1.pop_back();
+            cout << "\b \b"; 
+        } 
+        else if (isprint(temp)) {
+            password1 += temp; 
+            cout << "*"; 
         }
     }
 
-    int incorrectCount = 0;
-    string openCode;
+    Goto(21, 9); 
     while (true) {
-        cout << endl
-             << " → Nhap mat khau de khoi dong chuong trinh: ";
-        getline(cin, openCode);
-        if (openCode == "open" || openCode == "Open" || openCode == "OPEN") break; 
+        temp = _getch(); 
+        if (temp == 13) break; 
+        else if (temp == 8 && !password2.empty()) {
+            password2.pop_back(); 
+            cout << "\b \b"; 
+        }
+        else if (isprint(temp)) {
+            password2 += temp; 
+            cout << "*";
+        }
+    }
+
+    if (username == "phuquy06") {
+        return (password1 == "Open" && password2 == password1);    
+    } 
+    else if (username == "vinhquang0411") {
+        return (password1 == "ITF" && password2 == password1);
+    } 
+    else {
+        return false; 
+    }
+}
+
+void adminLogin() {
+    int incorrectCount = 0; 
+    while (incorrectCount < 3) {
+        if (checkLogin()) {
+            cout << "\n\n"; 
+            cout << endl
+                 << "   Dang dang nhap..." << endl;
+            Sleep(800);
+            cout << "   Chao mung den voi he thong dat ghe!" << endl;
+            Sleep(800);
+            return; 
+        }
         else {
-            cout << endl
-                 << "   [ERROR] Mat khau khong hop le!" << endl;
-            incorrectCount++;
-        }
-
-        if (incorrectCount == 3) {
-            cout << endl
-                 << "   [ERROR] Sai mat khau qua 3 lan!" << endl;
-            cout << endl
-                 << "   Chuong trinh ket thuc!" << endl;
-            exit(0); 
+            cout << "\n\n"; 
+            cout << "   Tai khoan hoac mat khau sai!" << endl; 
+            cout << "   Vui long nhap lai!" << endl;
+            incorrectCount++; 
+            Sleep(1500);
         }
     }
-
-    string openCode2; 
-    while (true) {
-        cout << endl
-             << " → Nhap lai mat khau de khoi dong chuong trinh: ";
-        getline(cin, openCode2);
-        if (openCode2 == openCode) break;
-        else cout << endl
-                  << "   [ERROR] Mat khau khong khop!" << endl;
-    }
-
-    cout << endl
-         << "   Dang dang nhap..." << endl;
-    Sleep(800);
-    cout << "   Chao mung den voi he thong dat ghe!" << endl;
-    Sleep(800);
+    cout << "   Sai mat khau qua " << incorrectCount << " lan!" << endl;
+    cout << "   Dung chuong trinh..." << endl; 
+    exit(0); 
 }

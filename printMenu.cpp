@@ -139,7 +139,7 @@ void displayMenu()
 
 void menu()
 {
-    admin();
+    adminLogin(); 
     cout << endl
          << "   ---------------------------------------------" << endl;
     inputFlightCode();
