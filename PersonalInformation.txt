@@ -9,22 +9,22 @@ Pham Thanh Huong,12/03/1998,huong.pham@gmail.com,0956789012,Nu,ITF008,First Clas
 Dang Gia Bao,10/02/1999,bao.dang@gmail.com,0932123456,Nam,ITF009,Economy Class
 Dang Mai Anh,07/07/2000,mai.dang@gmail.com,0987654321,Nu,ITF010,First Class
 Bui Van Khanh,04/04/2002,bui.van.khanh@gmail.com,0987654322,Nam,ITF011,First Class
-Dang Van Ngoc,20/11/2003,dang.van.ngoc@gmail.com,0987654323,Nam,ITF012,Economy
-Do Thi Trang,14/09/2003,do.thi.trang@gmail.com,0987654324,Nu,ITF013,Business
+Dang Van Ngoc,20/11/2003,dang.van.ngoc@gmail.com,0987654323,Nam,ITF012,Economy Class
+Do Thi Trang,14/09/2003,do.thi.trang@gmail.com,0987654324,Nu,ITF013,Economy Class
 Bui Van Khanh,27/10/2002,bui.van.khanh@gmail.com,0987654325,Nam,ITF014,First Class
 Nguyen Van An,05/10/2001,nguyen.van.an@gmail.com,0987654326,Nam,ITF015,First Class
-Chu Van Linh,07/08/2001,chu.van.linh@gmail.com,0987654327,Nam,ITF016,Business
+Chu Van Linh,07/08/2001,chu.van.linh@gmail.com,0987654327,Nam,ITF016,Economy Class
 Tran Van Trang,27/05/2002,tran.van.trang@gmail.com,0987654328,Nam,ITF017,First Class
-Le Van Linh,01/07/2002,le.van.linh@gmail.com,0987654329,Nam,ITF018,Business
+Le Van Linh,01/07/2002,le.van.linh@gmail.com,0987654329,Nam,ITF018,Economy Class
 Do Van Ngoc,27/07/2003,do.van.ngoc@gmail.com,0987654330,Nam,ITF019,First Class
-Bui Van Binh,07/07/2003,bui.van.binh@gmail.com,0987654331,Nam,ITF020,Economy
-Le Van Phuong,25/02/2002,le.van.phuong@gmail.com,0987654332,Nam,ITF021,Business
+Bui Van Binh,07/07/2003,bui.van.binh@gmail.com,0987654331,Nam,ITF020,Economy Class
+Le Van Phuong,25/02/2002,le.van.phuong@gmail.com,0987654332,Nam,ITF021,Economy Class
 Vo Van Mai,02/11/2002,vo.van.mai@gmail.com,0987654333,Nam,ITF022,First Class
 Nguyen Van Uyen,24/02/2001,nguyen.van.uyen@gmail.com,0987654334,Nam,ITF023,First Class
-Bui Thi Mai,14/06/2001,bui.thi.mai@gmail.com,0987654335,Nu,ITF024,Business
-Dang Thi Ngoc,13/08/2002,dang.thi.ngoc@gmail.com,0987654336,Nu,ITF025,Business
-Pham Thi Dung,25/06/2001,pham.thi.dung@gmail.com,0987654337,Nu,ITF026,Economy
-Nguyen Van Dung,12/02/2001,nguyen.van.dung@gmail.com,0987654338,Nam,ITF027,Business
-Hoang Van An,03/06/2003,hoang.van.an@gmail.com,0987654339,Nam,ITF028,Business
+Bui Thi Mai,14/06/2001,bui.thi.mai@gmail.com,0987654335,Nu,ITF024,Economy Class
+Dang Thi Ngoc,13/08/2002,dang.thi.ngoc@gmail.com,0987654336,Nu,ITF025,Economy Class
+Pham Thi Dung,25/06/2001,pham.thi.dung@gmail.com,0987654337,Nu,ITF026,Economy Class
+Nguyen Van Dung,12/02/2001,nguyen.van.dung@gmail.com,0987654338,Nam,ITF027,Economy Class
+Hoang Van An,03/06/2003,hoang.van.an@gmail.com,0987654339,Nam,ITF028,Economy Class
 Do Thi Mai,15/06/2003,do.thi.mai@gmail.com,0987654340,Nu,ITF029,First Class
-Le Van Quyen,24/01/2002,le.van.quyen@gmail.com,0987654341,Nam,ITF030,Business
+Le Van Quyen,24/01/2002,le.van.quyen@gmail.com,0987654341,Nam,ITF030,Economy Class
