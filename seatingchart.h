@@ -20,3 +20,4 @@ string selectSeat(int index);
 void resetSeatingChart();
 void importSeatCode(); 
 int findPassengers(const string& code); 
+void statistics(); 

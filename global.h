@@ -23,6 +23,7 @@ extern int ticketCount;
 extern vector<ticket> passengers;
 extern set<string> bookedStore;
 extern set<string> store;
+extern int number_of_bookedSeats; 
 
 extern vector<vector<string>> firstClass;
 extern vector<vector<string>> economyClass;

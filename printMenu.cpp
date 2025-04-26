@@ -47,6 +47,8 @@ void inputFlightCode()
     }
     importPassengersInformation();
     importBookedTicket();
+
+    importSeatingChartData();
 }
 
 void displayInformation()
@@ -75,7 +77,7 @@ void displayInformation()
             cout << " So dien thoai: " << passengers[index].customer.phoneNumber << endl;
             cout << " Chuyen bay: " << passengers[index].departure << " -> " << passengers[index].destination << endl;
             cout << " Ngay: " << passengers[index].date << " - Gio: " << passengers[index].time << endl;
-            cout << " Ma so ghe: " << passengers[index].seatCode << endl;
+            cout << " Ma so ghe: " << passengers[index].seatCode << " - Class: " << passengers[index].classLabel << endl;
             cout << "------------------------------------" << endl;
         }
     }
@@ -96,7 +98,7 @@ void TicketOutput(ofstream &WriteFile, int index)
     WriteFile << " So dien thoai: " << passengers[index].customer.phoneNumber << endl;
     WriteFile << " Chuyen bay: " << passengers[index].departure << " -> " << passengers[index].destination;
     WriteFile << " Ngay: " << passengers[index].date << " - Gio: " << passengers[index].time << endl;
-    WriteFile << " Ma so ghe: " << passengers[index].seatCode << endl;
+    WriteFile << " Ma so ghe: " << passengers[index].seatCode << " - Class: " << passengers[index].classLabel << endl;
     WriteFile << "------------------------------------" << endl;
     WriteFile << endl;
 }
@@ -135,8 +137,10 @@ void displayMenu()
     cout << "║                         CHAO MUNG DEN VOI HE THONG DAT GHE MAY BAY - ITF_AIRWAY                        ║" << endl;
     cout << "╠════════════════════════════════════════════════════════════════════════════════════════════════════════╣" << endl;
     cout << "║   1. Hien thi thong tin chuyen bay                                                                     ║" << endl;
+    cout << "║                                                                                                        ║" << endl; 
+	cout << "║   2. Thong ke so luong ghe                                                                             ║" << endl;
     cout << "║                                                                                                        ║" << endl;
-    cout << "║   2. Dat ghe cho khach hang                                                                            ║" << endl;
+    cout << "║   3. Dat ghe cho khach hang                                                                            ║" << endl;
     cout << "║                                                                                                        ║" << endl;
     cout << "║   0. Thoat chuong trinh                                                                                ║" << endl;
     cout << "╚════════════════════════════════════════════════════════════════════════════════════════════════════════╝" << endl;
@@ -179,70 +183,67 @@ void menu()
 
         switch (choice)
         {
-        case 0:
-        {
-            cout << "   Ban da chon thoat chuong trinh." << endl;
-            int incorrectCount = 0;
-            while (!checkLogout())
+            case 0:
             {
-                cout << "   Sai mat khau!" << endl; 
-                incorrectCount++;
-                if (incorrectCount == 2) 
-                {
-                    cout << "   Nhap sai qua 3 lan!" << endl; 
-                    cout << "   Chuong trinh tiep tuc chay... " << endl;
-                }
-            } 
-            break;
-        }
-        case 1:
-        {
-            if (!passengers.empty())
-            {
-                displayFlight(passengers[0]);
-                cout << " Nhan phim bat ki de tiep tuc... ";
-                getchar();
-            }
-            else
-            {
-                cout << "   Khong co thong tin chuyen bay de hien thi." << endl;
-            }
-            break;
-        }
-        case 2:
-        {
-            if (passengers.empty())
-            {
-                cout << "   Khong co thong tin hanh khach. Khong the dat ghe." << endl;
-            }
-            else
-            {
-                importSeatCode();
-            }
-
-            if (passengers.empty())
-            {
-                cout << "   Khong co thong tin hanh khach de hien thi." << endl;
+                cout << "   Ban da chon thoat chuong trinh." << endl;
+                adminLogout(); 
                 break;
             }
-            displayInformation();
-            cout << "   Ban co muon xuat ve (Y/N): ";
-            string out;
-            getline(cin, out);
-            if (out[0] == 'Y' || out[0] == 'y')
+            case 1:
             {
-                printTicket();
+                if (!passengers.empty())
+                {
+                    displayFlight(passengers[0]);
+                    cout << " Nhan phim bat ki de tiep tuc... ";
+                    getchar();
+                }
+                else
+                {
+                    cout << "   Khong co thong tin chuyen bay de hien thi." << endl;
+                }
+                break;
             }
-            cout << endl; 
-            cout << " Nhan phim bat ki de tiep tuc... ";
-            getchar();
-            break;
-        }
-        default:
-        {
-            cout << "   Lua chon khong hop le. Vui long nhap lai." << endl;
-            break;
-        }
+            case 2: 
+            {
+				statistics();
+                cout << "   Nhan phim bat ki de tiep tuc..."; 
+                getchar();
+                break;
+            }
+            case 3:
+            {
+                if (passengers.empty())
+                {
+                    cout << "   Khong co thong tin hanh khach. Khong the dat ghe." << endl;
+                }
+                else
+                {
+                    importSeatCode();
+                }
+
+                if (passengers.empty())
+                {
+                    cout << "   Khong co thong tin hanh khach de hien thi." << endl;
+                    break;
+                }
+                displayInformation();
+                cout << "   Ban co muon xuat ve (Y/N): ";
+                string out;
+                getline(cin, out);
+                if (out[0] == 'Y' || out[0] == 'y')
+                {
+                    printTicket();
+                }
+                cout << endl; 
+                cout << " Nhan phim bat ki de tiep tuc... ";
+                getchar();
+                break;
+            }
+            default:
+            {
+                cout << "   Lua chon khong hop le. Vui long nhap lai." << endl;
+                break;
+            }
         }
     } while (choice != 0);
 }

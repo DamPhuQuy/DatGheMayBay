@@ -13,6 +13,8 @@
 #include "seatingchart.h" 
 using namespace std;
 
+int number_of_bookedSeats = 0; 
+
 void importSeatingChartData() {
     ifstream inputFile("BookedSeatingChart.txt"); 
     if (!inputFile) {
@@ -40,6 +42,9 @@ void importSeatingChartData() {
             vector<string> row; 
             string token; 
             while (ss >> token) {
+                if (token == "--" || token == "---") {
+                    ++number_of_bookedSeats;
+                }
                 row.push_back(token); 
             }
             if (isFirstClass) {
@@ -244,7 +249,6 @@ void resetSeatingChart() {
 
 void importSeatCode()
 {
-    importSeatingChartData();
     displaySeatingChart();
 
     cout << endl
@@ -323,4 +327,18 @@ int findPassengers(const string &code)
         }
     }
     return -1;
+}
+
+void statistics() {
+	system("cls");
+
+    cout << "╔════════════════════════════════════════════╗" << endl;
+    cout << "║                  THONG KE GHE              ║" << endl;
+    cout << "╠════════════════════════════════════════════╣" << endl;
+    cout << "║ Tong so ghe      : " << setw(4) << MaxSeat << "                    ║" << endl;
+    cout << "║                                            ║" << endl; 
+    cout << "║ So ghe da dat    : " << setw(4) << number_of_bookedSeats << "                    ║" << endl;
+    cout << "║                                            ║" << endl;
+    cout << "║ So ghe con trong : " << setw(4) << MaxSeat - number_of_bookedSeats << "                    ║" << endl;
+    cout << "╚════════════════════════════════════════════╝" << endl;
 }

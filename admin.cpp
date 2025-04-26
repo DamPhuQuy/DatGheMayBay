@@ -148,8 +148,9 @@ void adminLogout()
         if (checkLogout()) 
         {
             cout << endl 
-                 << "   Dang xuat... " << endl; 
+                 << "   Dang xuat... " << endl;
             Sleep(800); 
+            return; 
         } 
         else
         {
