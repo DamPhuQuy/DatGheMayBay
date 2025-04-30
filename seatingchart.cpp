@@ -10,8 +10,8 @@
 #include <windows.h>
 #include <iomanip>
 #include <filesystem>
+#include "seatingchart.h"
 #include "global.h"
-#include "seatingchart.h" 
 using namespace std;
 using namespace std::filesystem;
 

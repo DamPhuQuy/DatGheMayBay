@@ -14,8 +14,7 @@ const string TICKET_INFO = "TicketInformation.txt";
 const string FLIGHT_INFO = "FlightInformation.txt";
 const string LOG_INFO = "log.txt";
 
-typedef struct
-{
+typedef struct {
     string names, DoB, email, phoneNumber, gender;
 } person;
 

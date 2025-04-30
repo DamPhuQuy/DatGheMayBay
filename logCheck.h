@@ -1,14 +1,5 @@
 #pragma once
-
-#include <iostream>
-#include <fstream>
-#include <chrono>
-#include <ctime>
-#include <iomanip>
-#include <sstream> 
 #include <string> 
-#include "global.h" 
-
 using namespace std;
 
 string getCurrentTime(); 

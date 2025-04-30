@@ -1,19 +1,6 @@
 #pragma once
-
-#include <iostream>
-#include <string>
-#include <string.h>
-#include <vector>
-#include <map>
-#include <fstream>
-#include <cctype>
-#include <sstream>
-#include <set>
-#include <windows.h>
-#include <iomanip>
-#include <filesystem>
+#include <fstream> 
 #include "global.h"
-#include "importdata.h"
 using namespace std;
 
 bool openInputFile(ifstream& readFile1, ifstream& readFile2); 

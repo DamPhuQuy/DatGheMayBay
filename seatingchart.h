@@ -1,20 +1,7 @@
 #pragma once
-#include <iostream>
-#include <string>
-#include <string.h>
-#include <vector>
-#include <map>
-#include <fstream>
-#include <cctype>
-#include <sstream>
-#include <set>
-#include <windows.h>
-#include <iomanip>
-#include <filesystem>
-#include "global.h"
-#include "seatingchart.h" 
+#include <string>  
+
 using namespace std;
-using namespace std::filesystem;
 
 void importSeatingChartData(); 
 void displaySeatingChart();
