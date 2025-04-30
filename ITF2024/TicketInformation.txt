@@ -11,3 +11,16 @@ Thong tin ve ITF020 hien tai:
  Ma so ghe: 4D - Class: First Class
 ------------------------------------
 
+
+Thong tin ve ITF018 hien tai: 
+------------------------------------
+ Ma so chuyen bay: ITF2024
+ Ma so ve: ITF018
+ Khach hang: Vo Van Minh
+ Ngay sinh: 09/09/1994 - Gioi tinh: Nam
+ Email: minh.vo@gmail.com
+ So dien thoai: 0918899001
+ Chuyen bay: Ho Chi Minh -> Ha Noi Ngay: 09/04/2025 - Gio: 6:45 PM
+ Ma so ghe: 10E - Class: Economy Class
+------------------------------------
+
