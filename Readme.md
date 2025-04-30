@@ -25,7 +25,7 @@ Work well with terminal, powershell
 Compile: 
 
 ```bash
-    g++ main.cpp admin.cpp importdata.cpp seatingchart.cpp printMenu.cpp -o DatGheMayBay
+    g++ main.cpp logCheck.cpp admin.cpp importdata.cpp seatingchart.cpp printMenu.cpp -o DatGheMayBay
 ```
 
 Run DatGheMayBay.exe
