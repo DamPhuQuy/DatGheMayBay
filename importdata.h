@@ -1,4 +1,5 @@
 #pragma once
+
 #include <iostream>
 #include <string>
 #include <string.h>
@@ -10,7 +11,9 @@
 #include <set>
 #include <windows.h>
 #include <iomanip>
+#include <filesystem>
 #include "global.h"
+#include "importdata.h"
 using namespace std;
 
 bool openInputFile(ifstream& readFile1, ifstream& readFile2); 
