@@ -9,16 +9,26 @@
 #include <set>
 #include <windows.h>
 #include <iomanip>
+#include <filesystem>
 #include "global.h"
 #include "seatingchart.h" 
 using namespace std;
+using namespace std::filesystem;
 
 int number_of_bookedSeats = 0; 
 
 void importSeatingChartData() {
-    ifstream inputFile("BookedSeatingChart.txt"); 
+    path directory = flightCode; 
+    if (!exists(directory)) {
+        cout << "   Thu muc khong ton tai!" << endl; 
+        return; 
+    }
+    path bookedSeatingPath = directory / BOOKED_CHART;
+    path originalSeatingPath = directory / ORIGINAL_CHART;
+
+    ifstream inputFile(bookedSeatingPath); 
     if (!inputFile) {
-        inputFile.open("SeatingChart.txt"); 
+        inputFile.open(originalSeatingPath); 
         if (!inputFile) {
             cout << "Da xay ra loi khi mo file" << endl; 
             return; 

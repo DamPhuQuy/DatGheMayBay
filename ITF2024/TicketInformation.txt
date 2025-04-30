@@ -1,0 +1,13 @@
+
+Thong tin ve ITF020 hien tai: 
+------------------------------------
+ Ma so chuyen bay: ITF2024
+ Ma so ve: ITF020
+ Khach hang: Nguyen Minh Chau
+ Ngay sinh: 25/02/2000 - Gioi tinh: Nu
+ Email: chau.nguyen@gmail.com
+ So dien thoai: 0909900112
+ Chuyen bay: Ho Chi Minh -> Ha Noi Ngay: 09/04/2025 - Gio: 6:45 PM
+ Ma so ghe: 4D - Class: First Class
+------------------------------------
+

@@ -9,23 +9,33 @@
 #include <set>
 #include <windows.h>
 #include <iomanip>
+#include <filesystem>
 #include "global.h"
 #include "importdata.h"
 
 using namespace std;
+using namespace std::filesystem;
 
 bool openInputFiles(ifstream &inputFile1, ifstream &inputFile2)
 {
-    inputFile1.open("PersonalInformation.txt");
+    path directorypath = "./" + flightCode; 
+    if (!exists(directorypath)) {
+        cout << "   Thu muc khong ton tai!" << endl; 
+        return false; 
+    }
+
+    path personalInfoPath = directorypath / PERSONAL_INFO;
+    path flightInfoPath = directorypath / FLIGHT_INFO;
+    inputFile1.open(personalInfoPath);
     if (!inputFile1.is_open())
     {
-        cout << "Khong mo duoc file PersonalInformation.txt" << endl;
+        cout << "   Khong mo duoc file PersonalInformation.txt" << endl;
         return false;
     }
-    inputFile2.open("FlightInformation.txt");
+    inputFile2.open(flightInfoPath);
     if (!inputFile2.is_open())
     {
-        cout << "Khong mo duoc file FlightInformation.txt" << endl;
+        cout << "   Khong mo duoc file FlightInformation.txt" << endl;
         inputFile1.close();
         return false;
     }
@@ -40,31 +50,31 @@ bool readFlightInformation(ifstream &inputFile2, ticket &data)
 
     if (!getline(inputFile2, data.flightCode))
     {
-        cout << "Loi khi doc ma chuyen bay" << endl;
+        cout << "   Loi khi doc ma chuyen bay" << endl;
         return false;
     }
 
     if (!getline(inputFile2, data.departure))
     {
-        cout << "Loi khi doc noi di" << endl;
+        cout << "   Loi khi doc noi di" << endl;
         return false;
     }
 
     if (!getline(inputFile2, data.destination))
     {
-        cout << "Loi khi doc noi den" << endl;
+        cout << "   Loi khi doc noi den" << endl;
         return false;
     }
 
     if (!getline(inputFile2, data.date))
     {
-        cout << "Loi khi doc ngay" << endl;
+        cout << "   Loi khi doc ngay" << endl;
         return false;
     }
 
     if (!getline(inputFile2, data.time))
     {
-        cout << "Loi khi doc gio" << endl;
+        cout << "   Loi khi doc gio" << endl;
         return false;
     }
 
@@ -100,37 +110,37 @@ void readPassengerInformation(ifstream &inputFile1, const ticket &flightData)
 
         if (!getline(ss, passenger.customer.names, ','))
         {
-            cout << "Loi khi doc ten hanh khach" << endl;
+            cout << "   Loi khi doc ten hanh khach" << endl;
             continue;
         }
         if (!getline(ss, passenger.customer.DoB, ','))
         {
-            cout << "Loi khi doc ngay sinh" << endl;
+            cout << "   Loi khi doc ngay sinh" << endl;
             continue;
         }
         if (!getline(ss, passenger.customer.email, ','))
         {
-            cout << "Loi khi doc email" << endl;
+            cout << "   Loi khi doc email" << endl;
             continue;
         }
         if (!getline(ss, passenger.customer.phoneNumber, ','))
         {
-            cout << "Loi khi doc so dien thoai" << endl;
+            cout << "   Loi khi doc so dien thoai" << endl;
             continue;
         }
         if (!getline(ss, passenger.customer.gender, ','))
         {
-            cout << "Loi khi doc gioi tinh" << endl;
+            cout << "   Loi khi doc gioi tinh" << endl;
             continue;
         }
         if (!getline(ss, passenger.ticketCode, ','))
         {
-            cout << "Loi khi doc ma ve" << endl;
+            cout << "   Loi khi doc ma ve" << endl;
             continue;
         }
         if (!getline(ss, passenger.classLabel, ','))
         {
-            cout << "Loi khi doc hang ve" << endl;
+            cout << "   Loi khi doc hang ve" << endl;
             continue;
         }
 
@@ -168,7 +178,14 @@ void importPassengersInformation()
 
 void importBookedTicket()
 { // lay thong tin ve da dat cua nhung khach hang truoc do
-    ifstream inputFile("TicketInformation.txt");
+    path directorypath = "./" + flightCode; 
+    if (!exists(directorypath)) {
+        cout << "   Thu muc khong ton tai!" << endl;
+        return;
+    }
+    path bookedTicketPath = directorypath / TICKET_INFO;
+
+    ifstream inputFile(bookedTicketPath);
     string line;
     vector<string> maSoVe;
     if (!inputFile.is_open())

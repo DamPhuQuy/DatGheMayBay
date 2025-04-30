@@ -1,0 +1,13 @@
+
+Thong tin ve ITF010 hien tai: 
+------------------------------------
+ Ma so chuyen bay: ITF2025
+ Ma so ve: ITF010
+ Khach hang: Dang Mai Anh
+ Ngay sinh: 07/07/2000 - Gioi tinh: Nu
+ Email: mai.dang@gmail.com
+ So dien thoai: 0987654321
+ Chuyen bay: Da Nang -> Ho Chi Minh Ngay: 10/04/2025 - Gio: 2:30 PM
+ Ma so ghe: 2D - Class: First Class
+------------------------------------
+

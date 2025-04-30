@@ -1,0 +1,13 @@
+
+Thong tin ve ITF008 hien tai: 
+------------------------------------
+ Ma so chuyen bay: ITF2023
+ Ma so ve: ITF008
+ Khach hang: Pham Quoc Huy
+ Ngay sinh: 25/01/1997 - Gioi tinh: Nam
+ Email: huy.pham@gmail.com
+ So dien thoai: 0914567890
+ Chuyen bay: Ha Noi -> Da Nang Ngay: 08/04/2025 - Gio: 9:15 AM
+ Ma so ghe: 7D - Class: Economy Class
+------------------------------------
+

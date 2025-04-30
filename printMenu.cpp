@@ -9,11 +9,16 @@
 #include <set>
 #include <windows.h>
 #include <iomanip>
+#include <filesystem>
 #include "global.h"
 #include "importdata.h"
 #include "seatingchart.h" 
 #include "admin.h"
+
 using namespace std; 
+using namespace std::filesystem; 
+
+string flightCode; 
 
 void displayFlight(const ticket &flightList)
 {
@@ -35,19 +40,31 @@ void displayFlight(const ticket &flightList)
 
 void inputFlightCode()
 {
-    cout << endl
-         << " → Nhap ma chuyen bay: ";
-    string flightCode;
-    getline(cin, flightCode);
-    if (flightCode != "ITF2025" && flightCode != "itf2025" && flightCode != "Itf2025")
+    while (true)
     {
         cout << endl
-             << "   [ERROR] Sai ma chuyen bay! Ket thuc!" << endl;
-        exit(0);
+             << " → Nhap ma chuyen bay: ";
+        getline(cin, flightCode);
+        if (!flightCode.empty())
+        {
+            if (flightCode == "ITF2023" || flightCode == "ITF2024" || flightCode == "ITF2025")
+            {
+                break;
+            }
+            else
+            {
+                cout << endl
+                     << "   Ma chuyen bay khong hop le!" << endl;
+            }
+        }
+        else
+        {
+            cout << endl
+                 << "   Thong tin khong duoc de trong!" << endl;
+        }
     }
     importPassengersInformation();
     importBookedTicket();
-
     importSeatingChartData();
 }
 
@@ -105,7 +122,14 @@ void TicketOutput(ofstream &WriteFile, int index)
 
 void printTicket()
 {
-    ofstream WriteFile("TicketInformation.txt", ios::app);
+    path directorypath = "./" + flightCode; 
+    if (!exists(directorypath)) 
+    {
+        cout << "   Chuyen bay khong ton tai!" << endl; 
+        return; 
+    }
+    path TicketInfoPath = directorypath / "TicketInformation.txt";
+    ofstream WriteFile(TicketInfoPath, ios::app);
     for (int index = 0; index < passengers.size(); index++)
     {
         if (store.find(passengers[index].ticketCode) != store.end())
@@ -119,13 +143,6 @@ void printTicket()
     Sleep(800);
     cout << "   Tong so ve luu: " << store.size() << endl;
     WriteFile.close();
-}
-
-void resetTicketInformation()
-{
-    ofstream WriteFile("TicketInformation.txt");
-    WriteFile.close();
-    cout << "   DU LIEU VE DA DUOC RESET" << endl;
 }
 
 void displayMenu()
@@ -248,13 +265,28 @@ void menu()
     } while (choice != 0);
 }
 
+void resetTicketInformation()
+{
+    path directorypath = "./" + flightCode;
+
+    if (!exists(directorypath))
+    {
+        cout << "   Chuyen bay khong ton tai!" << endl;
+        return;
+    }
+    path TicketInfoPath = directorypath / "TicketInformation.txt";
+    ofstream WriteFile(TicketInfoPath);
+    WriteFile.close();
+    cout << "   DU LIEU VE DA DUOC RESET" << endl;
+}
+
 void end()
 {
     system("cls");
 
     cout << endl;
     cout << "╔════════════════════════════════════════════════════════════════════════════════════════════════════════╗" << endl;
-    cout << "║                                    Cam on quy khach da su dung dich vu                                 ║" << endl;
+    cout << "║                                      Chao tam biet va hen gap lai                                      ║" << endl;
     cout << "║                                               ITF-AIRWAYS                                              ║" << endl;
     cout << "╚════════════════════════════════════════════════════════════════════════════════════════════════════════╝" << endl;
     cout << endl;

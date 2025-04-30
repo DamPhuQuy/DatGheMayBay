@@ -2,8 +2,11 @@
 #include <string>
 #include <windows.h> 
 #include <conio.h> 
+#include "logCheck.h" 
 
 using namespace std;
+
+string username; 
 
 void loginFrame() 
 {
@@ -32,7 +35,7 @@ void Goto(int x, int y)
 
 bool checkLogin() 
 {
-    string username, password1, password2; 
+    string password1, password2; 
     loginFrame(); 
 
     Goto(13, 7); 
@@ -78,7 +81,7 @@ bool checkLogin()
         return (password1 == "open" && password2 == password1);    
     } 
     else if (username == "vinhquang0411") 
-    {
+    {   
         return (password1 == "ITFopen" && password2 == password1);
     } 
     else {
@@ -93,9 +96,8 @@ void adminLogin()
     {
         if (checkLogin()) 
         {
-            cout << endl << endl; 
-            cout << endl
-                 << "   Dang dang nhap..." << endl;
+            logLogin(username);
+            cout << "   Dang dang nhap..." << endl;
             Sleep(800);
             cout << "   Chao mung den voi he thong dat ghe!" << endl;
             Sleep(800);
@@ -119,8 +121,13 @@ void adminLogin()
 bool checkLogout() 
 {
     string password; 
-    cout << endl << endl; 
-    cout << " → Nhap mat khau de dang xuat: ";
+    cout << endl; 
+    cout << "╔══════════════════════════════════════════════════╗" << endl;
+    cout << "║                     LOG OUT                      ║" << endl;
+    cout << "╠══════════════════════════════════════════════════╣" << endl;
+    cout << "║ Mat khau :                                       ║" << endl;
+    cout << "╚══════════════════════════════════════════════════╝" << endl;
+    Goto(13, 4); 
     char temp; 
     while (true) {
         temp = _getch(); 
@@ -147,14 +154,15 @@ void adminLogout()
     {
         if (checkLogout()) 
         {
-            cout << endl 
+            logLogout(username); 
+            cout << endl << endl 
                  << "   Dang xuat... " << endl;
             Sleep(800); 
             return; 
         } 
         else
         {
-            cout << endl 
+            cout << endl << endl
                  << "   Sai mat khau!" << endl; 
             Sleep(800);
             incorrectCount++;

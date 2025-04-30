@@ -10,9 +10,14 @@
 #include <set>
 #include <windows.h>
 #include <iomanip>  
+#include <filesystem> 
 #include "global.h"
+#include "importdata.h"
+#include "seatingchart.h"
+#include "admin.h"
 
 using namespace std;
+using namespace std::filesystem;
 
 void displayFlight(const ticket &flightList);
 void displayInformation();
