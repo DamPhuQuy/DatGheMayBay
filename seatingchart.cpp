@@ -214,7 +214,9 @@ string selectSeat(int index) {
 }
 
 void updateSeatingChartFile() {
-    ofstream WriteFile("BookedSeatingChart.txt");
+    path directorypath = flightCode;
+    path bookedSeatingPath = directorypath / BOOKED_CHART;
+    ofstream WriteFile(bookedSeatingPath);
     if (!WriteFile) {
         cout << "   Loi khi mo file BookedSeatingChart" << endl;
         return;
@@ -238,12 +240,15 @@ void updateSeatingChartFile() {
 }
 
 void resetSeatingChart() {
-    ifstream ReadFile("SeatingChart.txt");
+    path directorypath = flightCode;
+    path originalSeatingPath = directorypath / ORIGINAL_CHART;
+    path bookedSeatingPath = directorypath / BOOKED_CHART;
+    ifstream ReadFile(originalSeatingPath);
     if (!ReadFile) {
         cout << "  Khong the mo file SeatingChart.txt" << endl;
         return;
     }
-    ofstream WriteFile("BookedSeatingChart.txt", ios::trunc);
+    ofstream WriteFile(bookedSeatingPath, ios::trunc);
     if (!WriteFile) {
         cout << "  Khong the mo file BookedSeatingChart.txt" << endl;
         return;
