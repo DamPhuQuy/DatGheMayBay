@@ -4,7 +4,7 @@
 #include <ctime>
 #include <iomanip>
 #include <sstream>
-#include <string> 
+#include <string>
 #include "global.h"
 
 using namespace std;
@@ -25,7 +25,8 @@ void logLogin(const string &username)
     {
         logFile << "[" << getCurrentTime() << "] Nguoi dung \"" << username << "\" da dang nhap.\n";
         logFile.close();
-        cout << endl << endl; 
+        cout << endl
+             << endl;
         cout << "   Du lieu dang nhap duoc ghi!" << endl;
     }
 }
@@ -37,7 +38,8 @@ void logLogout(const string &username)
     {
         logFile << "[" << getCurrentTime() << "] Nguoi dung \"" << username << "\" da dang xuat.\n";
         logFile.close();
-        cout << endl << endl;
+        cout << endl
+             << endl;
         cout << "   Du lieu dang xuat duoc ghi!" << endl;
     }
 }

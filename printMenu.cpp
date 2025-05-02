@@ -12,13 +12,13 @@
 #include <filesystem>
 #include "global.h"
 #include "importdata.h"
-#include "seatingchart.h" 
+#include "seatingchart.h"
 #include "admin.h"
 
-using namespace std; 
-using namespace std::filesystem; 
+using namespace std;
+using namespace std::filesystem;
 
-string flightCode; 
+string flightCode;
 
 void displayFlight(const ticket &flightList)
 {
@@ -122,11 +122,11 @@ void TicketOutput(ofstream &WriteFile, int index)
 
 void printTicket()
 {
-    path directorypath = "./" + flightCode; 
-    if (!exists(directorypath)) 
+    path directorypath = "./" + flightCode;
+    if (!exists(directorypath))
     {
-        cout << "   Chuyen bay khong ton tai!" << endl; 
-        return; 
+        cout << "   Chuyen bay khong ton tai!" << endl;
+        return;
     }
     path TicketInfoPath = directorypath / "TicketInformation.txt";
     ofstream WriteFile(TicketInfoPath, ios::app);
@@ -154,8 +154,8 @@ void displayMenu()
     cout << "║                         CHAO MUNG DEN VOI HE THONG DAT GHE MAY BAY - ITF_AIRWAY                        ║" << endl;
     cout << "╠════════════════════════════════════════════════════════════════════════════════════════════════════════╣" << endl;
     cout << "║   1. Hien thi thong tin chuyen bay                                                                     ║" << endl;
-    cout << "║                                                                                                        ║" << endl; 
-	cout << "║   2. Thong ke so luong ghe                                                                             ║" << endl;
+    cout << "║                                                                                                        ║" << endl;
+    cout << "║   2. Thong ke so luong ghe                                                                             ║" << endl;
     cout << "║                                                                                                        ║" << endl;
     cout << "║   3. Dat ghe cho khach hang                                                                            ║" << endl;
     cout << "║                                                                                                        ║" << endl;
@@ -163,10 +163,9 @@ void displayMenu()
     cout << "╚════════════════════════════════════════════════════════════════════════════════════════════════════════╝" << endl;
 }
 
-
 void menu()
 {
-    adminLogin(); 
+    adminLogin();
     cout << endl
          << "   ---------------------------------------------" << endl;
     inputFlightCode();
@@ -203,7 +202,7 @@ void menu()
             case 0:
             {
                 cout << "   Ban da chon thoat chuong trinh." << endl;
-                adminLogout(); 
+                adminLogout();
                 break;
             }
             case 1:
@@ -220,10 +219,10 @@ void menu()
                 }
                 break;
             }
-            case 2: 
+            case 2:
             {
-				statistics();
-                cout << "   Nhan phim bat ki de tiep tuc..."; 
+                statistics();
+                cout << "   Nhan phim bat ki de tiep tuc...";
                 getchar();
                 break;
             }
@@ -251,7 +250,7 @@ void menu()
                 {
                     printTicket();
                 }
-                cout << endl; 
+                cout << endl;
                 cout << " Nhan phim bat ki de tiep tuc... ";
                 getchar();
                 break;

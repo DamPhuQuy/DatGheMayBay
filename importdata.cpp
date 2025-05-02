@@ -18,10 +18,11 @@ using namespace std::filesystem;
 
 bool openInputFiles(ifstream &inputFile1, ifstream &inputFile2)
 {
-    path directorypath = "./" + flightCode; 
-    if (!exists(directorypath)) {
-        cout << "   Thu muc khong ton tai!" << endl; 
-        return false; 
+    path directorypath = "./" + flightCode;
+    if (!exists(directorypath))
+    {
+        cout << "   Thu muc khong ton tai!" << endl;
+        return false;
     }
 
     path personalInfoPath = directorypath / PERSONAL_INFO;
@@ -176,10 +177,11 @@ void importPassengersInformation()
     inputFile2.close();
 }
 
-void importBookedTicket()
-{ // lay thong tin ve da dat cua nhung khach hang truoc do
-    path directorypath = "./" + flightCode; 
-    if (!exists(directorypath)) {
+void importBookedTicket() // lay thong tin ve da dat cua nhung khach hang truoc do
+{ 
+    path directorypath = "./" + flightCode;
+    if (!exists(directorypath))
+    {
         cout << "   Thu muc khong ton tai!" << endl;
         return;
     }

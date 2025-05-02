@@ -1,5 +1,5 @@
 #pragma once
-#include <fstream> 
+#include <fstream>
 #include "global.h"
 
 using namespace std;
