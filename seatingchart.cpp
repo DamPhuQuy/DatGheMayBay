@@ -22,7 +22,7 @@ void importSeatingChartData()
     path directory = flightCode;
     if (!exists(directory))
     {
-        cout << "   Thu muc khong ton tai!" << endl;
+        cout << "   Chuyen bay khong ton tai!" << endl;
         return;
     }
     path bookedSeatingPath = directory / BOOKED_CHART;
@@ -295,6 +295,10 @@ void updateSeatingChartFile()
 void resetSeatingChart()
 {
     path directorypath = flightCode;
+    if (!exist(directorypath)) {
+        cout << "   Chuyen bay khong ton tai" << endl; 
+        return; 
+    }
     path originalSeatingPath = directorypath / ORIGINAL_CHART;
     path bookedSeatingPath = directorypath / BOOKED_CHART;
     ifstream ReadFile(originalSeatingPath);

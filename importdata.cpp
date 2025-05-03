@@ -21,7 +21,7 @@ bool openInputFiles(ifstream &inputFile1, ifstream &inputFile2)
     path directorypath = "./" + flightCode;
     if (!exists(directorypath))
     {
-        cout << "   Thu muc khong ton tai!" << endl;
+        cout << "   Chuyen bay khong ton tai!" << endl;
         return false;
     }
 
@@ -182,7 +182,7 @@ void importBookedTicket() // lay thong tin ve da dat cua nhung khach hang truoc 
     path directorypath = "./" + flightCode;
     if (!exists(directorypath))
     {
-        cout << "   Thu muc khong ton tai!" << endl;
+        cout << "   Chuyen bay khong ton tai!" << endl;
         return;
     }
     path bookedTicketPath = directorypath / TICKET_INFO;
