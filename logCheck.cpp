@@ -11,7 +11,7 @@ using namespace std;
 
 string getCurrentTime()
 {
-    auto now = chrono::system_clock::now();
+    chrono::time_point<chrono::system_clock> now = chrono::system_clock::now();
     time_t now_c = chrono::system_clock::to_time_t(now);
     stringstream ss;
     ss << put_time(localtime(&now_c), "%d-%m-%Y %H:%M:%S");
