@@ -36,7 +36,7 @@ Compile:
 Run DatGheMayBay.exe
 
 ```bash
-    DatGheMayBay.exe
+    .\DatGheMayBay.exe
 ```
     
 ## Contributor
