@@ -323,6 +323,14 @@ void resetSeatingChart()
     cout << "   SO DO GHE DA DUOC RESET" << endl;
 }
 
+bool isNumber(const string& str) {
+    if (str.empty()) return false;
+    for (char c : str) {
+        if (!isdigit(c)) return false;
+    }
+    return true;
+}
+
 void importSeatCode()
 {
     displaySeatingChart();
@@ -331,25 +339,28 @@ void importSeatCode()
          << " → So ve may bay can dat: ";
 
     string num;
-    while (true)
+    int number_of_tickets = 0; 
+    while (true) 
     {
         cin >> num;
-        if (num.length() != 1)
+        if (!isNumber(num)) 
         {
-            cout << "   Nhap sai, vui long nhap lai!: ";
+            cout << "    Nhap sai, vui long nhap lai: " << endl;
             continue;
-        }
-        else if (!isdigit(num[0]))
+        } 
+
+        int number_of_tickets = stoi(num);
+        
+        if (number_of_tickets > 1 && number_of_tickets < 166 && number_of_tickets < MaxSeat - number_of_bookedSeats - ticketCount) // tong so ve - so ve dat trong he thong - so ve da dat dem duoc hien tai
         {
-            cout << "    Nhap sai, vui long nhap lai!: ";
-            continue;
-        }
-        else
             break;
+        }
+        else {
+            continue; 
+        }
     }
     cin.ignore();
 
-    int number_of_tickets = stoi(num);
     while (number_of_tickets > 0)
     {
         if (ticketCount > MaxSeat)
@@ -359,29 +370,30 @@ void importSeatCode()
         }
         cout << endl
              << "   STT ve may bay: " << ticketCount << endl;
-        string code;
+        string ticketCode;
         int index;
         while (true)
         {
             cout << " → Nhap ma so ve may bay: ";
-            getline(cin, code);
+            getline(cin, ticketCode);
             if (bookedStore.find(code) != bookedStore.end())
             {
                 cout << "   Ma so nay da dat ghe" << endl;
                 cout << "   Nhap lai!" << endl;
                 continue;
             }
-            index = findPassengers(code);
+            index = findPassengers(ticketCode);
             if (index == -1)
             {
                 cout << "   Ma so ve may bay khong ton tai" << endl;
                 cout << "   Nhap lai!" << endl;
             }
             else
+                bookedStore.insert(ticketCode); 
                 break;
         }
 
-        store.insert(code);
+        store.insert(ticketCode);
 
         string seat = selectSeat(index);
         updateSeatingChartFile();
