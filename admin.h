@@ -1,17 +1,20 @@
 #pragma once
+
 #include <iostream>
 #include <string>
 #include <windows.h>
 #include <conio.h>
-#include "logCheck.h"
-
-using namespace std;
+#include <fstream>
+#include <vector>
+#include <cctype>
+#include <unordered_map>
+#include "log_check.h"
 
 void loginFrame();
-void Goto(int x, int y);
-bool checkUser(); 
-void checkPassword(string& password); 
-bool checkLogin();
-void adminLogin();
+void Goto(const int x, const int y);
+void load_accounts(std::unordered_map<std::string, std::string>& accounts);
+std::string input_hidden_pass();
+void input(std::string& username, std::string& password1, std::string& password2);
+void admin_Login();
 bool checkLogout();
-void adminLogout();
+void admin_Logout(const std::string& username);

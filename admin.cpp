@@ -1,167 +1,156 @@
-#include <iostream>
-#include <string>
-#include <windows.h>
-#include <conio.h>
-#include "logCheck.h"
+#include "admin.h"
+#include "log_check.h"
 
 using namespace std;
 
-string username;
-
-void loginFrame()
-{
+void loginFrame() {
     system("cls");
 
-    cout << endl
-         << "╔════════════════════════════════════════════════════════════════════════════════════════════════════════╗" << endl;
-    cout << "║                         CHAO MUNG DEN VOI HE THONG DAT GHE MAY BAY - ITF_AIRWAY                        ║" << endl;
-    cout << "╚════════════════════════════════════════════════════════════════════════════════════════════════════════╝" << endl;
+    cout << "\n"; 
+    cout << "----------------------------------------------------------------------------------------------------------\n"; 
+    cout << "|                         CHAO MUNG DEN VOI HE THONG DAT GHE MAY BAY - ITF_AIRWAY                        |\n"; 
+    cout << "----------------------------------------------------------------------------------------------------------\n"; 
 
-    cout << "╔══════════════════════════════════════════════════╗" << endl;
-    cout << "║                  ADMIN DANG NHAP                 ║" << endl;
-    cout << "╠══════════════════════════════════════════════════╣" << endl;
-    cout << "║ Tai khoan:                                       ║" << endl;
-    cout << "║ Mat khau :                                       ║" << endl;
-    cout << "║ Nhap lai mat khau:                               ║" << endl;
-    cout << "╚══════════════════════════════════════════════════╝" << endl;
+    cout << "----------------------------------------------------\n"; 
+    cout << "|                    ADMIN LOGIN                   |\n";
+    cout << "+--------------------------------------------------+\n";
+    cout << "| Tai khoan:                                       |\n";
+    cout << "| Mat khau :                                       |\n";
+    cout << "| Nhap lai mat khau:                               |\n";
+    cout << "----------------------------------------------------\n";
 }
 
-void Goto(int x, int y)
-{
+void Goto(const int x, const int y) {
     COORD coord;
     coord.X = x;
     coord.Y = y;
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
 }
 
-int checkUser() 
-{
-    Goto(13, 7); 
-    getline(cin , username); 
-    if (username == "phuquy06") return 1; 
-    else if (username == "vinhquang0411") return 2;
-    else return 0; 
-}
-
-void checkPassword(string& password) {
-    password.clear(); 
-    while (true) 
-    {
-        char temp; 
-        temp = _getch();
-        if (temp == '\r') break; 
-        else if (temp == '\b' && !password.empty()) 
-        {
-            password.pop_back(); 
-            cout << "\b \b"; 
-        }
-        else if (isprint(temp)) 
-        {
-            password += temp; 
-            cout << "*"; 
-        }
+void load_accounts(unordered_map<string, string> &accounts) {
+    ifstream readFile("accounts.txt");
+    if (!readFile.is_open()) {
+      cout << "   Khong truy xuat duoc thong tin he thong\n";
+      exit(0);
     }
-}
-
-bool checkLogin() {
-    loginFrame(); 
-
-    int check = checkUser();
-
-    string password1, password2; 
-    Goto(13, 8); 
-    checkPassword(password1);
-    Goto(21, 9); 
-    checkPassword(password2); 
-
-    if (check == 0) return false; 
-    else if (check == 1) return (password1 == "open" && password1 == password2); 
-    else return (password1 == "ITFopen" && password1 == password2); 
-}
-
-void adminLogin()
-{
-    int incorrectCount = 0;
-    while (incorrectCount < 3)
-    {
-        if (checkLogin())
-        {
-            logLogin(username);
-            cout << "   Dang dang nhap..." << endl;
-            Sleep(800);
-            cout << "   Chao mung den voi he thong dat ghe!" << endl;
-            Sleep(800);
-            return;
-        }
-        else
-        {
-            cout << endl
-                 << endl;
-            cout << "   Tai khoan hoac mat khau sai!" << endl;
-            cout << "   Vui long nhap lai!" << endl;
-            incorrectCount++;
-            Sleep(1500);
-        }
+    string line;
+    while (getline(readFile, line)) {
+          stringstream ss(line);
+          string user, pass;
+          while (getline(ss, user, ',') && getline(ss, pass)) {
+            accounts[user] = pass;
+          }
     }
-    cout << endl;
-    cout << "   Sai mat khau qua " << incorrectCount << " lan!" << endl;
-    cout << "   Dung chuong trinh..." << endl;
-    exit(0);
+    readFile.close();
 }
 
-bool checkLogout()
-{
-    string password;
-    cout << endl;
-    cout << "╔══════════════════════════════════════════════════╗" << endl;
-    cout << "║                     LOG OUT                      ║" << endl;
-    cout << "╠══════════════════════════════════════════════════╣" << endl;
-    cout << "║ Mat khau :                                       ║" << endl;
-    cout << "╚══════════════════════════════════════════════════╝" << endl;
-    Goto(13, 4);
+string input_hidden_pass() {
+    string pass;
     char temp;
-    while (true)
-    {
-        temp = _getch();
-        if (temp == 13)
-            break;
-        else if (temp == 8 && !password.empty())
-        {
-            password.pop_back();
-            cout << "\b \b";
+    while ((temp = _getch()) != '\r') {
+        if (temp == '\b') {
+            if (!pass.empty()) {
+                pass.pop_back();
+                cout << "\b \b";
+            }
         }
-        else if (isprint(temp))
-        {
-            password += temp;
+        else if (isprint(temp)) {
+            pass.push_back(temp);
             cout << "*";
         }
     }
-    return (password == "close");
+    return pass;
 }
 
-void adminLogout()
-{
-    system("cls");
+void input(string& username, string& password1, string& password2) {
+    do {
+        loginFrame();
+        Goto(13, 7);
+        getline(cin, username);
+        Goto(13, 8);
+        password1 = input_hidden_pass();
+        Goto(21, 9);
+        password2 = input_hidden_pass();
+    } while (username.empty() || password1.empty() || password2.empty());
+}
 
-    int incorrectCount = 0;
-    while (incorrectCount < 3)
-    {
-        if (checkLogout())
-        {
-            logLogout(username);
-            cout << endl
-                 << endl
-                 << "   Dang xuat... " << endl;
-            Sleep(800);
-            return;
+void admin_Login() {
+    unordered_map<string, string> accounts;
+    load_accounts(accounts);
+
+    string username, password1, password2;
+    int attempts = 0; 
+    bool success = false; 
+    do {
+        input(username, password1, password2); 
+        auto it = accounts.find(username);
+        if (it == accounts.end()) {
+            cout << "   Tai khoan khong ton tai!\n"; 
+            Sleep(800); 
+            continue; 
         }
-        else
-        {
-            cout << endl
-                 << endl
-                 << "   Sai mat khau!" << endl;
-            Sleep(800);
-            incorrectCount++;
+
+        if (password1 != password2) {
+            cout << "   Mat khau khong khop!\n"; 
+            attempts++;
+            Sleep(800); 
+            continue; 
+        }
+
+        if (password1 != it->second) {
+            cout << "   Mat khau sai!\n"; 
+            attempts++; 
+            Sleep(800); 
+            continue; 
+        }
+
+        success = true; 
+        break; 
+
+    } while (attempts < 3);
+
+
+    if (success) {
+        cout << "   \n\n\nDang nhap thanh cong!\n";
+        logLogin(username); 
+    }
+    else {
+        cout << "   Qua nhieu lan thu, dang nhap that bai.\n"; 
+        exit(0);
+    }
+}
+
+bool checkLogout() {
+    string password;
+    cout << "\n";
+    cout << "----------------------------------------------------\n";
+    cout << "|                     LOG OUT                      |\n";
+    cout << "+--------------------------------------------------+\n";
+    cout << "| Mat khau :                                       |\n";
+    cout << "----------------------------------------------------\n"; 
+
+    Goto(13, 4); 
+    password = input_hidden_pass(); 
+    return password == "close"; 
+}
+
+void admin_Logout(const string& username) {
+    system("cls"); 
+
+    int attempts = 0; 
+    while (attempts < 3) {
+        if (checkLogout()) {
+            logLogout(username); 
+            cout << "\n" << "   Dang xuat...\n"; 
+            Sleep(800); 
+            return; 
+        }
+        else {
+            cout << "\n" << "   Sai mat khau!\n"; 
+            Sleep(800); 
+            attempts++; 
         }
     }
+    cout << "\n" << "   Vuot qua so lan cho phep. Khong the dang xuat.\n"; 
+    Sleep(800); 
 }

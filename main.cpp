@@ -1,29 +1,27 @@
-#include <iostream>
-#include <string>
-#include <vector>
-#include <map>
-#include <set>
-#include <windows.h>
-#include "global.h"
-#include "printMenu.h"
+#include "print_menu.h"
+
 using namespace std;
 
-int ticketCount = 1;
+void introduction() {
+    system("cls"); 
 
-vector<ticket> passengers;
-set<string> bookedStore;
-set<string> store;
+    cout << "----------------------------------------------------------------------------------------------------------\n";
+    cout << "|                              Truong Dai Hoc Bach Khoa - Dai Hoc Da Nang                                |\n";
+    cout << "+--------------------------------------------------------------------------------------------------------+\n";
+    cout << "|   PBL1: Du an lap trinh tinh toan   | Xay dung ung dung dat ghe may bay cua hang hang khong ITF-Airway |\n";
+    cout << "+--------------------------------------------------------------------------------------------------------+\n";
+    cout << "|         Sinh vien thuc hien         |                                                                  |\n";
+    cout << "|             Dam Phu Quy             |                     GVHD. Tran Ho Thuy Tien                      |\n";
+    cout << "|            Dam Vinh Quang           |                                                                  |\n";
+    cout << "----------------------------------------------------------------------------------------------------------\n";
+    cout << "\nNhan phim bat ki de bat dau... ";
+    getchar();
+}
 
-vector<vector<string>> firstClass;
-vector<vector<string>> economyClass;
-
-map<string, string> seatStatus;
-
-int main(void)
-{
-    SetConsoleOutputCP(CP_UTF8);
+int main(void) {
+    SetConsoleOutputCP(65001); 
+    introduction();
     menu();
     end();
-    reset();
     return 0;
 }

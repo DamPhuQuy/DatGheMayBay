@@ -1,16 +1,6 @@
-#include <iostream>
-#include <fstream>
-#include <chrono>
-#include <ctime>
-#include <iomanip>
-#include <sstream>
-#include <string>
-#include "global.h"
+#include "log_check.h"
 
-using namespace std;
-
-string getCurrentTime()
-{
+string getCurrentTime() {
     chrono::time_point<chrono::system_clock> now = chrono::system_clock::now();
     time_t now_c = chrono::system_clock::to_time_t(now);
     stringstream ss;
@@ -18,11 +8,9 @@ string getCurrentTime()
     return ss.str();
 }
 
-void logLogin(const string &username)
-{
+void logLogin(const string &username) {
     ofstream logFile(LOG_INFO, ios::app);
-    if (logFile.is_open())
-    {
+    if (logFile.is_open()) {
         logFile << "[" << getCurrentTime() << "] Nguoi dung \"" << username << "\" da dang nhap.\n";
         logFile.close();
         cout << endl
@@ -31,11 +19,9 @@ void logLogin(const string &username)
     }
 }
 
-void logLogout(const string &username)
-{
+void logLogout(const string &username) {
     ofstream logFile(LOG_INFO, ios::app);
-    if (logFile.is_open())
-    {
+    if (logFile.is_open()) {
         logFile << "[" << getCurrentTime() << "] Nguoi dung \"" << username << "\" da dang xuat.\n";
         logFile.close();
         cout << endl
