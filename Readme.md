@@ -30,7 +30,7 @@ Work well with terminal, powershell
 Compile: 
 
 ```bash
-    g++ main.cpp logCheck.cpp admin.cpp importdata.cpp seatingchart.cpp printMenu.cpp -o DatGheMayBay
+    g++ main.cpp admin.cpp import_data.cpp log_check.cpp print_menu.cpp selecting_seat.cpp -o DatGheMayBay
 ```
 
 Run DatGheMayBay.exe
