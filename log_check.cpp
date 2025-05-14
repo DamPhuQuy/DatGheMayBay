@@ -13,9 +13,8 @@ void logLogin(const string &username) {
     if (logFile.is_open()) {
         logFile << "[" << getCurrentTime() << "] Nguoi dung \"" << username << "\" da dang nhap.\n";
         logFile.close();
-        cout << endl
-             << endl;
-        cout << "   Du lieu dang nhap duoc ghi!" << endl;
+        cout << "\n"; 
+        cout << long_space << "Du lieu dang nhap duoc ghi!" << endl;
     }
 }
 
@@ -24,8 +23,7 @@ void logLogout(const string &username) {
     if (logFile.is_open()) {
         logFile << "[" << getCurrentTime() << "] Nguoi dung \"" << username << "\" da dang xuat.\n";
         logFile.close();
-        cout << endl
-             << endl;
-        cout << "   Du lieu dang xuat duoc ghi!" << endl;
+        cout << "\n"; 
+        cout << long_space << "Du lieu dang xuat duoc ghi!" << endl;
     }
 }

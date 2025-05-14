@@ -13,6 +13,8 @@ const string BOOKED_CHART = "BookedSeatingChart.txt";
 const string ORIGINAL_CHART = "SeatingChart.txt";
 const string TICKET_INFO = "TicketInformation.txt";
 const string FLIGHT_INFO = "FlightInformation.txt";
+const string short_space (7, ' ');
+const string long_space (33, ' '); 
 
 extern int booked_tickets; 
 

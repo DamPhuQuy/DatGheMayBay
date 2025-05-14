@@ -9,6 +9,7 @@
 #include <cctype>
 #include <unordered_map>
 #include "log_check.h"
+#include "global.h"
 
 void loginFrame();
 void Goto(const int x, const int y);

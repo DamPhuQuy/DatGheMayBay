@@ -6,18 +6,18 @@ using namespace std;
 void loginFrame() {
     system("cls");
 
-    cout << "\n"; 
-    cout << "----------------------------------------------------------------------------------------------------------\n"; 
-    cout << "|                         CHAO MUNG DEN VOI HE THONG DAT GHE MAY BAY - ITF_AIRWAY                        |\n"; 
-    cout << "----------------------------------------------------------------------------------------------------------\n"; 
+    cout << "\n";
+    cout << short_space << "----------------------------------------------------------------------------------------------------------\n"; 
+    cout << short_space << "|                         CHAO MUNG DEN VOI HE THONG DAT GHE MAY BAY - ITF_AIRWAY                        |\n"; 
+    cout << short_space << "----------------------------------------------------------------------------------------------------------\n"; 
 
-    cout << "----------------------------------------------------\n"; 
-    cout << "|                    ADMIN LOGIN                   |\n";
-    cout << "+--------------------------------------------------+\n";
-    cout << "| Tai khoan:                                       |\n";
-    cout << "| Mat khau :                                       |\n";
-    cout << "| Nhap lai mat khau:                               |\n";
-    cout << "----------------------------------------------------\n";
+    cout << long_space << "----------------------------------------------------\n"; 
+    cout << long_space << "|                    ADMIN LOGIN                   |\n";
+    cout << long_space << "+--------------------------------------------------+\n";
+    cout << long_space << "|  Tai khoan:                                      |\n";
+    cout << long_space << "|  Mat khau :                                      |\n";
+    cout << long_space << "|  Nhap lai mat khau:                              |\n";
+    cout << long_space << "----------------------------------------------------\n";
 }
 
 void Goto(const int x, const int y) {
@@ -30,7 +30,7 @@ void Goto(const int x, const int y) {
 void load_accounts(unordered_map<string, string> &accounts) {
     ifstream readFile("accounts.txt");
     if (!readFile.is_open()) {
-      cout << "   Khong truy xuat duoc thong tin he thong\n";
+      cout << long_space << "Khong truy xuat duoc thong tin he thong\n";
       exit(0);
     }
     string line;
@@ -65,16 +65,17 @@ string input_hidden_pass() {
 void input(string& username, string& password1, string& password2) {
     do {
         loginFrame();
-        Goto(13, 7);
+        Goto(47, 7);
         getline(cin, username);
-        Goto(13, 8);
+        Goto(47, 8);
         password1 = input_hidden_pass();
-        Goto(21, 9);
+        Goto(55, 9);
         password2 = input_hidden_pass();
 
         if (username.empty() || password1.empty() || password2.empty()) { 
-            cout << "   \n\n\nKhong duoc de trong thong tin!";
-            Sleep(800); 
+            cout << "\n\n\n"; 
+            cout << long_space << "Khong duoc de trong thong tin!";
+            Sleep(1000); 
         }
     } while (username.empty() || password1.empty() || password2.empty());
 }
@@ -90,22 +91,25 @@ void admin_Login(string& username) {
         input(username, password1, password2); 
         auto it = accounts.find(username);
         if (it == accounts.end()) {
-            cout << "   \n\n\nTai khoan khong ton tai!\n"; 
-            Sleep(800); 
+            cout << "\n\n\n"; 
+            cout << long_space << "Tai khoan khong ton tai!\n"; 
+            Sleep(1000); 
             continue; 
         }
 
         if (password1 != password2) {
-            cout << "   \n\n\nMat khau khong khop!\n"; 
+            cout << "\n\n\n";
+            cout << long_space << "Mat khau khong khop!\n"; 
             attempts++;
-            Sleep(800); 
+            Sleep(1000); 
             continue; 
         }
 
         if (password1 != it->second) {
-            cout << "   \n\n\nMat khau sai!\n"; 
+            cout << "\n\n\n";
+            cout << long_space << "Mat khau sai!\n"; 
             attempts++; 
-            Sleep(800); 
+            Sleep(1000); 
             continue; 
         }
 
@@ -116,12 +120,14 @@ void admin_Login(string& username) {
 
 
     if (success) {
-        cout << "   \n\n\nDang nhap thanh cong!\n";
+        cout << "\n\n\n"; 
+        cout << long_space << "Dang nhap thanh cong!\n";
         logLogin(username); 
-        Sleep(800);
+        Sleep(1000);
     }
     else {
-        cout << "   Qua nhieu lan thu, dang nhap that bai.\n"; 
+        cout << "\n\n\n"; 
+        cout << long_space << "Qua nhieu lan thu, dang nhap that bai.\n"; 
         exit(0);
     }
 }
@@ -131,13 +137,14 @@ bool checkLogout() {
 
     string password;
     cout << "\n";
-    cout << "----------------------------------------------------\n";
-    cout << "|                     LOG OUT                      |\n";
-    cout << "+--------------------------------------------------+\n";
-    cout << "| Mat khau :                                       |\n";
-    cout << "----------------------------------------------------\n"; 
+    cout << long_space << "----------------------------------------------------\n";
+    cout << long_space << "|                     LOG OUT                      |\n";
+    cout << long_space << "+--------------------------------------------------+\n";
+    cout << long_space << "|  Mat khau :                                      |\n";
+    cout << long_space << "----------------------------------------------------\n"; 
+    cout << "\n"; 
 
-    Goto(13, 4); 
+    Goto(47, 4); 
     password = input_hidden_pass(); 
     return password == "close"; 
 }
@@ -150,17 +157,20 @@ bool admin_Logout(const string& username) {
     while (attempts < 3) {
         if (checkLogout()) {
             logLogout(username); 
-            cout << "   \n\nDang xuat...\n"; 
-            Sleep(800); 
+            cout << "\n\n"; 
+            cout << long_space << "Dang xuat...\n"; 
+            Sleep(1000); 
             return check = true; 
         }
         else {
-            cout << "   \n\nSai mat khau!\n"; 
-            Sleep(800); 
+            cout << "\n\n"; 
+            cout << long_space << "Sai mat khau!\n"; 
+            Sleep(1000); 
             attempts++; 
         }
     }
-    cout << "\n" << "   Vuot qua so lan cho phep. Khong the dang xuat.\n"; 
-    Sleep(800); 
+    cout << "\n";
+    cout << long_space << "Vuot qua so lan cho phep. Khong the dang xuat.\n"; 
+    Sleep(1000); 
     return check; 
 }
