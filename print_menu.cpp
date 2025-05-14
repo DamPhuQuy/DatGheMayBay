@@ -48,8 +48,14 @@ void input_flight_code(string& flight_code, vector<vector<string>>& first_class,
 		Goto(22, 9); 
 		getline(cin, flight_code);
 
+		fs::path directory = flight_code; 
 		if (flight_code.empty()) {
 			cout << "   \nThong tin khong duoc de trong!\n"; 
+			Sleep(800); 
+		}
+		else if (!fs::exists(directory) || !fs::is_directory(directory)) {
+			cout << "   \nChuyen bay khong ton tai!\n";
+			Sleep(800);
 		}
 		else 
 			break; 
@@ -61,6 +67,7 @@ void input_flight_code(string& flight_code, vector<vector<string>>& first_class,
 }
 
 void output_ticket_info(ostream& os, const vector<ticket> &passengers, int index) {
+	os << "\n"; 
     os << "Thong tin ve " << passengers[index].ticket_code << " hien tai: " << "\n";
     os << "------------------------------------" << "\n";
     os << " Ma so chuyen bay: " << passengers[index].flight_code << "\n";
@@ -79,9 +86,9 @@ void display_info(const set<string>& store_booked_tickets_add_only, const vector
 	system("cls"); 
 
 	cout << "\n";
-    cout << "+--------------------------------------------------------------------------------------------------------+\n";
+    cout << "----------------------------------------------------------------------------------------------------------\n";
     cout << "|                                     THONG TIN KHACH HANG VA GHE NGOI                                   |\n";
-    cout << "+--------------------------------------------------------------------------------------------------------+\n";
+    cout << "----------------------------------------------------------------------------------------------------------\n";
 
     for (int index = 0; index < passengers.size(); index++) {
     	if (store_booked_tickets_add_only.find(passengers[index].ticket_code) != store_booked_tickets_add_only.end()) {
@@ -89,9 +96,6 @@ void display_info(const set<string>& store_booked_tickets_add_only, const vector
     		cout << "\n"; 
     	}
     }
-
-    cout << "   Nhan phim bat ki de tiep tuc..."; 
-    getchar(); 
 }
 
 void ticket_output(ofstream& write_file, int index, const vector<ticket>& passengers) {
@@ -142,7 +146,8 @@ void display_menu() {
 }
 
 void menu() {
-	admin_Login(); 
+	string username; 
+	admin_Login(username); 
 
 	do {
 		string flight_code; 
@@ -170,6 +175,7 @@ void menu() {
 
 	    cout << "   Dang hien thi menu..." << "\n";
 	    Sleep(1500);
+
 	    int choice;
 	    do {
 	        display_menu();
@@ -209,24 +215,18 @@ void menu() {
 	                break;
 	            }
 	            case 3: {
-	                if (passengers.empty()) {
-	                    cout << "   Khong co thong tin hanh khach. Khong the dat ghe." << "\n";
-	                }
-	                else {
-	                    take_seat_code(flight_code, seat_status, store_booked_tickets, store_booked_tickets_add_only, first_class, economy_class, passengers);
-	                }
+	                take_seat_code(flight_code, seat_status, store_booked_tickets, store_booked_tickets_add_only, first_class, economy_class, passengers);
 
-	                if (passengers.empty()) {
-	                    cout << "   Khong co thong tin hanh khach de hien thi." << "\n";
-	                    break;
-	                }
+	                // xuat ve 
 	                display_info(store_booked_tickets_add_only, passengers);
+
 	                cout << "   Ban co muon xuat ve (Y/N): ";
-	                string out;
-	                getline(cin, out);
-	                if (out[0] == 'Y' || out[0] == 'y') {
+	                string check;
+	                getline(cin, check); 
+	                if (!check.empty() && (check[0] == 'Y' || check[0] == 'y')) {
 	                    print_ticket(flight_code, passengers, store_booked_tickets_add_only);
 	                }
+
 	                cout << "\n";
 	                cout << " Nhan phim bat ki de tiep tuc... ";
 	                getchar();
@@ -241,13 +241,19 @@ void menu() {
 
 	    reset(flight_code); 
 
-	    cout << "   Ban co muon tiep tuc nhap cac chuyen bay khac? (Y/N): ";
-	    string out;
-	    getline(cin, out);
-	   	if (out[0] != 'Y' || out[0] != 'y') {
-	   		break; 
-	   	}
-	} while (true);
+	    cout << "   \nBan co muon tiep tuc nhap cac chuyen bay khac? (Y/N): ";
+	    string out; 
+	    getline(cin, out); 
+	    if (!out.empty() && (out[0] == 'y' || out[0] == 'Y')) 
+	    	continue; 
+	    else {
+	    	if (admin_Logout(username)) 
+	    		break; 
+	    	else 
+	    		continue; 
+	    }
+
+	} while(true);
 }
 
 void end() {

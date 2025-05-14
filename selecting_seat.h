@@ -14,7 +14,7 @@ using namespace std;
 void display_seating_chart(const string& first_class, const string& economy_class);
 bool is_valid_seat(const string& seat_code);
 string seat_replacement(const string& seat_choice);
-bool confirm_seat_selection(const string& choice, map<string, string>& seat_status);
+bool confirm(const string& choice, map<string, string>& seat_status);
 string select_seat(int index, 
 				   const vector<ticket>& passengers, 
 				   vector<vector<string>>& first_class, 

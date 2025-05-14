@@ -94,14 +94,25 @@ bool update_seat(vector<vector<string>>& seatClass, const string& choice, string
     return false;
 }
 
-bool confirm_seat_selection(const string& choice, set<string>& seat_status) {
+bool confirm(const string& choice, set<string>& seat_status) {
     string input;
     while (true) {
         cout << "   Xac nhan ghe " << choice << " (Y/N): ";
         getline(cin, input);
         
+        // trim chuoi, tach khoang trang neu nguoi dung nhap vao
+        unsigned int first = input.find_first_not_of(" \t"); 
+        unsigned int last = input.find_last_not_of(" \t"); 
+        if (first == string::npos) {
+        	input.clear(); 
+        }
+        else {
+        	input = input.substr(first, last - first + 1); 
+        }
+
+
         if (input.empty()) {
-            cout << "   Khong duoc de trong" << "\n";
+            cout << "   Vui long nhap 'Y' hoac 'N'." << "\n";
             continue;
         }
         
@@ -122,16 +133,17 @@ string select_seat(int index,
 				   vector<vector<string>>& first_class, 
 				   vector<vector<string>>& economy_class, 
 				   set<string>& seat_status) {
+
 	string seat_choice; 
 	while (true) {
 		cout << " → Hay chon ghe: ";
         getline(cin, seat_choice);
 
+
+
         auto it = seat_status.find(seat_choice); 
         if (!is_valid_seat(seat_choice) || it != seat_status.end()) {
-        	cout << "\n"; 
-        	cout << "   Lua chon khong phu hop hoac ghe da dat"; 
-        	cout << "\n"; 
+        	cout << "\n   Lua chon khong phu hop hoac ghe da dat!\n"; 
         	continue; 
         }
 
@@ -151,9 +163,12 @@ string select_seat(int index,
 	    if (!seat_found) {
 	        cout << error_message << "\n";
 	    }
+	    else {
+	    	break;
+	    }
 	} 
 
-	if (confirm_seat_selection(seat_choice, seat_status)) {
+	if (confirm(seat_choice, seat_status)) {
 		return seat_choice; 
 	}
 	else {
@@ -178,7 +193,7 @@ string select_seat(int index,
 			}
 		}
 		cout << "   Lua chon ghe da bi huy.\n"; 
-		return ""; 
+		return "Chua dat ghe"; 
 	}
 }
 
@@ -286,6 +301,7 @@ void take_seat_code(const string& flight_code,
 		while (true) {
 			cout << " → Nhap ma so ve may bay: ";
             getline(cin, ticket_code);
+
             if (store_booked_tickets.find(ticket_code) != store_booked_tickets.end()) {
                 cout << "   Ma so nay da dat ghe\n";
                 cout << "   Nhap lai!\n";
@@ -294,7 +310,6 @@ void take_seat_code(const string& flight_code,
             else {
             	store_booked_tickets.insert(ticket_code);
             	store_booked_tickets_add_only.insert(ticket_code);
-                break;
             }
 
             index = find_passenger(ticket_code, passengers);
@@ -306,6 +321,8 @@ void take_seat_code(const string& flight_code,
             	cout << "   Vui long nhap lai!\n"; 
             }
 		}
+
+	cout << "   \nClass cua ve " << passengers[index].ticket_code << " : " << passengers[index].class_label << "\n"; 
 
 	string seat = select_seat(index, passengers, first_class, economy_class, seat_status); 
 	update_seating_chart(flight_code, first_class, economy_class); 
@@ -357,6 +374,6 @@ void statistics() {
     cout << "|                                            |\n";
     cout << "| So ghe da dat    : " << setw(4) << booked_tickets << "                    |\n"; 
     cout << "|                                            |\n";
-    cout << "| So ghe con trong : " << setw(4) << MaxSeat - booked_tickets << "                    |n"; 
+    cout << "| So ghe con trong : " << setw(4) << MaxSeat - booked_tickets << "                    |\n"; 
     cout << "----------------------------------------------\n";
 }

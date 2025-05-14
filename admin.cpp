@@ -71,34 +71,39 @@ void input(string& username, string& password1, string& password2) {
         password1 = input_hidden_pass();
         Goto(21, 9);
         password2 = input_hidden_pass();
+
+        if (username.empty() || password1.empty() || password2.empty()) { 
+            cout << "   \n\n\nKhong duoc de trong thong tin!";
+            Sleep(800); 
+        }
     } while (username.empty() || password1.empty() || password2.empty());
 }
 
-void admin_Login() {
+void admin_Login(string& username) {
     unordered_map<string, string> accounts;
     load_accounts(accounts);
 
-    string username, password1, password2;
+    string password1, password2;
     int attempts = 0; 
     bool success = false; 
     do {
         input(username, password1, password2); 
         auto it = accounts.find(username);
         if (it == accounts.end()) {
-            cout << "   Tai khoan khong ton tai!\n"; 
+            cout << "   \n\n\nTai khoan khong ton tai!\n"; 
             Sleep(800); 
             continue; 
         }
 
         if (password1 != password2) {
-            cout << "   Mat khau khong khop!\n"; 
+            cout << "   \n\n\nMat khau khong khop!\n"; 
             attempts++;
             Sleep(800); 
             continue; 
         }
 
         if (password1 != it->second) {
-            cout << "   Mat khau sai!\n"; 
+            cout << "   \n\n\nMat khau sai!\n"; 
             attempts++; 
             Sleep(800); 
             continue; 
@@ -113,6 +118,7 @@ void admin_Login() {
     if (success) {
         cout << "   \n\n\nDang nhap thanh cong!\n";
         logLogin(username); 
+        Sleep(800);
     }
     else {
         cout << "   Qua nhieu lan thu, dang nhap that bai.\n"; 
@@ -121,6 +127,8 @@ void admin_Login() {
 }
 
 bool checkLogout() {
+    system("cls"); 
+
     string password;
     cout << "\n";
     cout << "----------------------------------------------------\n";
@@ -134,23 +142,25 @@ bool checkLogout() {
     return password == "close"; 
 }
 
-void admin_Logout(const string& username) {
+bool admin_Logout(const string& username) {
     system("cls"); 
 
+    bool check = false; 
     int attempts = 0; 
     while (attempts < 3) {
         if (checkLogout()) {
             logLogout(username); 
-            cout << "\n" << "   Dang xuat...\n"; 
+            cout << "   \n\nDang xuat...\n"; 
             Sleep(800); 
-            return; 
+            return check = true; 
         }
         else {
-            cout << "\n" << "   Sai mat khau!\n"; 
+            cout << "   \n\nSai mat khau!\n"; 
             Sleep(800); 
             attempts++; 
         }
     }
     cout << "\n" << "   Vuot qua so lan cho phep. Khong the dang xuat.\n"; 
     Sleep(800); 
+    return check; 
 }
