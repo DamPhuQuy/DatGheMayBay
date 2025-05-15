@@ -115,7 +115,7 @@ bool confirm(const string& choice, set<string>& seat_status) {
 
 
         if (input.empty()) {
-            cout << long_space << "Vui long nhap 'Y' hoac 'N'." << "\n";
+            cout << long_space << "Khong duoc de trong.\n"; 
             continue;
         }
         
@@ -374,6 +374,8 @@ void reset_seating_chart(const string& flight_code) {
 void statistics() {
     system("cls");
 
+   	int nums_space = 30; 
+
     cout << "\n"; 
     cout << short_space << "-------------------------------------------------Thong ke-------------------------------------------------\n"; 
     
@@ -381,10 +383,10 @@ void statistics() {
     cout << long_space << "----------------------------------------------------\n";
     cout << long_space << "|                   THONG KE SO GHE                |\n";
     cout << long_space << "+--------------------------------------------------+\n";
-    cout << long_space << "| Tong so ghe      : " << setw(4) << MaxSeat << "                          |\n";
+    cout << long_space << "| Tong so ghe      : " << setw(nums_space) << left << MaxSeat << "|\n";
     cout << long_space << "|                                                  |\n";
-    cout << long_space << "| So ghe da dat    : " << setw(4) << booked_tickets << "                          |\n"; 
+    cout << long_space << "| So ghe da dat    : " << setw(nums_space) << left << booked_tickets << "|\n"; 
     cout << long_space << "|                                                  |\n";
-    cout << long_space << "| So ghe con trong : " << setw(4) << MaxSeat - booked_tickets << "                          |\n"; 
+    cout << long_space << "| So ghe con trong : " << setw(nums_space) << left << MaxSeat - booked_tickets << "|\n"; 
     cout << long_space << "----------------------------------------------------\n";
 }

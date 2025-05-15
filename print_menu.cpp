@@ -26,18 +26,22 @@ void flight_menu() {
 void display_flight(const ticket &flight_info) {
     system("cls");
 
-    printf("\n");
-    printf("       ----------------------------------------------------------------------------------------------------------\n");
-    printf("       |                                          THONG TIN CHUYEN BAY                                          |\n");
-    printf("       +--------------------------------------------------------------------------------------------------------+\n");
-    printf("       |   Ma so chuyen bay : %s                                                                           |\n", flight_info.flight_code.c_str());
-    printf("       |                                                                                                        |\n");
-    printf("       |   Noi xuat phat    : %s -> Noi den: %s                                                   |\n", flight_info.departure.c_str(), flight_info.destination.c_str());
-    printf("       |                                                                                                        |\n");
-    printf("       |   Ngay xuat phat   : %s                                                                        |\n", flight_info.date.c_str());
-    printf("       |                                                                                                        |\n");
-    printf("       |   Thoi gian        : %s                                                                           |\n", flight_info.time.c_str());
-    printf("       ----------------------------------------------------------------------------------------------------------\n");
+    int nums_space = 82;
+
+    cout << "\n"; 
+    cout << short_space << "----------------------------------------------------------------------------------------------------------\n";
+	cout << short_space << "|                                          THONG TIN CHUYEN BAY                                          |\n";
+	cout << short_space << "+--------------------------------------------------------------------------------------------------------+\n";
+	cout << short_space << "|   Ma so chuyen bay : " << setw(nums_space) << left << flight_info.flight_code << "|\n"; 
+	cout << short_space << "|                                                                                                        |\n";
+	cout << short_space << "|   Noi xuat phat    : " << setw(nums_space) << left << flight_info.departure << "|\n"; 
+	cout << short_space << "|                                                                                                        |\n";
+	cout << short_space << "|   Noi den          : " << setw(nums_space) << left << flight_info.destination << "|\n"; 
+	cout << short_space << "|                                                                                                        |\n";
+	cout << short_space << "|   Ngay xuat phat   : " << setw(nums_space) << left << flight_info.date << "|\n"; 
+	cout << short_space << "|                                                                                                        |\n";
+	cout << short_space << "|   Thoi gian        : " << setw(nums_space) << left << flight_info.time << "|\n"; 
+	cout << short_space << "----------------------------------------------------------------------------------------------------------\n";
 }
 
 void input_flight_code(string& flight_code, vector<vector<string>>& first_class, vector<vector<string>>& economy_class, vector<ticket>& passengers) {
@@ -73,47 +77,41 @@ void input_flight_code(string& flight_code, vector<vector<string>>& first_class,
 }
 
 void output_ticket_info(
-    std::ostream& os,
-    const std::vector<ticket> &passengers,
-    int index,
-    bool delete_space 
-) {
-    string print_space = delete_space 
-                         ? "" 
-                         : long_space;
+	ostream &os,
+	const vector<ticket> &passengers,
+	int index,
+	bool delete_space)
+{
+	string print_space = delete_space
+							 ? ""
+							 : long_space;
 
-    os << "\n";
-    os << print_space << "Thong tin ve " 
-       << passengers[index].ticket_code 
-       << " hien tai:\n";
-    os << print_space << "------------------------------------\n";
-    os << print_space << "Ma so chuyen bay: " 
-       << passengers[index].flight_code << "\n";
-    os << print_space << "Ma so ve: " 
-       << passengers[index].ticket_code << "\n";
-    os << print_space << "Khach hang: " 
-       << passengers[index].customer.names << "\n";
-    os << print_space << "Ngay sinh: " 
-       << passengers[index].customer.DoB 
-       << " - Gioi tinh: " 
-       << passengers[index].customer.gender << "\n";
-    os << print_space << "Email: " 
-       << passengers[index].customer.email << "\n";
-    os << print_space << "So dien thoai: " 
-       << passengers[index].customer.phone_number << "\n";
-    os << print_space << "Chuyen bay: " 
-       << passengers[index].departure 
-       << " -> " 
-       << passengers[index].destination << "\n";
-    os << print_space << "Ngay: " 
-       << passengers[index].date 
-       << " - Gio: " 
-       << passengers[index].time << "\n";
-    os << print_space << "Ma so ghe: " 
-       << passengers[index].seat_code 
-       << " - Class: " 
-       << passengers[index].class_label << "\n";
-    os << print_space << "------------------------------------\n";
+	int nums_space = 24;
+
+	os << "\n";
+	os << print_space << "----------------------------------------------------\n";
+	os << print_space << "|              THONG TIN VE " << passengers[index].ticket_code << setw(18) << right << "|" << "\n";
+	os << print_space << "+--------------------------------------------------+\n";
+
+	os << print_space << "|  Ma so chuyen bay      : " << setw(nums_space) << left << passengers[index].flight_code << "|\n";
+	os << print_space << "|  Ma so ve              : " << setw(nums_space) << left << passengers[index].ticket_code << "|\n";
+	os << print_space << "|  Khach hang            : " << setw(nums_space) << left << passengers[index].customer.names << "|\n";
+
+	string dob_gender = passengers[index].customer.DoB + " - " + passengers[index].customer.gender;
+	os << print_space << "|  Ngay sinh - Gioi tinh : " << setw(nums_space) << left << dob_gender << "|\n";
+
+	os << print_space << "|  Email                 : " << setw(nums_space) << left << passengers[index].customer.email << "|\n";
+	os << print_space << "|  So dien thoai         : " << setw(nums_space) << left << passengers[index].customer.phone_number << "|\n";
+
+	string route = passengers[index].departure + " -> " + passengers[index].destination;
+	os << print_space << "|  Chuyen bay            : " << setw(nums_space) << left << route << "|\n";
+
+	string datetime = passengers[index].date + " - " + passengers[index].time;
+	os << print_space << "|  Ngay - Gio            : " << setw(nums_space) << left << datetime << "|\n";
+
+	string seat_info = passengers[index].seat_code + " - " + passengers[index].class_label;
+	os << print_space << "|  Ma so ghe - Class     : " << setw(nums_space) << left << seat_info << "|\n";
+	os << print_space << "----------------------------------------------------\n";
 }
 
 void display_info(const set<string>& store_booked_tickets_add_only, const vector<ticket>& passengers) {
@@ -254,19 +252,33 @@ void menu() {
 	                // xuat ve 
 	                display_info(store_booked_tickets_add_only, passengers);
 
-	                cout << long_space << "Ban co muon xuat ve (Y/N): ";
+
 	                string check;
-	                getline(cin, check); 
-	                if (!check.empty() && (check[0] == 'Y' || check[0] == 'y')) {
-	                    print_ticket(flight_code, passengers, store_booked_tickets_add_only);
-	                }
-	                else {
-	                	// xoa cac phan tu da them vao trong store_booked_tickets cua cac phan tu add_only
-	                	// dat lai ghe neu khong dong y xuat ve
-	                	for (const auto& code : store_booked_tickets_add_only) {
-	                		store_booked_tickets.erase(code); 
+
+	                while (true) {
+	                	cout << long_space << "Ban co muon xuat ve (Y/N): ";
+	                	getline(cin, check); 
+	                	if (check.empty()) {
+	                		cout << long_space << "Khong duoc de trong.\n"; 
+	                		continue; 
+	                	}
+
+	                	const char first = check[0]; 
+
+	                	if (first == 'Y' || first == 'y') {
+	                		print_ticket(flight_code, passengers, store_booked_tickets_add_only); 
+	                		break; 
+	                	}
+	                	else {
+	                		// xoa phan tu da them vao truoc do neu huy xuat ve
+	                		// de tiep tuc dat ve khac
+	                		for (const string& code : store_booked_tickets_add_only) {
+	                			store_booked_tickets.erase(code); 
+	                		}
+	                		break; 
 	                	}
 	                }
+	                
 
 	                store_booked_tickets_add_only.clear(); // xoa het phan tu, de display lai cac phan tu moi 
 
@@ -287,15 +299,26 @@ void menu() {
 	    cout << "\n"; 
 	    cout << long_space << "Ban co muon tiep tuc nhap cac chuyen bay khac? (Y/N): ";
 	    string out; 
-	    getline(cin, out); 
-	    if (!out.empty() && (out[0] == 'y' || out[0] == 'Y')) 
-	    	continue; 
-	    else {
-	    	if (admin_Logout(username)) 
-	    		break; 
-	    	else 
-	    		continue; 
+	    
+	    while (true) {
+		    getline(cin, out); 
+		    if (out.empty()) {
+		    	cout << long_space << "Khong duoc de trong.\n"; 
+		    	continue; 
+		    }
+		    else 
+		    	break; 
 	    }
+
+	    const char first = out[0]; 
+		if (first == 'Y' || first == 'y')  
+		    continue; 
+		else {
+		   	if (admin_Logout(username)) 
+		    	break; 
+		    else 
+		    	continue; 
+		}
 	} while(true);
 }
 
@@ -325,13 +348,32 @@ void reset_ticket_info(const string& flight_code) {
 }
 
 void reset(const string& flight_code) {
-    cout << long_space << "Reset so do ghe? (Y/N): ";
     string choice;
-    getline(cin, choice);
+    
+    while (true) {
+    	cout << long_space << "Reset so do ghe? (Y/N): ";
+    	getline(cin, choice);
+    	if (choice.empty()) {
+    		cout << long_space << "Khong duoc de trong.\n";
+    		continue;
+    	}
+    	else 
+    		break; 
+    }
+
     if (choice[0] == 'y' || choice[0] == 'Y') {
         reset_seating_chart(flight_code);
-        cout << long_space << "Reset du lieu ve da dat? (Y/N) ";
-        getline(cin, choice);
+        while (true) {
+        	choice.clear(); 
+        	cout << long_space << "Reset du lieu ve da dat? (Y/N) ";
+        	getline(cin, choice);
+        	if (choice.empty()) {
+        		cout << long_space << "Khong duoc de trong.\n"; 
+        		continue; 
+        	}
+        	else 
+        		break;
+        }
         if (choice[0] == 'y' || choice[0] == 'Y') {
             reset_ticket_info(flight_code);
         }

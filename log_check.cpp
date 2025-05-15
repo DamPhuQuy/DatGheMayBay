@@ -23,7 +23,7 @@ void logLogout(const string &username) {
     if (logFile.is_open()) {
         logFile << "[" << getCurrentTime() << "] Nguoi dung \"" << username << "\" da dang xuat.\n";
         logFile.close();
-        cout << "\n"; 
+        cout << "\n\n"; 
         cout << long_space << "Du lieu dang xuat duoc ghi!" << endl;
     }
 }
