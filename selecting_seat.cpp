@@ -161,11 +161,11 @@ string select_seat(int index,
 	        seat_found = update_seat(economy_class, seat_choice, error_message);
 	    } 
 	    else {
-	        error_message = "                                 Class khong hop le!";
+	        error_message = "Class khong hop le!";
 	    }
 
 	    if (!seat_found) {
-	        cout << error_message << "\n";
+	        cout << long_space << error_message << "\n";
 	    }
 	    else {
 	    	break;
