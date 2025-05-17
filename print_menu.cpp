@@ -109,8 +109,8 @@ void output_ticket_info(
 	string datetime = passengers[index].date + " - " + passengers[index].time;
 	os << print_space << "|  Ngay - Gio            : " << setw(nums_space) << left << datetime << "|\n";
 
-	string seat_info = passengers[index].seat_code + " - " + passengers[index].class_label;
-	os << print_space << "|  Ma so ghe - Class     : " << setw(nums_space) << left << seat_info << "|\n";
+	os << print_space << "|  Ma so ghe             : " << setw(nums_space) << left << passengers[index].seat_code << "|\n";
+	os << print_space << "|  Class                 : " << setw(nums_space) << left << passengers[index].class_label	<< "|\n"; 
 	os << print_space << "----------------------------------------------------\n";
 }
 
