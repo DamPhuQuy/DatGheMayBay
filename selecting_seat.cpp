@@ -93,7 +93,7 @@ bool update_seat(vector<vector<string>>& seatClass, const string& choice, string
             }
         }
     }
-    error_message = "   Ghe da chon khong phu hop voi Class cua ban!";
+    error_message = "Ghe da chon khong phu hop voi Class cua ban!";
     return false;
 }
 

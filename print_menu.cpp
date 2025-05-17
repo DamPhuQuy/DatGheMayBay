@@ -7,20 +7,22 @@ namespace fs = std::filesystem;
 
 extern void Goto(int x, int y);
 
-void flight_menu() {
+void flight_menu(const vector<string>& flights) {
 	system("cls");
 
 	cout << "\n"; 
 	cout << short_space << "--------------------------------------------Nhap ma chuyen bay--------------------------------------------\n"; 
 
+	int nums_space = 47; 
+
 	cout << "\n"; 
 	cout << long_space << "----------------------------------------------------\n"; 
 	cout << long_space << "|           Cac chuyen bay trong he thong          |\n";
 	cout << long_space << "----------------------------------------------------\n";
-	cout << long_space << "|  ITF2023                                         |\n";
-	cout << long_space << "|  ITF2024                                         |\n";
-	cout << long_space << "|  ITF2025                                         |\n";
-	cout << long_space << "----------------------------------------------------\n"; 
+	for (const string s : flights) {
+		cout << long_space << "|   " << setw(nums_space) << left << s << "|\n"; 
+	}
+	cout << long_space << "----------------------------------------------------\n";
 }
 
 void display_flight(const ticket &flight_info) {
@@ -44,16 +46,20 @@ void display_flight(const ticket &flight_info) {
 	cout << short_space << "----------------------------------------------------------------------------------------------------------\n";
 }
 
-void input_flight_code(string& flight_code, vector<vector<string>>& first_class, vector<vector<string>>& economy_class, vector<ticket>& passengers) {
+void input_flight_code(string& flight_code, 
+					   vector<vector<string>>& first_class, 
+					   vector<vector<string>>& economy_class, 
+					   vector<ticket>& passengers,
+					   vector<string>& flights) {
 	while (true) {
 
-		flight_menu(); 
+		flight_menu(flights); 
 
 		cout << "\n"; 
 		cout << long_space << "----------------------------------------------------\n";
 		cout << long_space << "| Nhap ma chuyen bay:                              |\n";
 		cout << long_space << "----------------------------------------------------\n"; 
-		Goto(55, 12); 
+		Goto(55, 9 + flights.size()); 
 		getline(cin, flight_code);
 
 		fs::path directory = flight_code; 
@@ -70,7 +76,7 @@ void input_flight_code(string& flight_code, vector<vector<string>>& first_class,
 		else 
 			break; 
 	}
-
+ 
 	import_passengers_info(flight_code, passengers); 
 	import_booked_ticket(flight_code);
 	import_seating_chart(flight_code, first_class, economy_class);
@@ -183,6 +189,7 @@ void menu() {
 
 	do {
 		string flight_code; 
+		vector<string> flights; 
 		vector<vector<string>> first_class; 
 		vector<vector<string>> economy_class; 
 		set<string> seat_status; 
@@ -198,7 +205,8 @@ void menu() {
 		store_booked_tickets_add_only.clear(); 
 		passengers.clear(); 
 
-		input_flight_code(flight_code, first_class, economy_class, passengers); 
+		import_flights(flights);
+		input_flight_code(flight_code, first_class, economy_class, passengers, flights); 
 
 		if (passengers.empty()) {
         	cout << long_space << "Khong co thong tin hanh khach!" << "\n";

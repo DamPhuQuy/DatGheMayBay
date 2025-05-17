@@ -181,3 +181,12 @@ void import_seating_chart(const string& flight_code, vector<vector<string>>& fir
 	}
 	booked_seating_files.close(); 
 }
+
+void import_flights(vector<string>& flights) {
+	ifstream read_flights("flights.txt"); 
+	string line; 
+	while (getline(read_flights, line)) {
+		flights.push_back(line); 
+	}
+	read_flights.close(); 
+}
