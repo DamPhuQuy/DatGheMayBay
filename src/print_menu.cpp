@@ -32,7 +32,7 @@ void display_flight(const ticket &flight_info) {
 
     cout << "\n"; 
     cout << short_space << "----------------------------------------------------------------------------------------------------------\n";
-	cout << short_space << "|                                          THONG TIN CHUYEN BAY                                          |\n";
+	cout << short_space << "|                                        THONG TIN CHUYEN BAY " << setw(43) << left << flight_info.flight_code <<          "|\n";
 	cout << short_space << "+--------------------------------------------------------------------------------------------------------+\n";
 	cout << short_space << "|   Ma so chuyen bay : " << setw(nums_space) << left << flight_info.flight_code << "|\n"; 
 	cout << short_space << "|                                                                                                        |\n";
