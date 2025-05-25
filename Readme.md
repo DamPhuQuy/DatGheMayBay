@@ -23,22 +23,64 @@ To run this project, you will need to install and add the following environment 
 
 [`Mingw64`](https://www.mingw-w64.org/) or [`Msys2`](https://www.msys2.org/)
 
-## Run 
+## Run
 
-Work well with terminal, powershell
+### Method 1: Compile the entire program directly (quick and simple):
 
-Compile: 
-
-```bash
-    g++ -Ilibrary src/main.cpp src/admin.cpp src/import_data.cpp src/log_check.cpp src/print_menu.cpp src/selecting_seat.cpp -o DatGheMayBay
-
-```
-
-Run DatGheMayBay.exe
+#### Step 1: Compile with one single line:
 
 ```bash
-    .\DatGheMayBay.exe
+g++ -Ilibrary src/main.cpp src/admin.cpp src/import_data.cpp src/log_check.cpp src/print_menu.cpp src/selecting_seat.cpp -o DatGheMayBay
 ```
+
+### Step 2: Run DatGheMayBay.exe:
+
+```bash
+.\DatGheMayBay.exe
+```
+
+---
+
+### Method 2: Compile each `.cpp` file separately to speed up later builds:
+
+#### Step 1: Create a `build` folder to store `.o` files
+
+```bash
+mkdir build
+```
+
+#### Step 2: Compile each `.cpp` file individually (only recompile the ones you modify)
+
+```bash
+g++ -Ilibrary -c src/main.cpp -o build/main.o
+g++ -Ilibrary -c src/admin.cpp -o build/admin.o
+g++ -Ilibrary -c src/import_data.cpp -o build/import_data.o
+g++ -Ilibrary -c src/log_check.cpp -o build/log_check.o
+g++ -Ilibrary -c src/print_menu.cpp -o build/print_menu.o
+g++ -Ilibrary -c src/selecting_seat.cpp -o build/selecting_seat.o
+```
+
+**Notice:** When you modify one or more than one `.cpp`, you only need to compile the files which you had modified before. There is no need to modify the whole files again. 
+
+**For example:** You modify `admin.cpp` file:  
+
+```bash
+g++ -Ilibrary -c src/admin.cpp -o build/admin.o
+```
+
+#### Step 3: Link all `.o` files into the final program
+
+```bash
+g++ build/*.o -o DatGheMayBay
+```
+
+#### Run the program:
+
+```bash
+.\DatGheMayBay.exe
+```
+
+**Advantage of Method 2**: Later, you only need to recompile the `.cpp` files you changed, without rebuilding the entire project → significantly faster build times.
     
 ## Contributor
 
@@ -54,5 +96,3 @@ Run DatGheMayBay.exe
 
  - [Dam Phu Quy](https://www.facebook.com/damphuquy/)
  - [Dam Vinh Quang](https://www.facebook.com/vinh.quang.am.2024)
-
-
