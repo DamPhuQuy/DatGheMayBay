@@ -71,13 +71,13 @@ g++ -Ilibrary -c src/admin.cpp -o build/admin.o
 #### Step 3: Link all `.o` files into the final program
 
 ```bash
-g++ build/*.o -o DatGheMayBay
+g++ build/*.o -o build/DatGheMayBay.exe
 ```
 
 #### Run the program:
 
 ```bash
-.\DatGheMayBay.exe
+.\build\DatGheMayBay.exe
 ```
 
 **Advantage of Method 2**: Later, you only need to recompile the `.cpp` files you changed, without rebuilding the entire project → significantly faster build times.
