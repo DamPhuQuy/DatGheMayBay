@@ -89,19 +89,22 @@ bool read_passenger_info(ifstream& personal_info_file, ticket& flight_data, vect
 
 void import_passengers_info(const string& flight_code, vector<ticket>& passengers) {
 	ifstream personal_info_file, flight_info_file; 
-	if (!open_input_files(flight_code, personal_info_file, flight_info_file)) 
+	if (!open_input_files(flight_code, personal_info_file, flight_info_file)) {
+		cout << long_space << "Khong mo duoc file\n"; 
 		return; 
-
+	}
 	ticket flight_data; 
 	if (!read_flight_info(flight_info_file, flight_data)) {
 		personal_info_file.close(); 
 		flight_info_file.close(); 
+		cout << long_space << "Khong mo duoc file\n"; 
 		return; 
 	}
 
 	if (!read_passenger_info(personal_info_file, flight_data, passengers)) {
 		personal_info_file.close();
 		flight_info_file.close(); 
+		cout << long_space << "Khong mo duoc file\n"; 
 		return; 
 	} 
 
@@ -125,8 +128,10 @@ void import_booked_ticket(const string& flight_code) {
 
 	string line; 
 	set<string> store_booked_tickets; 
+
+	int found;
 	while (getline(booked_ticket_files, line)) {
-		int found = line.find("Ma so ve:"); 
+		found = line.find("Ma so ve:"); 
 		if (found != string::npos) {
 			string code = line.substr(found + 10); 
 			code.erase(0, code.find_first_not_of(" ")); 
@@ -160,15 +165,16 @@ void import_seating_chart(const string& flight_code, vector<vector<string>>& fir
 		return; 
 	}
 
-	string line; 
 	bool is_first_class = false, is_economy_class = false; 
+
+	string line, token; 
+	vector<string> row; 
 	while (getline(booked_seating_files, line)) {
 		if (line == "First Class:")   { is_first_class = true; is_economy_class = false; continue; }
 		if (line == "Economy Class:") { is_first_class = false; is_economy_class = true; continue; }
 		if (!line.empty()) {
 			stringstream ss(line); 
-			vector<string> row; 
-			string token; 
+			row.clear();   
 
 			while (ss >> token) 
 				row.push_back(token); 
