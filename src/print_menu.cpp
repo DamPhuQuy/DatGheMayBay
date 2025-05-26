@@ -183,153 +183,6 @@ void display_menu() {
     cout << short_space << "----------------------------------------------------------------------------------------------------------" << "\n";
 }
 
-void menu() {
-	string username; 
-	admin_Login(username); 
-
-	do {
-		string flight_code; 
-		vector<string> flights; 
-		vector<vector<string>> first_class; 
-		vector<vector<string>> economy_class; 
-		set<string> seat_status; 
-		set<string> store_booked_tickets; 
-		set<string> store_booked_tickets_add_only;
-		vector<ticket> passengers;
-
-		flight_code.clear(); 
-		first_class.clear(); 
-		economy_class.clear(); 
-		seat_status.clear(); 
-		store_booked_tickets.clear(); 
-		store_booked_tickets_add_only.clear(); 
-		passengers.clear(); 
-
-		import_flights(flights);
-		input_flight_code(flight_code, first_class, economy_class, passengers, flights); 
-
-		if (passengers.empty()) {
-        	cout << long_space << "Khong co thong tin hanh khach!" << "\n";
-        	return;
-   		}
-
-	    cout << long_space << "Dang hien thi menu..." << "\n";
-	    Sleep(1500);
-
-	    int choice;
-	    do {
-	        display_menu();
-	        while (true) {
-	            cout << long_space << "Vui long nhap lua chon: ";
-	            cin >> choice;
-	            if (cin.fail()) {
-	                cin.clear();
-	                cin.ignore(1000, '\n');
-	                cout << long_space << "Nhap sai!" << "\n";
-	            }
-	            else
-	                break;
-	        }
-	        cin.ignore();
-
-	        switch (choice) {
-	            case 0: {
-	                cout << long_space << "Ban da chon thoat chuong trinh." << "\n";
-	                break;
-	            }
-	            case 1: {
-	                if (!passengers.empty()) {
-	                    display_flight(passengers[0]);
-	                    cout << long_space << "Nhan phim bat ki de tiep tuc... ";
-	                    _getch(); 
-	                }
-	                else {
-	                    cout << long_space << "Khong co thong tin chuyen bay de hien thi." << "\n";
-	                }
-	                break;
-	            }
-	            case 2: {
-	                statistics();
-	                cout << long_space << "Nhan phim bat ki de tiep tuc...";
-	                _getch();
-	                break;
-	            }
-	            case 3: {
-	                take_seat_code(flight_code, seat_status, store_booked_tickets, store_booked_tickets_add_only, first_class, economy_class, passengers);
-
-	                // xuat ve 
-	                display_info(store_booked_tickets_add_only, passengers);
-
-
-	                string check;
-
-	                while (true) {
-	                	cout << long_space << "Ban co muon xuat ve (Y/N): ";
-	                	getline(cin, check); 
-	                	if (check.empty()) {
-	                		cout << long_space << "Khong duoc de trong.\n"; 
-	                		continue; 
-	                	}
-
-	                	const char first = check[0]; 
-
-	                	if (first == 'Y' || first == 'y') {
-	                		print_ticket(flight_code, passengers, store_booked_tickets_add_only); 
-	                		break; 
-	                	}
-	                	else {
-	                		// xoa phan tu da them vao truoc do neu huy xuat ve
-	                		// de tiep tuc dat ve khac
-	                		for (const string& code : store_booked_tickets_add_only) {
-	                			store_booked_tickets.erase(code); 
-	                		}
-	                		break; 
-	                	}
-	                }
-	                
-
-	                store_booked_tickets_add_only.clear(); // xoa het phan tu, de display lai cac phan tu moi 
-
-	                cout << "\n";
-	                cout << long_space << "Nhan phim bat ki de tiep tuc... ";
-	                _getch();
-	                break;
-	            }
-	            default: {
-	                cout << long_space << "Lua chon khong hop le. Vui long nhap lai." << "\n";
-	                break;
-	            }
-	        }
-	    } while (choice != 0);
-
-	    reset(flight_code); 
-
-	    cout << "\n"; 
-	    cout << long_space << "Ban co muon tiep tuc nhap cac chuyen bay khac? (Y/N): ";
-	    string out; 
-	    
-	    while (true) {
-		    getline(cin, out); 
-		    if (out.empty()) {
-		    	cout << long_space << "Khong duoc de trong.\n"; 
-		    	continue; 
-		    }
-		    else 
-		    	break; 
-	    }
-
-	    const char first = out[0]; 
-		if (first == 'Y' || first == 'y')  
-		    continue; 
-		else {
-		   	if (admin_Logout(username)) 
-		    	break; 
-		    else 
-		    	continue; 
-		}
-	} while(true);
-}
-
 void end() {
     system("cls");
 
@@ -385,5 +238,170 @@ void reset(const string& flight_code) {
         if (choice[0] == 'y' || choice[0] == 'Y') {
             reset_ticket_info(flight_code);
         }
+    }
+}
+
+void menu() {
+    string username;
+    handle_login(username);
+
+    string flight_code;
+    vector<string> flights;
+    vector<vector<string>> first_class;
+    vector<vector<string>> economy_class;
+    set<string> seat_status;
+    set<string> store_booked_tickets;
+    set<string> store_booked_tickets_add_only;
+    vector<ticket> passengers;
+
+    do {
+        initialize_flight_data(flight_code, flights, first_class, economy_class,
+                               seat_status, store_booked_tickets, store_booked_tickets_add_only, passengers);
+
+        input_flight_code(flight_code, first_class, economy_class, passengers, flights);
+
+        if (passengers.empty()) {
+            cout << long_space << "Khong co thong tin hanh khach!" << "\n";
+            return;
+        }
+
+        cout << long_space << "Dang hien thi menu..." << "\n";
+        Sleep(1500);
+
+        handle_menu_loop(flight_code, first_class, economy_class,
+                         seat_status, store_booked_tickets,
+                         store_booked_tickets_add_only, passengers);
+
+        reset(flight_code);
+
+    } while (ask_to_continue_and_logout(username));
+}
+
+
+void handle_login(string& username) {
+	admin_Login(username); 
+}
+
+void initialize_flight_data(string &flight_code,
+							vector<string> &flights,
+							vector<vector<string>> &first_class,
+							vector<vector<string>> &economy_class,
+							set<string> &seat_status,
+							set<string> &store_booked_tickets,
+							set<string> &store_booked_tickets_add_only,
+							vector<ticket> &passengers) {
+	flight_code.clear();
+	first_class.clear();
+	economy_class.clear();
+	seat_status.clear();
+	store_booked_tickets.clear();
+	store_booked_tickets_add_only.clear();
+	passengers.clear();
+
+	import_flights(flights);
+}
+
+void handle_menu_loop(const string &flight_code,
+                      vector<vector<string>> &first_class,
+                      vector<vector<string>> &economy_class,
+                      set<string> &seat_status,
+                      set<string> &store_booked_tickets,
+                      set<string> &store_booked_tickets_add_only,
+                      vector<ticket> &passengers) {
+    int choice;
+    do {
+        display_menu();
+        while (true) {
+            cout << long_space << "Vui long nhap lua chon: ";
+            cin >> choice;
+            if (cin.fail()) {
+                cin.clear();
+                cin.ignore(1000, '\n');
+                cout << long_space << "Nhap sai!" << "\n";
+            } else {
+                break;
+            }
+        }
+        cin.ignore();
+
+        switch (choice) {
+            case 0: {
+                cout << long_space << "Ban da chon thoat chuong trinh." << "\n";
+                break;
+            }
+            case 1: {
+                if (!passengers.empty()) {
+                    display_flight(passengers[0]);
+                    cout << long_space << "Nhan phim bat ki de tiep tuc... ";
+                    _getch();
+                } else {
+                    cout << long_space << "Khong co thong tin chuyen bay de hien thi." << "\n";
+                }
+                break;
+            }
+            case 2: {
+                statistics();
+                cout << long_space << "Nhan phim bat ki de tiep tuc...";
+                _getch();
+                break;
+            }
+            case 3: {
+                take_seat_code(flight_code, seat_status, store_booked_tickets, store_booked_tickets_add_only, first_class, economy_class, passengers);
+                display_info(store_booked_tickets_add_only, passengers);
+
+                string check;
+                while (true) {
+                    cout << long_space << "Ban co muon xuat ve (Y/N): ";
+                    getline(cin, check);
+                    if (check.empty()) {
+                        cout << long_space << "Khong duoc de trong.\n";
+                        continue;
+                    }
+                    const char first = check[0];
+                    if (first == 'Y' || first == 'y') {
+                        print_ticket(flight_code, passengers, store_booked_tickets_add_only);
+                        break;
+                    } else {
+                        for (const string &code : store_booked_tickets_add_only) {
+                            store_booked_tickets.erase(code);
+                        }
+                        break;
+                    }
+                }
+
+                store_booked_tickets_add_only.clear();
+                cout << "\n";
+                cout << long_space << "Nhan phim bat ki de tiep tuc... ";
+                _getch();
+                break;
+            }
+            default: {
+                cout << long_space << "Lua chon khong hop le. Vui long nhap lai." << "\n";
+                break;
+            }
+        }
+    } while (choice != 0);
+}
+
+bool ask_to_continue_and_logout(const string &username) {
+    cout << "\n";
+    cout << long_space << "Tiep tuc nhap cac chuyen bay khac? (Y/N): ";
+    string out;
+
+    while (true) {
+        getline(cin, out);
+        if (out.empty()) {
+            cout << long_space << "Khong duoc de trong.\n";
+            continue;
+        } else {
+            break;
+        }
+    }
+
+    char first = out[0];
+    if (first == 'Y' || first == 'y') {
+        return true;
+    } else {
+        return !admin_Logout(username) ? true : false;
     }
 }
