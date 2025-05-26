@@ -90,19 +90,19 @@ bool read_passenger_info(ifstream& personal_info_file, ticket& flight_data, vect
 void import_passengers_info(const string& flight_code, vector<ticket>& passengers) {
 	ifstream personal_info_file, flight_info_file; 
 	if (!open_input_files(flight_code, personal_info_file, flight_info_file)) 
-		exit(0); 
+		return; 
 
 	ticket flight_data; 
 	if (!read_flight_info(flight_info_file, flight_data)) {
 		personal_info_file.close(); 
 		flight_info_file.close(); 
-		exit(0); 
+		return; 
 	}
 
 	if (!read_passenger_info(personal_info_file, flight_data, passengers)) {
 		personal_info_file.close();
 		flight_info_file.close(); 
-		exit(0); 
+		return; 
 	} 
 
 	personal_info_file.close(); 
@@ -113,14 +113,14 @@ void import_booked_ticket(const string& flight_code) {
 	fs::path directory = flight_code; 
 	if (!exists(directory) || !fs::is_directory(directory)) {
 		cout << long_space << "Chuyen bay khong ton tai!\n"; 
-		exit(0);  
+		return;  
 	}
 	fs::path booked_ticket_path = directory / TICKET_INFO; 
 
 	ifstream booked_ticket_files(booked_ticket_path); 
 	if (!booked_ticket_files.is_open()) {
 		cout << long_space << "Khong mo duoc file " << TICKET_INFO << "\n"; 
-		exit(0); 
+		return; 
 	}
 
 	string line; 
@@ -150,14 +150,14 @@ void import_seating_chart(const string& flight_code, vector<vector<string>>& fir
 	fs::path directory = flight_code; 
 	if (!fs::exists(directory) || !fs::is_directory(directory)) {
 		cout << long_space << "Chuyen bay khong ton tai!\n"; 
-		exit(0);
+		return;
 	}
 	fs::path booked_seating_path = directory / BOOKED_CHART;  
 
 	ifstream booked_seating_files(booked_seating_path);
 	if (!booked_seating_files.is_open()) {
 		cout << long_space << "Loi khi mo file " << BOOKED_CHART << "\n"; 
-		exit(0); 
+		return; 
 	}
 
 	string line; 

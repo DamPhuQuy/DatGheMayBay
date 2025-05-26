@@ -31,7 +31,7 @@ void load_accounts(unordered_map<string, string> &accounts) {
     ifstream readFile("accounts.txt");
     if (!readFile.is_open()) {
       cout << long_space << "Khong truy xuat duoc thong tin he thong\n";
-      exit(0);
+      return;
     }
     string line;
     while (getline(readFile, line)) {
@@ -128,7 +128,7 @@ void admin_Login(string& username) {
     else {
         cout << "\n\n\n"; 
         cout << long_space << "Qua nhieu lan thu, dang nhap that bai.\n"; 
-        exit(0);
+        return;
     }
 }
 

@@ -258,14 +258,14 @@ void update_seating_chart(const string& flight_code, const vector<vector<string>
 	fs::path directory = flight_code; 
 	if (!fs::exists(directory) || !fs::is_directory(directory)) {
 		cout << long_space << "Chuyen bay khong ton tai!\n"; 
-		exit(0); 
+		return; 
 	}
 	
 	fs::path booked_seating_path = directory / BOOKED_CHART; 
 	ofstream booked_seating_files(booked_seating_path); 
 	if (!booked_seating_files.is_open()) {
 		cout << long_space << "Loi khi mo file " << BOOKED_CHART << "\n"; 
-		exit(0); 
+		return; 
 	}
 
 	booked_seating_files << "First Class:" << "\n";
@@ -345,7 +345,7 @@ void reset_seating_chart(const string& flight_code) {
     fs::path directory = flight_code;
     if (!fs::exists(directory) || !fs::is_directory(directory)) {
         cout << long_space << "Chuyen bay khong ton tai\n";
-        exit(0);
+        return;
     }
     fs::path original_seating_path = directory / ORIGINAL_CHART;
     fs::path booked_seating_path = directory / BOOKED_CHART;
@@ -353,13 +353,13 @@ void reset_seating_chart(const string& flight_code) {
     ifstream read_original_files(original_seating_path);
     if (!read_original_files.is_open()) {
         cout << long_space << "Khong the mo file SeatingChart.txt\n";
-        exit(0); 
+        return; 
     }
 
     ofstream write_booked_chart_files(booked_seating_path, ios::trunc);
     if (!write_booked_chart_files.is_open()) {
         cout << long_space << "Khong the mo file " << BOOKED_CHART<< "\n";
-        exit(0);
+        return;
     }
 
     string line;
