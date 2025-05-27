@@ -142,8 +142,6 @@ string select_seat(int index,
 		cout << long_space<< "Hay chon ghe: ";
         getline(cin, seat_choice);
 
-
-
         auto it = seat_status.find(seat_choice); 
         if (!is_valid_seat(seat_choice) || it != seat_status.end()) {
         	cout << "\n"; 
@@ -295,6 +293,10 @@ void take_seat_code(const string& flight_code,
                     vector<ticket>& passengers) {
 	int ticket_count = 1; 
 	int number_of_tickets = valid_number_of_tickets();
+
+	if (number_of_tickets == -1) {
+		return; 
+	}
 
 	while (number_of_tickets > 0) {
 		display_seating_chart(first_class, economy_class);

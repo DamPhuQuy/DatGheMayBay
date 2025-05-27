@@ -19,7 +19,7 @@ void flight_menu(const vector<string>& flights) {
 	cout << long_space << "----------------------------------------------------\n"; 
 	cout << long_space << "|           Cac chuyen bay trong he thong          |\n";
 	cout << long_space << "----------------------------------------------------\n";
-	for (const string s : flights) {
+	for (const string& s : flights) {
 		cout << long_space << "|   " << setw(nums_space) << left << s << "|\n"; 
 	}
 	cout << long_space << "----------------------------------------------------\n";
@@ -205,6 +205,9 @@ void reset_ticket_info(const string& flight_code) {
     fs::path ticket_info_path = directory / TICKET_INFO;
     ofstream ticket_info_files(ticket_info_path);
     ticket_info_files.close();
+
+    booked_tickets = 0; // reset lai so luong ve da dat
+
     cout << long_space << "DU LIEU VE DA DUOC RESET" << endl;
 }
 
