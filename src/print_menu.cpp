@@ -128,7 +128,7 @@ void display_info(const set<string>& booked_tickets_tracking, const vector<ticke
     cout << short_space << "----------------------------------------------------------------------------------------------------------\n";
        
     for (int index = 0; index < passengers.size(); index++) {
-    	if (booked_tickets_tracking.find(passengers[index].ticket_code) != booked_tickets_tracking.end()) {
+        if ((passengers[index].ticket_code != "Chua dat ghe") && (booked_tickets_tracking.find(passengers[index].ticket_code) != booked_tickets_tracking.end())) {
     		output_ticket_info(cout, passengers, index);
     		cout << "\n"; 
     	}
@@ -154,7 +154,7 @@ void print_ticket(const string& flight_code, const vector<ticket>& passengers, c
 	fs::path ticket_info_path = directory / TICKET_INFO;
     ofstream write_file(ticket_info_path, ios::app);
     for (int index = 0; index < passengers.size(); index++) {
-        if (booked_tickets_tracking.find(passengers[index].ticket_code) != booked_tickets_tracking.end()) {
+        if ((passengers[index].ticket_code != "Chua dat ghe") && (booked_tickets_tracking.find(passengers[index].ticket_code) != booked_tickets_tracking.end())) {
             ticket_output(write_file, index, passengers);
         }
     }
