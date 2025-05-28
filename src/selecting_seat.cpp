@@ -287,7 +287,7 @@ void update_seating_chart(const string& flight_code, const vector<vector<string>
 void take_seat_code(const string& flight_code,
                     set<string>& seat_status,
                     set<string>& store_booked_tickets,
-                    set<string>& store_booked_tickets_add_only,
+                    set<string>& booked_tickets_tracking,
                     vector<vector<string>>& first_class,
                     vector<vector<string>>& economy_class,
                     vector<ticket>& passengers) {
@@ -317,7 +317,7 @@ void take_seat_code(const string& flight_code,
             }
             else {
             	store_booked_tickets.insert(ticket_code);
-            	store_booked_tickets_add_only.insert(ticket_code);
+            	booked_tickets_tracking.insert(ticket_code);
             }
 
             index = find_passenger(ticket_code, passengers);

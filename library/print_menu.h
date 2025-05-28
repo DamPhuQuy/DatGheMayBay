@@ -43,13 +43,13 @@ void initialize_flight_data(string &flight_code,
                             vector<vector<string>> &economy_class,
                             set<string> &seat_status,
                             set<string> &store_booked_tickets,
-                            set<string> &store_booked_tickets_add_only,
+                            set<string> &booked_tickets_tracking,
                             vector<ticket> &passengers);
 void handle_menu_loop(const string &flight_code,
                       vector<vector<string>> &first_class,
                       vector<vector<string>> &economy_class,
                       set<string> &seat_status,
                       set<string> &store_booked_tickets,
-                      set<string> &store_booked_tickets_add_only,
+                      set<string> &booked_tickets_tracking,
                       vector<ticket> &passengers);
 bool ask_to_continue_and_logout(const string &username);

@@ -86,8 +86,7 @@ void output_ticket_info(
 	ostream &os,
 	const vector<ticket> &passengers,
 	int index,
-	bool delete_space)
-{
+	bool delete_space) {
 	string print_space = delete_space
 							 ? ""
 							 : long_space;
@@ -120,7 +119,7 @@ void output_ticket_info(
 	os << print_space << "----------------------------------------------------\n";
 }
 
-void display_info(const set<string>& store_booked_tickets_add_only, const vector<ticket>& passengers) {
+void display_info(const set<string>& booked_tickets_tracking, const vector<ticket>& passengers) {
 	system("cls"); 
 
 	cout << "\n";
@@ -129,7 +128,7 @@ void display_info(const set<string>& store_booked_tickets_add_only, const vector
     cout << short_space << "----------------------------------------------------------------------------------------------------------\n";
        
     for (int index = 0; index < passengers.size(); index++) {
-    	if (store_booked_tickets_add_only.find(passengers[index].ticket_code) != store_booked_tickets_add_only.end()) {
+    	if (booked_tickets_tracking.find(passengers[index].ticket_code) != booked_tickets_tracking.end()) {
     		output_ticket_info(cout, passengers, index);
     		cout << "\n"; 
     	}
@@ -145,7 +144,7 @@ void ticket_output(ofstream& write_file, int index, const vector<ticket>& passen
 	}
 }
 
-void print_ticket(const string& flight_code, const vector<ticket>& passengers, const set<string>& store_booked_tickets_add_only) {
+void print_ticket(const string& flight_code, const vector<ticket>& passengers, const set<string>& booked_tickets_tracking) {
     fs::path directory = flight_code;
     if (!fs::exists(directory) || !fs::is_directory(directory)) {
         cout << long_space << "Chuyen bay khong ton tai!" << "\n";
@@ -155,7 +154,7 @@ void print_ticket(const string& flight_code, const vector<ticket>& passengers, c
 	fs::path ticket_info_path = directory / TICKET_INFO;
     ofstream write_file(ticket_info_path, ios::app);
     for (int index = 0; index < passengers.size(); index++) {
-        if (store_booked_tickets_add_only.find(passengers[index].ticket_code) != store_booked_tickets_add_only.end()) {
+        if (booked_tickets_tracking.find(passengers[index].ticket_code) != booked_tickets_tracking.end()) {
             ticket_output(write_file, index, passengers);
         }
     }
@@ -254,12 +253,12 @@ void menu() {
     vector<vector<string>> economy_class;
     set<string> seat_status;
     set<string> store_booked_tickets;
-    set<string> store_booked_tickets_add_only;
+    set<string> booked_tickets_tracking;
     vector<ticket> passengers;
 
     do {
         initialize_flight_data(flight_code, flights, first_class, economy_class,
-                               seat_status, store_booked_tickets, store_booked_tickets_add_only, passengers);
+                               seat_status, store_booked_tickets, booked_tickets_tracking, passengers);
 
         input_flight_code(flight_code, first_class, economy_class, passengers, flights);
 
@@ -273,7 +272,7 @@ void menu() {
 
         handle_menu_loop(flight_code, first_class, economy_class,
                          seat_status, store_booked_tickets,
-                         store_booked_tickets_add_only, passengers);
+                         booked_tickets_tracking, passengers);
 
         reset(flight_code);
 
@@ -291,14 +290,14 @@ void initialize_flight_data(string &flight_code,
 							vector<vector<string>> &economy_class,
 							set<string> &seat_status,
 							set<string> &store_booked_tickets,
-							set<string> &store_booked_tickets_add_only,
+							set<string> &booked_tickets_tracking,
 							vector<ticket> &passengers) {
 	flight_code.clear();
 	first_class.clear();
 	economy_class.clear();
 	seat_status.clear();
 	store_booked_tickets.clear();
-	store_booked_tickets_add_only.clear();
+	booked_tickets_tracking.clear();
 	passengers.clear();
 
 	import_flights(flights);
@@ -309,7 +308,7 @@ void handle_menu_loop(const string &flight_code,
                       vector<vector<string>> &economy_class,
                       set<string> &seat_status,
                       set<string> &store_booked_tickets,
-                      set<string> &store_booked_tickets_add_only,
+                      set<string> &booked_tickets_tracking,
                       vector<ticket> &passengers) {
     int choice;
     do {
@@ -349,8 +348,8 @@ void handle_menu_loop(const string &flight_code,
                 break;
             }
             case 3: {
-                take_seat_code(flight_code, seat_status, store_booked_tickets, store_booked_tickets_add_only, first_class, economy_class, passengers);
-                display_info(store_booked_tickets_add_only, passengers);
+                take_seat_code(flight_code, seat_status, store_booked_tickets, booked_tickets_tracking, first_class, economy_class, passengers);
+                display_info(booked_tickets_tracking, passengers);
 
                 string check;
                 while (true) {
@@ -362,17 +361,17 @@ void handle_menu_loop(const string &flight_code,
                     }
                     const char first = check[0];
                     if (first == 'Y' || first == 'y') {
-                        print_ticket(flight_code, passengers, store_booked_tickets_add_only);
+                        print_ticket(flight_code, passengers, booked_tickets_tracking);
                         break;
                     } else {
-                        for (const string &code : store_booked_tickets_add_only) {
+                        for (const string &code : booked_tickets_tracking) {
                             store_booked_tickets.erase(code);
                         }
                         break;
                     }
                 }
 
-                store_booked_tickets_add_only.clear();
+                booked_tickets_tracking.clear();
                 cout << "\n";
                 cout << long_space << "Nhan phim bat ki de tiep tuc... ";
                 _getch();
