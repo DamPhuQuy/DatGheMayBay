@@ -6,7 +6,7 @@ namespace fs = std::filesystem;
 int booked_tickets = 0;
 
 bool open_input_files(const string& flight_code, ifstream& personal_info_file, ifstream& flight_info_file) {
-	fs::path directory = flight_code; 
+	fs::path directory = "data" + flight_code; 
 	if (!fs::exists(directory) || !fs::is_directory(directory)) {
 		cout << long_space << "Chuyen bay khong ton tai\n"; 
 		return false; 
@@ -113,7 +113,7 @@ void import_passengers_info(const string& flight_code, vector<ticket>& passenger
 }
 
 void import_booked_ticket(const string& flight_code) {
-	fs::path directory = flight_code; 
+	fs::path directory = "data" + flight_code; 
 	if (!exists(directory) || !fs::is_directory(directory)) {
 		cout << long_space << "Chuyen bay khong ton tai!\n"; 
 		return;  
@@ -152,7 +152,7 @@ void import_booked_ticket(const string& flight_code) {
 }
 
 void import_seating_chart(const string& flight_code, vector<vector<string>>& first_class, vector<vector<string>>& economy_class) {
-	fs::path directory = flight_code; 
+	fs::path directory = "data" + flight_code; 
 	if (!fs::exists(directory) || !fs::is_directory(directory)) {
 		cout << long_space << "Chuyen bay khong ton tai!\n"; 
 		return;

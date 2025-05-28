@@ -62,7 +62,7 @@ void input_flight_code(string& flight_code,
 		Goto(55, 9 + flights.size()); 
 		getline(cin, flight_code);
 
-		fs::path directory = flight_code; 
+		fs::path directory = "data" + flight_code; 
 		if (flight_code.empty()) {
 			cout << "\n"; 
 			cout << long_space << "Thong tin khong duoc de trong!\n"; 
@@ -145,7 +145,7 @@ void ticket_output(ofstream& write_file, int index, const vector<ticket>& passen
 }
 
 void print_ticket(const string& flight_code, const vector<ticket>& passengers, const set<string>& booked_tickets_tracking) {
-    fs::path directory = flight_code;
+    fs::path directory = "data" + flight_code;
     if (!fs::exists(directory) || !fs::is_directory(directory)) {
         cout << long_space << "Chuyen bay khong ton tai!" << "\n";
         return;
@@ -195,7 +195,7 @@ void end() {
 }
 
 void reset_ticket_info(const string& flight_code) {
-    fs::path directory = flight_code;
+    fs::path directory = "data" + flight_code;
 
     if (!fs::exists(directory) || !fs::is_directory(directory)) {
         cout << long_space << "Chuyen bay khong ton tai!" << endl;
