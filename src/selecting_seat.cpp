@@ -253,7 +253,7 @@ int valid_number_of_tickets() {
 }
 
 void update_seating_chart(const string& flight_code, const vector<vector<string>>& first_class, const vector<vector<string>>& economy_class) {
-	fs::path directory = "data" + flight_code; 
+	fs::path directory = fs::path("data") / flight_code;  
 	if (!fs::exists(directory) || !fs::is_directory(directory)) {
 		cout << long_space << "Chuyen bay khong ton tai!\n"; 
 		return; 
@@ -344,7 +344,7 @@ void take_seat_code(const string& flight_code,
 }
 
 void reset_seating_chart(const string& flight_code) {
-    fs::path directory = "data" + flight_code;
+    fs::path directory = fs::path("data") / flight_code; 
     if (!fs::exists(directory) || !fs::is_directory(directory)) {
         cout << long_space << "Chuyen bay khong ton tai\n";
         return;
