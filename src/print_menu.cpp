@@ -247,7 +247,7 @@ void menu() {
     string username;
     handle_login(username);
 
-    string flight_code;
+    string input_flight;
     vector<string> flights;
     vector<vector<string>> first_class;
     vector<vector<string>> economy_class;
@@ -257,10 +257,10 @@ void menu() {
     vector<ticket> passengers;
 
     do {
-        initialize_flight_data(flight_code, flights, first_class, economy_class,
+        initialize_flight_data(input_flight, flights, first_class, economy_class,
                                seat_status, store_booked_tickets, booked_tickets_tracking, passengers);
 
-        input_flight_code(flight_code, first_class, economy_class, passengers, flights);
+        input_flight_code(input_flight, first_class, economy_class, passengers, flights);
 
         if (passengers.empty()) {
             cout << long_space << "Khong co thong tin hanh khach!" << "\n";
@@ -270,11 +270,11 @@ void menu() {
         cout << long_space << "Dang hien thi menu..." << "\n";
         Sleep(1500);
 
-        handle_menu_loop(flight_code, first_class, economy_class,
+        handle_menu_loop(input_flight, first_class, economy_class,
                          seat_status, store_booked_tickets,
                          booked_tickets_tracking, passengers);
 
-        reset(flight_code);
+        reset(input_flight);
 
     } while (ask_to_continue_and_logout(username));
 }
