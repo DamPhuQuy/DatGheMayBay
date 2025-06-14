@@ -320,7 +320,12 @@ void handle_menu_loop(const string &flight_code,
                 cin.clear();
                 cin.ignore(1000, '\n');
                 cout << long_space << "Nhap sai!" << "\n";
-            } else {
+            } 
+            else if (choice < 0 || choice > 3) {
+                cout << long_space << "Lua chon khong hop le. Vui long nhap lai." << "\n";
+                continue;
+            }
+            else {
                 break;
             }
         }

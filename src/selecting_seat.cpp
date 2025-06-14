@@ -241,7 +241,7 @@ int valid_number_of_tickets() {
 			continue; 
 		}
 		if (count > MaxSeat) {
-			cout << long_space << "Vuot qua tong so ghe ( " << MaxSeat << "ghe).\n"; 
+			cout << long_space << "Vuot qua tong so ghe (" << MaxSeat << "ghe).\n"; 
 			continue; 
 		}
 		if (count > available_seats) {
