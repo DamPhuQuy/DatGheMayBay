@@ -112,7 +112,7 @@ void import_passengers_info(const string &flight_code, vector<ticket> &passenger
 	flight_info_file.close();
 }
 
-void import_booked_ticket(const string& flight_code, set<string>& store_booked_tickets) {
+void import_booked_ticket(const string& flight_code, set<string>& store_booked_tickets, set<string>& seat_status) {
 	fs::path directory = fs::path("data") / flight_code;  
 	if (!exists(directory) || !fs::is_directory(directory)) {
 		cout << long_space << "Chuyen bay khong ton tai!\n"; 
@@ -136,6 +136,17 @@ void import_booked_ticket(const string& flight_code, set<string>& store_booked_t
 				code.erase(0, code.find_first_not_of(" \t"));
 				code.erase(code.find_last_not_of(" \t|") + 1);
 				store_booked_tickets.insert(code);
+			}
+		}
+
+		size_t found_seat = line.find("Ma so ghe");
+		if (found_seat != string::npos) {
+			size_t colon = line.find(":");
+			if (colon != string::npos) {
+				string seat_code = line.substr(colon + 1);
+				seat_code.erase(0, seat_code.find_first_not_of(" \t"));
+				seat_code.erase(seat_code.find_last_not_of(" \t|") + 1);
+				seat_status.insert(seat_code); 
 			}
 		}
 	}

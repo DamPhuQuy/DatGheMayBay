@@ -17,11 +17,15 @@ using namespace std;
 void introduction();
 void flight_menu();
 void display_flight(const ticket &flight_info);
-void input_flight_code(string& flight_code, 
-                       vector<vector<string>>& first_class, 
-                       vector<vector<string>>& economy_class, 
-                       vector<ticket>& passengers,
-                       vector<string>& flights);
+void input_flight_code(
+    string& flight_code,
+    vector<vector<string>>& first_class,
+    vector<vector<string>>& economy_class,
+    vector<ticket>& passengers,
+    vector<string>& flights,
+    set<string>& store_booked_tickets,
+    set<string>& seat_status
+);
 void output_ticket_info(
     std::ostream& os,
     const std::vector<ticket> &passengers,
