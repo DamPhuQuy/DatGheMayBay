@@ -30,13 +30,13 @@ To run this project, you will need to install and add the following environment 
 #### Step 1: Compile with one single line:
 
 ```bash
-g++ -Ilibrary src/main.cpp src/admin.cpp src/import_data.cpp src/log_check.cpp src/print_menu.cpp src/selecting_seat.cpp -o DatGheMayBay
+g++ -Ilibrary src/main.cpp src/admin.cpp src/import_data.cpp src/log_check.cpp src/print_menu.cpp src/selecting_seat.cpp -o build/DatGheMayBay
 ```
 
 ### Step 2: Run DatGheMayBay.exe:
 
 ```bash
-.\DatGheMayBay.exe
+.\build\DatGheMayBay.exe
 ```
 
 ---
