@@ -19,11 +19,12 @@ string select_seat(int index,
 				   const vector<ticket>& passengers, 
 				   vector<vector<string>>& first_class, 
 				   vector<vector<string>>& economy_class, 
-				   set<string>& seat_status);
+				   set<string>& seat_status, 
+				   bool& leave);
 int find_passenger(const string& code, const vector<ticket>& passengers);
 int valid_number_of_tickets(int booked_tickets);
 void update_seating_chart(const string& flight_code, const vector<vector<string>>& first_class, const vector<vector<string>>& economy_class);
-void take_seat_code(const string& flight_code,
+bool take_seat_code(const string& flight_code,
 					set<string>& seat_status,
 					set<string>& store_booked_tickets,
 					set<string>& booked_tickets_tracking,

@@ -355,33 +355,41 @@ void handle_menu_loop(const string &flight_code,
                 break;
             }
             case 3: {
-                take_seat_code(flight_code, seat_status, store_booked_tickets, booked_tickets_tracking, first_class, economy_class, passengers);
-                display_info(booked_tickets_tracking, passengers);
+                bool exit = take_seat_code(flight_code, seat_status, store_booked_tickets, booked_tickets_tracking, first_class, economy_class, passengers);
 
-                string check;
-                while (true) {
-                    cout << long_space << "Ban co muon xuat ve (Y/N): ";
-                    getline(cin, check);
-                    if (check.empty()) {
-                        cout << long_space << "Khong duoc de trong.\n";
-                        continue;
-                    }
-                    const char first = check[0];
-                    if (first == 'Y' || first == 'y') {
-                        print_ticket(flight_code, passengers, booked_tickets_tracking);
-                        break;
-                    } else {
-                        for (const string &code : booked_tickets_tracking) {
-                            store_booked_tickets.erase(code);
-                        }
-                        break;
-                    }
+                if (exit) {
+                    cout << long_space << "Ban da chon thoat dat ghe." << "\n";
+                    cout << long_space << "Nhan phim bat ki de tiep tuc... ";
+                    _getch();
+                    break;
                 }
-
-                booked_tickets_tracking.clear();
-                cout << "\n";
-                cout << long_space << "Nhan phim bat ki de tiep tuc... ";
-                _getch();
+                else {
+                    display_info(booked_tickets_tracking, passengers);
+                    string check;
+                    while (true) {
+                        cout << long_space << "Ban co muon xuat ve (Y/N): ";
+                        getline(cin, check);
+                        if (check.empty()) {
+                            cout << long_space << "Khong duoc de trong.\n";
+                            continue;
+                        }
+                        const char first = check[0];
+                        if (first == 'Y' || first == 'y') {
+                            print_ticket(flight_code, passengers, booked_tickets_tracking);
+                            break;
+                        }
+                        else {
+                            for (const string &code : booked_tickets_tracking) {
+                                store_booked_tickets.erase(code);
+                            }
+                            break;
+                        }
+                    }
+                    booked_tickets_tracking.clear();
+                    cout << "\n";
+                    cout << long_space << "Nhan phim bat ki de tiep tuc... ";
+                    _getch();
+                }
                 break;
             }
             default: {

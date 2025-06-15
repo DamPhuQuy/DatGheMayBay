@@ -135,12 +135,18 @@ string select_seat(int index,
 				   const vector<ticket>& passengers, 
 				   vector<vector<string>>& first_class, 
 				   vector<vector<string>>& economy_class, 
-				   set<string>& seat_status) {
+				   set<string>& seat_status, 
+				   bool& leave) {
 
 	string seat_choice; 
 	while (true) {
 		cout << long_space<< "Hay chon ghe: ";
         getline(cin, seat_choice);
+
+		if (seat_choice == "exit" || seat_choice == "Exit") {
+			leave = true;
+			return "Chua dat ghe";
+		}
 
         auto it = seat_status.find(seat_choice); 
         if (!is_valid_seat(seat_choice) || it != seat_status.end()) {
@@ -217,6 +223,11 @@ int valid_number_of_tickets() {
 		cout << "\n"; 
 		cout << long_space << "So ve may bay can dat: ";
 		getline(cin, input); 
+
+		if (input == "exit" || input == "Exit") {
+			return -1; 
+		}
+
 		if (input.empty()) {
 			cout << long_space << "Khong duoc de trong!\n";
 			continue; 
@@ -284,7 +295,7 @@ void update_seating_chart(const string& flight_code, const vector<vector<string>
     booked_seating_files.close();
 }
 
-void take_seat_code(const string& flight_code,
+bool take_seat_code(const string& flight_code,
                     set<string>& seat_status,
                     set<string>& store_booked_tickets,
                     set<string>& booked_tickets_tracking,
@@ -295,7 +306,7 @@ void take_seat_code(const string& flight_code,
 	int number_of_tickets = valid_number_of_tickets();
 
 	if (number_of_tickets == -1) {
-		return; 
+		return true; 
 	}
 
 	while (number_of_tickets > 0) {
@@ -309,6 +320,10 @@ void take_seat_code(const string& flight_code,
 		while (true) {
 			cout << long_space << "Nhap ma so ve may bay: ";
             getline(cin, ticket_code);
+
+			if (ticket_code == "exit" || ticket_code == "Exit") {
+				return true;
+			}
 
             if (store_booked_tickets.find(ticket_code) != store_booked_tickets.end()) {
                 cout << long_space << "Ma so nay da dat ghe\n";
@@ -330,17 +345,22 @@ void take_seat_code(const string& flight_code,
             }
 		}
 
-	cout << "\n"; 
-	cout << long_space << "Class cua ve " << passengers[index].ticket_code << " : " << passengers[index].class_label << "\n"; 
+		cout << "\n"; 
+		cout << long_space << "Class cua ve " << passengers[index].ticket_code << " : " << passengers[index].class_label << "\n"; 
 
-	string seat = select_seat(index, passengers, first_class, economy_class, seat_status); 
-	update_seating_chart(flight_code, first_class, economy_class); 
+		bool leave = false; 
+		string seat = select_seat(index, passengers, first_class, economy_class, seat_status, leave); 
+		if (leave) {
+			return leave; 
+		}
+		update_seating_chart(flight_code, first_class, economy_class); 
 
-	passengers[index].seat_code = seat; 
-	number_of_tickets--; 
-	ticket_count++;
-	booked_tickets++;
+		passengers[index].seat_code = seat; 
+		number_of_tickets--; 
+		ticket_count++;
+		booked_tickets++;
     }
+	return false; 
 }
 
 void reset_seating_chart(const string& flight_code) {
