@@ -87,7 +87,7 @@ bool read_passenger_info(ifstream& personal_info_file, ticket& flight_data, vect
 	return true; 
 }
 
-void import_passengers_info(const string& flight_code, vector<ticket>& passengers) {
+void import_passengers_info(const string &flight_code, vector<ticket> &passengers) {
 	ifstream personal_info_file, flight_info_file; 
 	if (!open_input_files(flight_code, personal_info_file, flight_info_file)) {
 		cout << long_space << "Khong mo duoc file\n"; 
@@ -109,10 +109,10 @@ void import_passengers_info(const string& flight_code, vector<ticket>& passenger
 	} 
 
 	personal_info_file.close(); 
-	flight_info_file.close(); 
+	flight_info_file.close();
 }
 
-void import_booked_ticket(const string& flight_code) {
+void import_booked_ticket(const string& flight_code, set<string>& store_booked_tickets) {
 	fs::path directory = fs::path("data") / flight_code;  
 	if (!exists(directory) || !fs::is_directory(directory)) {
 		cout << long_space << "Chuyen bay khong ton tai!\n"; 
@@ -126,16 +126,17 @@ void import_booked_ticket(const string& flight_code) {
 		return; 
 	}
 
-	string line; 
-	set<string> store_booked_tickets; 
-
-	int found;
-	while (getline(booked_ticket_files, line)) {
-		found = line.find("Ma so ve:"); 
-		if (found != string::npos) {
-			string code = line.substr(found + 10); 
-			code.erase(0, code.find_first_not_of(" ")); 
-			store_booked_tickets.insert(code); 
+	string line;
+	while (getline(booked_ticket_files, line)){
+		size_t found = line.find("Ma so ve");
+		if (found != string::npos){
+			size_t colon = line.find(":");
+			if (colon != string::npos) {
+				string code = line.substr(colon + 1);
+				code.erase(0, code.find_first_not_of(" \t"));
+				code.erase(code.find_last_not_of(" \t|") + 1);
+				store_booked_tickets.insert(code);
+			}
 		}
 	}
 

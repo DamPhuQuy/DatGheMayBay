@@ -50,7 +50,8 @@ void input_flight_code(string& flight_code,
 					   vector<vector<string>>& first_class, 
 					   vector<vector<string>>& economy_class, 
 					   vector<ticket>& passengers,
-					   vector<string>& flights) {
+					   vector<string>& flights,
+                       set<string>& store_booked_tickets) {
 	while (true) {
 
 		flight_menu(flights); 
@@ -78,7 +79,7 @@ void input_flight_code(string& flight_code,
 	}
  
 	import_passengers_info(flight_code, passengers); 
-	import_booked_ticket(flight_code);
+	import_booked_ticket(flight_code, store_booked_tickets);
 	import_seating_chart(flight_code, first_class, economy_class);
 }
 
@@ -260,7 +261,7 @@ void menu() {
         initialize_flight_data(input_flight, flights, first_class, economy_class,
                                seat_status, store_booked_tickets, booked_tickets_tracking, passengers);
 
-        input_flight_code(input_flight, first_class, economy_class, passengers, flights);
+        input_flight_code(input_flight, first_class, economy_class, passengers, flights, store_booked_tickets);
 
         if (passengers.empty()) {
             cout << long_space << "Khong co thong tin hanh khach!" << "\n";
