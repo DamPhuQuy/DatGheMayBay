@@ -1,20 +1,19 @@
-
-# Đặt ghế máy bay 
+# Đặt ghế máy bay
 
 [Vietnamese]
 
 Mô tả chung về đề tài:
-- Hãng hàng không ITF-Airway điều hành một chiếc máy bay với số chỗ ngồi MaxSeats.
-- Hãng hàng không này cần xây dựng chương trình để xác định ghế nào còn trống để xếp.
-chỗ cho khách hàng trên mỗi chuyến bay.
+
+- Hãng hàng không ITF-Airway điều hành một chiếc máy bay với số chỗ ngồi MAX_SEATs.
+- Hãng hàng không này cần xây dựng chương trình để xác định ghế nào còn trống để xếp chỗ cho khách hàng trên mỗi chuyến bay.
 - Sơ đồ chỗ ngồi trên máy bay được mô tả trên một file.
 
 [English]
 
 General project description:
-- ITF-Airway airline operates an aircraft with MaxSeats seats.
-- The airline needs to develop a program to determine which seats are available for.
-passenger allocation on each flight.
+
+- ITF-Airway airline operates an aircraft with MAX_SEATs seats.
+- The airline needs to develop a program to determine which seats are available for passenger allocation on each flight.
 - The seating layout on the aircraft is described in a file.
 
 ## Environment Variables
@@ -60,9 +59,9 @@ g++ -Ilibrary -c src/print_menu.cpp -o build/print_menu.o
 g++ -Ilibrary -c src/selecting_seat.cpp -o build/selecting_seat.o
 ```
 
-**Notice:** When you modify one or more than one `.cpp`, you only need to compile the files which you had modified before. There is no need to modify the whole files again. 
+**Notice:** When you modify one or more than one `.cpp`, you only need to compile the files which you had modified before. There is no need to modify the whole files again.
 
-**For example:** You modify `admin.cpp` file:  
+**For example:** You modify `admin.cpp` file:
 
 ```bash
 g++ -Ilibrary -c src/admin.cpp -o build/admin.o
@@ -81,18 +80,15 @@ g++ build/*.o -o build/DatGheMayBay.exe
 ```
 
 **Advantage of Method 2**: Later, you only need to recompile the `.cpp` files you changed, without rebuilding the entire project → significantly faster build times.
-    
+
 ## Contributor
 
-| Name             | Class     |  
-| :----------------| :---------| 
-| `Dam Phu Quy`    | `24T_DT2` | 
+| Name             | Class     |
+| :--------------- | :-------- |
+| `Dam Phu Quy`    | `24T_DT2` |
 | `Dam Vinh Quang` | `24T_DT1` |
-
 
 ## Students of Danang university of Science and Technology
 
-
-
- - [Dam Phu Quy](https://www.facebook.com/damphuquy/)
- - [Dam Vinh Quang](https://www.facebook.com/vinh.quang.am.2024)
+- [Dam Phu Quy](https://www.facebook.com/damphuquy/)
+- [Dam Vinh Quang](https://www.facebook.com/vinh.quang.am.2024)

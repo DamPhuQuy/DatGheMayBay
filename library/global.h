@@ -7,14 +7,14 @@
 
 using namespace std;
 
-const int MaxSeat = 166;
+const int MAX_SEAT = 166;
 const string PERSONAL_INFO = "PersonalInformation.txt";
 const string BOOKED_CHART = "BookedSeatingChart.txt";
 const string ORIGINAL_CHART = "SeatingChart.txt";
 const string TICKET_INFO = "TicketInformation.txt";
 const string FLIGHT_INFO = "FlightInformation.txt";
-const string short_space (7, ' ');
-const string long_space (33, ' '); 
+const string SHORT_SPACE (7, ' ');
+const string LONG_SPACE (33, ' '); 
 
 extern int booked_tickets; 
 

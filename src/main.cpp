@@ -16,7 +16,7 @@ void introduction() {
     cout << "       |            Dam Vinh Quang           |                                                                  |\n";
     cout << "       ----------------------------------------------------------------------------------------------------------\n";
     
-    cout << long_space << "Nhan phim bat ki de bat dau...";                                                    
+    cout << LONG_SPACE << "Nhan phim bat ki de bat dau...";                                                    
     _getch(); 
 }
 

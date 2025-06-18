@@ -8,54 +8,54 @@ void display_seating_chart(const vector<vector<string>>& first_class, const vect
 	system("cls");
 
 	cout << "\n";
-	cout << short_space << "---------------------------------------------Chon Ghe May Bay---------------------------------------------\n";
+	cout << SHORT_SPACE << "---------------------------------------------Chon Ghe May Bay---------------------------------------------\n";
 
 	cout << "\n";
-    cout << short_space << "----------------------------------------------------------------------------------------------------------\n";
-    cout << short_space << "|    First Class     |                                     Economy Class                                 |\n";
-    cout << short_space << "+--------------------------------------------------------------------------------------------------------+\n";
+    cout << SHORT_SPACE << "----------------------------------------------------------------------------------------------------------\n";
+    cout << SHORT_SPACE << "|    First Class     |                                     Economy Class                                 |\n";
+    cout << SHORT_SPACE << "+--------------------------------------------------------------------------------------------------------+\n";
 
-    cout << short_space << "|                    | ";
+    cout << SHORT_SPACE << "|                    | ";
     for (const auto &seat : economy_class[0]) {
         cout << seat << " ";
     }
     cout << "   |\n";
 
-    cout << short_space << "| " << first_class[0][0] << " " << first_class[1][0] << " " << first_class[2][0] << " " << first_class[3][0] << "        | ";
+    cout << SHORT_SPACE << "| " << first_class[0][0] << " " << first_class[1][0] << " " << first_class[2][0] << " " << first_class[3][0] << "        | ";
     for (const auto &seat : economy_class[1]) {
         cout << seat << " ";
     }
     cout << "   |\n";
 
-    cout << short_space << "| " << first_class[0][1] << " " << first_class[1][1] << " " << first_class[2][1] << " " << first_class[3][1] << "        | ";
+    cout << SHORT_SPACE << "| " << first_class[0][1] << " " << first_class[1][1] << " " << first_class[2][1] << " " << first_class[3][1] << "        | ";
     for (const auto &seat : economy_class[2]) {
         cout << seat << " ";
     }
     cout << "   |\n";
 
-    cout << short_space << "+--------------------------------------------------------------------------------------------------------+\n";
-    cout << short_space << "|                                               Loi di                                                   |\n";
-    cout << short_space << "+--------------------------------------------------------------------------------------------------------+\n";
+    cout << SHORT_SPACE << "+--------------------------------------------------------------------------------------------------------+\n";
+    cout << SHORT_SPACE << "|                                               Loi di                                                   |\n";
+    cout << SHORT_SPACE << "+--------------------------------------------------------------------------------------------------------+\n";
 
-    cout << short_space << "| " << first_class[0][2] << " " << first_class[1][2] << " " << first_class[2][2] << " " << first_class[3][2] << "        | ";
+    cout << SHORT_SPACE << "| " << first_class[0][2] << " " << first_class[1][2] << " " << first_class[2][2] << " " << first_class[3][2] << "        | ";
     for (const auto &seat : economy_class[3]) {
         cout << seat << " ";
     }
     cout << "   |\n";
 
-    cout << short_space << "| " << first_class[0][3] << " " << first_class[1][3] << " " << first_class[2][3] << " " << first_class[3][3] << "        | ";
+    cout << SHORT_SPACE << "| " << first_class[0][3] << " " << first_class[1][3] << " " << first_class[2][3] << " " << first_class[3][3] << "        | ";
     for (const auto &seat : economy_class[4]) {
         cout << seat << " ";
     }
     cout << "   |\n";
 
-    cout << short_space << "|                    | ";
+    cout << SHORT_SPACE << "|                    | ";
     for (const auto &seat : economy_class[5]) {
         cout << seat << " ";
     }
     cout << "   |\n";
 
-    cout << short_space << "----------------------------------------------------------------------------------------------------------\n";
+    cout << SHORT_SPACE << "----------------------------------------------------------------------------------------------------------\n";
 
     cout << "\n"
          << "                         [--] hay [---]: Ghe dat dat                 1A: Ghe chua dat \n";
@@ -100,7 +100,7 @@ bool update_seat(vector<vector<string>>& seatClass, const string& choice, string
 bool confirm(const string& choice, set<string>& seat_status) {
     string input;
     while (true) {
-        cout << long_space << "Xac nhan ghe " << choice << " (Y/N): ";
+        cout << LONG_SPACE << "Xac nhan ghe " << choice << " (Y/N): ";
         getline(cin, input);
         
         // trim chuoi, tach khoang trang neu nguoi dung nhap vao
@@ -115,7 +115,7 @@ bool confirm(const string& choice, set<string>& seat_status) {
 
 
         if (input.empty()) {
-            cout << long_space << "Khong duoc de trong.\n"; 
+            cout << LONG_SPACE << "Khong duoc de trong.\n"; 
             continue;
         }
         
@@ -126,7 +126,7 @@ bool confirm(const string& choice, set<string>& seat_status) {
         } else if (response == 'N') {
             return false; 
         } else {
-            cout << long_space << "Khong hop le. Vui long nhap 'Y' or 'N'." << "\n";
+            cout << LONG_SPACE << "Khong hop le. Vui long nhap 'Y' or 'N'." << "\n";
         }
     }
 }
@@ -140,7 +140,7 @@ string select_seat(int index,
 
 	string seat_choice; 
 	while (true) {
-		cout << long_space<< "Hay chon ghe: ";
+		cout << LONG_SPACE<< "Hay chon ghe: ";
         getline(cin, seat_choice);
 
 		if (seat_choice == "exit" || seat_choice == "Exit") {
@@ -151,7 +151,7 @@ string select_seat(int index,
         auto it = seat_status.find(seat_choice); 
         if (!is_valid_seat(seat_choice) || it != seat_status.end()) {
         	cout << "\n"; 
-        	cout << long_space << "Lua chon khong phu hop hoac ghe da dat!\n"; 
+        	cout << LONG_SPACE << "Lua chon khong phu hop hoac ghe da dat!\n"; 
         	continue; 
         }
 
@@ -169,7 +169,7 @@ string select_seat(int index,
 	    }
 
 	    if (!seat_found) {
-	        cout << long_space << error_message << "\n";
+	        cout << LONG_SPACE << error_message << "\n";
 	    }
 	    else {
 	    	break;
@@ -200,7 +200,7 @@ string select_seat(int index,
 				}
 			}
 		}
-		cout << long_space << "Lua chon ghe da bi huy.\n"; 
+		cout << LONG_SPACE << "Lua chon ghe da bi huy.\n"; 
 		return "Chua dat ghe"; 
 	}
 }
@@ -215,13 +215,13 @@ int find_passenger(const string& code, const vector<ticket>& passengers) {
 }
 
 int valid_number_of_tickets() {
-	int available_seats = MaxSeat - booked_tickets; 
+	int available_seats = MAX_SEAT - booked_tickets; 
 	string input; 
 	int count; 
 
 	while (true) {
 		cout << "\n"; 
-		cout << long_space << "So ve may bay can dat: ";
+		cout << LONG_SPACE << "So ve may bay can dat: ";
 		getline(cin, input); 
 
 		if (input == "exit" || input == "Exit") {
@@ -229,7 +229,7 @@ int valid_number_of_tickets() {
 		}
 
 		if (input.empty()) {
-			cout << long_space << "Khong duoc de trong!\n";
+			cout << LONG_SPACE << "Khong duoc de trong!\n";
 			continue; 
 		}
 
@@ -242,21 +242,21 @@ int valid_number_of_tickets() {
 		}
 
 		if (!is_number) {
-			cout << long_space << "Gia tri khong hop le!\n"; 
+			cout << LONG_SPACE << "Gia tri khong hop le!\n"; 
 			continue; 
 		}
 
 		count = stoi(input); 
 		if (count <= 0) {
-			cout << long_space << "So ve phai lon hon 0.\n"; 
+			cout << LONG_SPACE << "So ve phai lon hon 0.\n"; 
 			continue; 
 		}
-		if (count > MaxSeat) {
-			cout << long_space << "Vuot qua tong so ghe (" << MaxSeat << "ghe).\n"; 
+		if (count > MAX_SEAT) {
+			cout << LONG_SPACE << "Vuot qua tong so ghe (" << MAX_SEAT << "ghe).\n"; 
 			continue; 
 		}
 		if (count > available_seats) {
-			cout << long_space << "Khong du cho trong!\n"; 
+			cout << LONG_SPACE << "Khong du cho trong!\n"; 
 			return -1; 
 		}
 		return count; 
@@ -266,14 +266,14 @@ int valid_number_of_tickets() {
 void update_seating_chart(const string& flight_code, const vector<vector<string>>& first_class, const vector<vector<string>>& economy_class) {
 	fs::path directory = fs::path("data") / flight_code;  
 	if (!fs::exists(directory) || !fs::is_directory(directory)) {
-		cout << long_space << "Chuyen bay khong ton tai!\n"; 
+		cout << LONG_SPACE << "Chuyen bay khong ton tai!\n"; 
 		return; 
 	}
 	
 	fs::path booked_seating_path = directory / BOOKED_CHART; 
 	ofstream booked_seating_files(booked_seating_path); 
 	if (!booked_seating_files.is_open()) {
-		cout << long_space << "Loi khi mo file " << BOOKED_CHART << "\n"; 
+		cout << LONG_SPACE << "Loi khi mo file " << BOOKED_CHART << "\n"; 
 		return; 
 	}
 
@@ -313,12 +313,12 @@ bool take_seat_code(const string& flight_code,
 		display_seating_chart(first_class, economy_class);
 		
 		cout << "\n";
-		cout << long_space << "STT ve may bay: " << ticket_count << "\n"; 
+		cout << LONG_SPACE << "STT ve may bay: " << ticket_count << "\n"; 
 		
 		string ticket_code; 
 		int index;
 		while (true) {
-			cout << long_space << "Nhap ma so ve may bay: ";
+			cout << LONG_SPACE << "Nhap ma so ve may bay: ";
             getline(cin, ticket_code);
 
 			if (ticket_code == "exit" || ticket_code == "Exit") {
@@ -326,8 +326,8 @@ bool take_seat_code(const string& flight_code,
 			}
 
             if (store_booked_tickets.find(ticket_code) != store_booked_tickets.end()) {
-                cout << long_space << "Ma so nay da dat ghe\n";
-                cout << long_space << "Nhap lai!\n";
+                cout << LONG_SPACE << "Ma so nay da dat ghe\n";
+                cout << LONG_SPACE << "Nhap lai!\n";
                 continue;
             }
             else {
@@ -340,13 +340,13 @@ bool take_seat_code(const string& flight_code,
             	break; 
             } 
             else {
-            	cout << long_space << "Khong tim thay khach hang!\n"; 
-            	cout << long_space << "Vui long nhap lai!\n"; 
+            	cout << LONG_SPACE << "Khong tim thay khach hang!\n"; 
+            	cout << LONG_SPACE << "Vui long nhap lai!\n"; 
             }
 		}
 
 		cout << "\n"; 
-		cout << long_space << "Class cua ve " << passengers[index].ticket_code << " : " << passengers[index].class_label << "\n"; 
+		cout << LONG_SPACE << "Class cua ve " << passengers[index].ticket_code << " : " << passengers[index].class_label << "\n"; 
 
 		bool leave = false; 
 		string seat = select_seat(index, passengers, first_class, economy_class, seat_status, leave); 
@@ -366,7 +366,7 @@ bool take_seat_code(const string& flight_code,
 void reset_seating_chart(const string& flight_code) {
     fs::path directory = fs::path("data") / flight_code; 
     if (!fs::exists(directory) || !fs::is_directory(directory)) {
-        cout << long_space << "Chuyen bay khong ton tai\n";
+        cout << LONG_SPACE << "Chuyen bay khong ton tai\n";
         return;
     }
     fs::path original_seating_path = directory / ORIGINAL_CHART;
@@ -374,13 +374,13 @@ void reset_seating_chart(const string& flight_code) {
 
     ifstream read_original_files(original_seating_path);
     if (!read_original_files.is_open()) {
-        cout << long_space << "Khong the mo file SeatingChart.txt\n";
+        cout << LONG_SPACE << "Khong the mo file SeatingChart.txt\n";
         return; 
     }
 
     ofstream write_booked_chart_files(booked_seating_path, ios::trunc);
     if (!write_booked_chart_files.is_open()) {
-        cout << long_space << "Khong the mo file " << BOOKED_CHART<< "\n";
+        cout << LONG_SPACE << "Khong the mo file " << BOOKED_CHART<< "\n";
         return;
     }
 
@@ -390,7 +390,7 @@ void reset_seating_chart(const string& flight_code) {
     }
     read_original_files.close();
     write_booked_chart_files.close();
-    cout << long_space << "So do ghe da duoc reset\n";
+    cout << LONG_SPACE << "So do ghe da duoc reset\n";
 }
 
 void statistics() {
@@ -399,16 +399,16 @@ void statistics() {
    	int nums_space = 30; 
 
     cout << "\n"; 
-    cout << short_space << "-------------------------------------------------Thong ke-------------------------------------------------\n"; 
+    cout << SHORT_SPACE << "-------------------------------------------------Thong ke-------------------------------------------------\n"; 
     
     cout << "\n"; 
-    cout << long_space << "----------------------------------------------------\n";
-    cout << long_space << "|                   THONG KE SO GHE                |\n";
-    cout << long_space << "+--------------------------------------------------+\n";
-    cout << long_space << "| Tong so ghe      : " << setw(nums_space) << left << MaxSeat << "|\n";
-    cout << long_space << "|                                                  |\n";
-    cout << long_space << "| So ghe da dat    : " << setw(nums_space) << left << booked_tickets << "|\n"; 
-    cout << long_space << "|                                                  |\n";
-    cout << long_space << "| So ghe con trong : " << setw(nums_space) << left << MaxSeat - booked_tickets << "|\n"; 
-    cout << long_space << "----------------------------------------------------\n";
+    cout << LONG_SPACE << "----------------------------------------------------\n";
+    cout << LONG_SPACE << "|                   THONG KE SO GHE                |\n";
+    cout << LONG_SPACE << "+--------------------------------------------------+\n";
+    cout << LONG_SPACE << "| Tong so ghe      : " << setw(nums_space) << left << MAX_SEAT << "|\n";
+    cout << LONG_SPACE << "|                                                  |\n";
+    cout << LONG_SPACE << "| So ghe da dat    : " << setw(nums_space) << left << booked_tickets << "|\n"; 
+    cout << LONG_SPACE << "|                                                  |\n";
+    cout << LONG_SPACE << "| So ghe con trong : " << setw(nums_space) << left << MAX_SEAT - booked_tickets << "|\n"; 
+    cout << LONG_SPACE << "----------------------------------------------------\n";
 }
