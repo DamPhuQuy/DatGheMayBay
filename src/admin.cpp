@@ -137,7 +137,7 @@ bool checkLogout() {
     cout << LONG_SPACE << "----------------------------------------------------\n"; 
     cout << "\n"; 
 
-    Goto(47, 3); 
+    Goto(47, 4); 
     password = input_hidden_pass(); 
     return password == "close"; 
 }
@@ -150,8 +150,8 @@ bool admin_Logout(const string& username) {
     while (attempts < 3) {
         if (checkLogout()) {
             logLogout(username); 
-            cout << "\n\n"; 
-            print_color_long_space("Dang xuat...\n", 12); 
+            cout << "\n"; 
+            print_color_long_space("Dang xuat...\n", 15); 
             Sleep(1000); 
             return check = true; 
         }

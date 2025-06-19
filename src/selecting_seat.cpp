@@ -350,6 +350,8 @@ bool take_seat_code(const string& flight_code,
 		bool leave = false; 
 		string seat = select_seat(index, passengers, first_class, economy_class, seat_status, leave); 
 		if (leave) {
+			store_booked_tickets.erase(ticket_code); 
+			booked_tickets_tracking.erase(ticket_code); 
 			return leave; 
 		}
 		update_seating_chart(flight_code, first_class, economy_class); 
