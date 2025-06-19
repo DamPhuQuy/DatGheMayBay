@@ -13,11 +13,10 @@
 
 using namespace std;
 
-void loginFrame();
-void Goto(const int x, const int y);
-void load_accounts(unordered_map<string, string>& accounts);
-string input_hidden_pass();
-void input(string& username, string& password1, string& password2);
 void admin_Login(string& username);
-bool checkLogout();
+void load_accounts(unordered_map<string, string>& accounts);
+void loginFrame();
+void input(string& username, string& password1, string& password2);
+string input_hidden_pass();
 bool admin_Logout(const string& username);
+bool checkLogout();

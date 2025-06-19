@@ -5,6 +5,31 @@ namespace fs = std::filesystem;
 
 int booked_tickets = 0;
 
+void import_passengers_info(const string &flight_code, vector<ticket> &passengers) {
+	ifstream personal_info_file, flight_info_file; 
+	if (!open_input_files(flight_code, personal_info_file, flight_info_file)) {
+		print_color_long_space("Khong mo duoc file\n", 12); 
+		return; 
+	}
+	ticket flight_data; 
+	if (!read_flight_info(flight_info_file, flight_data)) {
+		personal_info_file.close(); 
+		flight_info_file.close(); 
+		print_color_long_space("Khong mo duoc file\n", 12); 
+		return; 
+	}
+
+	if (!read_passenger_info(personal_info_file, flight_data, passengers)) {
+		personal_info_file.close();
+		flight_info_file.close(); 
+		print_color_long_space("Khong mo duoc file\n", 12); 
+		return; 
+	} 
+
+	personal_info_file.close(); 
+	flight_info_file.close();
+}
+
 bool open_input_files(const string& flight_code, ifstream& personal_info_file, ifstream& flight_info_file) {
 	fs::path directory = fs::path("data") / flight_code;  
 	if (!fs::exists(directory) || !fs::is_directory(directory)) {
@@ -85,31 +110,6 @@ bool read_passenger_info(ifstream& personal_info_file, ticket& flight_data, vect
 	Sleep(800); 
 
 	return true; 
-}
-
-void import_passengers_info(const string &flight_code, vector<ticket> &passengers) {
-	ifstream personal_info_file, flight_info_file; 
-	if (!open_input_files(flight_code, personal_info_file, flight_info_file)) {
-		print_color_long_space("Khong mo duoc file\n", 12); 
-		return; 
-	}
-	ticket flight_data; 
-	if (!read_flight_info(flight_info_file, flight_data)) {
-		personal_info_file.close(); 
-		flight_info_file.close(); 
-		print_color_long_space("Khong mo duoc file\n", 12); 
-		return; 
-	}
-
-	if (!read_passenger_info(personal_info_file, flight_data, passengers)) {
-		personal_info_file.close();
-		flight_info_file.close(); 
-		print_color_long_space("Khong mo duoc file\n", 12); 
-		return; 
-	} 
-
-	personal_info_file.close(); 
-	flight_info_file.close();
 }
 
 void import_booked_ticket(const string& flight_code, set<string>& store_booked_tickets, set<string>& seat_status) {
