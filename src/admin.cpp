@@ -1,5 +1,4 @@
 #include "admin.h"
-#include "log_check.h"
 
 using namespace std;
 
@@ -18,13 +17,6 @@ void loginFrame() {
     cout << LONG_SPACE << "|  Mat khau :                                      |\n";
     cout << LONG_SPACE << "|  Nhap lai mat khau:                              |\n";
     cout << LONG_SPACE << "----------------------------------------------------\n";
-}
-
-void Goto(const int x, const int y) {
-    COORD coord;
-    coord.X = x;
-    coord.Y = y;
-    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
 }
 
 void load_accounts(unordered_map<string, string> &accounts) {

@@ -4,6 +4,8 @@
 #include <set>
 #include <map>
 #include <vector>
+#include <iostream> 
+#include <windows.h> 
 
 using namespace std;
 
@@ -27,3 +29,9 @@ struct ticket {
     string flight_code, ticket_code, departure, destination;
     string time, date, seat_code, class_label;
 };
+
+void setTextColor(int color);
+void resetTextColor();
+void print_color_short_space(const string& text, int color);
+void print_color_long_space(const string& text, int color);
+void Goto(const int x, const int y);

@@ -29,7 +29,7 @@ To run this project, you will need to install and add the following environment 
 #### Step 1: Compile with one single line:
 
 ```bash
-g++ -Ilibrary src/main.cpp src/admin.cpp src/import_data.cpp src/log_check.cpp src/print_menu.cpp src/selecting_seat.cpp -o DatGheMayBay.exe
+g++ -Ilibrary src/main.cpp src/admin.cpp src/global.cpp src/import_data.cpp src/log_check.cpp src/print_menu.cpp src/selecting_seat.cpp -o DatGheMayBay.exe
 ```
 
 ### Step 2: Run DatGheMayBay.exe:
@@ -53,6 +53,7 @@ mkdir build
 ```bash
 g++ -Ilibrary -c src/main.cpp -o build/main.o
 g++ -Ilibrary -c src/admin.cpp -o build/admin.o
+g++ -Ilibrary -c src/global.cpp -o build/global.o
 g++ -Ilibrary -c src/import_data.cpp -o build/import_data.o
 g++ -Ilibrary -c src/log_check.cpp -o build/log_check.o
 g++ -Ilibrary -c src/print_menu.cpp -o build/print_menu.o

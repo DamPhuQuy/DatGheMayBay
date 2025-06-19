@@ -1,6 +1,4 @@
 #include "print_menu.h"
-#include "selecting_seat.h"
-#include "admin.h"
 
 using namespace std;
 namespace fs = std::filesystem;
