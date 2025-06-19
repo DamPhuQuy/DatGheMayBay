@@ -29,13 +29,13 @@ To run this project, you will need to install and add the following environment 
 #### Step 1: Compile with one single line:
 
 ```bash
-g++ -Ilibrary src/main.cpp src/admin.cpp src/import_data.cpp src/log_check.cpp src/print_menu.cpp src/selecting_seat.cpp -o build/DatGheMayBay
+g++ -Ilibrary src/main.cpp src/admin.cpp src/import_data.cpp src/log_check.cpp src/print_menu.cpp src/selecting_seat.cpp -o DatGheMayBay.exe
 ```
 
 ### Step 2: Run DatGheMayBay.exe:
 
 ```bash
-.\build\DatGheMayBay.exe
+.\DatGheMayBay.exe
 ```
 
 ---
@@ -70,13 +70,13 @@ g++ -Ilibrary -c src/admin.cpp -o build/admin.o
 #### Step 3: Link all `.o` files into the final program
 
 ```bash
-g++ build/*.o -o build/DatGheMayBay.exe
+g++ build/*.o -o DatGheMayBay.exe
 ```
 
 #### Run the program:
 
 ```bash
-.\build\DatGheMayBay.exe
+.\DatGheMayBay.exe
 ```
 
 **Advantage of Method 2**: Later, you only need to recompile the `.cpp` files you changed, without rebuilding the entire project → significantly faster build times.
