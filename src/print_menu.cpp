@@ -9,7 +9,7 @@ void flight_menu(const vector<string>& flights) {
 	system("cls");
 
 	cout << "\n"; 
-	print_color_short_space("--------------------------------------------Nhap ma chuyen bay--------------------------------------------\n", 2); 
+	print_color_short_space("--------------------------------------------Nhap ma chuyen bay--------------------------------------------\n", 14); 
 
 	int nums_space = 47; 
 
@@ -65,12 +65,12 @@ void input_flight_code(string& flight_code,
 		fs::path directory = fs::path("data") / flight_code;  
 		if (flight_code.empty()) {
 			cout << "\n"; 
-			print_color_long_space("Thong tin khong duoc de trong!\n", 4); 
+			print_color_long_space("Thong tin khong duoc de trong!\n", 12); 
 			Sleep(800); 
 		}
 		else if (!fs::exists(directory) || !fs::is_directory(directory)) {
 			cout << "\n"; 
-			print_color_long_space("Chuyen bay khong ton tai!\n", 4);
+			print_color_long_space("Chuyen bay khong ton tai!\n", 12);
 			Sleep(800);
 		}
 		else 
@@ -133,7 +133,7 @@ void display_info(const set<string>& booked_tickets_tracking, const vector<ticke
 
 	cout << "\n";
     cout << SHORT_SPACE << "----------------------------------------------------------------------------------------------------------\n";
-    print_color_short_space("|                                     THONG TIN KHACH HANG VA GHE NGOI                                   |\n", 2);
+    print_color_short_space("|                                     THONG TIN KHACH HANG VA GHE NGOI                                   |\n", 14);
     cout << SHORT_SPACE << "----------------------------------------------------------------------------------------------------------\n";
        
     for (int index = 0; index < passengers.size(); index++) {
@@ -156,7 +156,7 @@ void ticket_output(ofstream& write_file, int index, const vector<ticket>& passen
 void print_ticket(const string& flight_code, const vector<ticket>& passengers, const set<string>& booked_tickets_tracking) {
     fs::path directory = fs::path("data") / flight_code; 
     if (!fs::exists(directory) || !fs::is_directory(directory)) {
-        print_color_long_space("Chuyen bay khong ton tai!\n", 4);
+        print_color_long_space("Chuyen bay khong ton tai!\n", 12);
         return;
     }
     
@@ -179,7 +179,7 @@ void display_menu() {
 
     cout << "\n";
     cout << SHORT_SPACE << "----------------------------------------------------------------------------------------------------------\n";
-    print_color_short_space("|                         CHAO MUNG DEN VOI HE THONG DAT GHE MAY BAY - ITF_AIRWAY                        |\n", 2);
+    print_color_short_space("|                         CHAO MUNG DEN VOI HE THONG DAT GHE MAY BAY - ITF_AIRWAY                        |\n", 14);
     cout << SHORT_SPACE << "+--------------------------------------------------------------------------------------------------------+\n";
     cout << SHORT_SPACE << "|   1. Hien thi thong tin chuyen bay                                                                     |\n";
     cout << SHORT_SPACE << "|                                                                                                        |\n";
@@ -196,8 +196,8 @@ void end() {
 
     cout << "\n";
     cout << SHORT_SPACE << "----------------------------------------------------------------------------------------------------------\n";
-    print_color_short_space("|                                      Chao tam biet va hen gap lai                                      |\n", 2);
-    print_color_short_space("|                                               ITF-AIRWAYS                                              |\n", 2);
+    print_color_short_space("|                                      Chao tam biet va hen gap lai                                      |\n", 14);
+    print_color_short_space("|                                               ITF-AIRWAYS                                              |\n", 14);
     cout << SHORT_SPACE << "----------------------------------------------------------------------------------------------------------\n";
     cout << "\n";
     Sleep(800);
@@ -207,7 +207,7 @@ void reset_ticket_info(const string& flight_code) {
     fs::path directory = fs::path("data") / flight_code; 
 
     if (!fs::exists(directory) || !fs::is_directory(directory)) {
-        print_color_long_space("Chuyen bay khong ton tai!\n", 2);
+        print_color_long_space("Chuyen bay khong ton tai!\n", 12);
         return;
     }
     fs::path ticket_info_path = directory / TICKET_INFO;
@@ -223,10 +223,10 @@ void reset(const string& flight_code) {
     string choice;
     
     while (true) {
-    	print_color_long_space("Reset so do ghe? (Y/N): ", 6);
+    	print_color_long_space("Reset so do ghe? (Y/N): ", 9);
     	getline(cin, choice);
     	if (choice.empty()) {
-    		print_color_long_space("Khong duoc de trong.\n", 4);
+    		print_color_long_space("Khong duoc de trong.\n", 12);
     		continue;
     	}
     	else 
@@ -237,10 +237,10 @@ void reset(const string& flight_code) {
         reset_seating_chart(flight_code);
         while (true) {
         	choice.clear(); 
-        	print_color_long_space("Reset du lieu ve da dat? (Y/N) ", 6);
+        	print_color_long_space("Reset du lieu ve da dat? (Y/N) ", 9);
         	getline(cin, choice);
         	if (choice.empty()) {
-        		cout << LONG_SPACE << "Khong duoc de trong.\n"; 
+        		print_color_long_space("Khong duoc de trong.\n", 12); 
         		continue; 
         	}
         	else 
@@ -272,11 +272,11 @@ void menu() {
         input_flight_code(input_flight, first_class, economy_class, passengers, flights, store_booked_tickets, seat_status);
 
         if (passengers.empty()) {
-            print_color_long_space("Khong co thong tin hanh khach!\n", 2);
+            print_color_long_space("Khong co thong tin hanh khach!\n", 12);
             return;
         }
 
-        print_color_long_space("Dang hien thi menu...\n", 2);
+        print_color_long_space("Dang hien thi menu...\n", 9);
         Sleep(1500);
 
         handle_menu_loop(input_flight, first_class, economy_class,
@@ -323,15 +323,15 @@ void handle_menu_loop(const string &flight_code,
     do {
         display_menu();
         while (true) {
-            print_color_long_space("Vui long nhap lua chon: ", 3);
+            print_color_long_space("Vui long nhap lua chon: ", 9);
             cin >> choice;
             if (cin.fail()) {
                 cin.clear();
                 cin.ignore(1000, '\n');
-                print_color_long_space("Nhap sai!\n", 4);
+                print_color_long_space("Nhap sai!\n", 12);
             } 
             else if (choice < 0 || choice > 3) {
-                print_color_long_space("Lua chon khong hop le. Vui long nhap lai.\n", 4);
+                print_color_long_space("Lua chon khong hop le. Vui long nhap lai.\n", 12);
                 continue;
             }
             else {
@@ -342,22 +342,22 @@ void handle_menu_loop(const string &flight_code,
 
         switch (choice) {
             case 0: {
-                print_color_long_space("Ban da chon thoat chuong trinh.\n", 2);
+                print_color_long_space("Ban da chon thoat chuong trinh.\n", 9);
                 break;
             }
             case 1: {
                 if (!passengers.empty()) {
                     display_flight(passengers[0]);
-                    print_color_long_space("Nhan phim bat ki de tiep tuc... ", 2); 
+                    print_color_long_space("Nhan phim bat ki de tiep tuc... ", 9); 
                     _getch();
                 } else {
-                    print_color_long_space("Khong co thong tin chuyen bay de hien thi.\n", 4);
+                    print_color_long_space("Khong co thong tin chuyen bay de hien thi.\n", 12);
                 }
                 break;
             }
             case 2: {
                 statistics();
-                print_color_long_space("Nhan phim bat ki de tiep tuc... ", 2);
+                print_color_long_space("Nhan phim bat ki de tiep tuc... ", 9);
                 _getch();
                 break;
             }
@@ -365,8 +365,8 @@ void handle_menu_loop(const string &flight_code,
                 bool exit = take_seat_code(flight_code, seat_status, store_booked_tickets, booked_tickets_tracking, first_class, economy_class, passengers);
 
                 if (exit) {
-                    print_color_long_space("Ban da chon thoat dat ghe.\n", 2);
-                    print_color_long_space("Nhan phim bat ki de tiep tuc... ", 2);
+                    print_color_long_space("Ban da chon thoat dat ghe.\n", 9);
+                    print_color_long_space("Nhan phim bat ki de tiep tuc... ", 9);
                     _getch();
                     break;
                 }
@@ -374,10 +374,10 @@ void handle_menu_loop(const string &flight_code,
                     display_info(booked_tickets_tracking, passengers);
                     string check;
                     while (true) {
-                        print_color_long_space("Ban co muon xuat ve (Y/N): ", 3); 
+                        print_color_long_space("Ban co muon xuat ve (Y/N): ", 9); 
                         getline(cin, check);
                         if (check.empty()) {
-                            print_color_long_space("Khong duoc de trong.\n", 4);
+                            print_color_long_space("Khong duoc de trong.\n", 12);
                             continue;
                         }
                         const char first = check[0];
@@ -394,13 +394,13 @@ void handle_menu_loop(const string &flight_code,
                     }
                     booked_tickets_tracking.clear();
                     cout << "\n";
-                    print_color_long_space("Nhan phim bat ki de tiep tuc... ", 2);
+                    print_color_long_space("Nhan phim bat ki de tiep tuc... ", 9);
                     _getch();
                 }
                 break;
             }
             default: {
-                print_color_long_space("Lua chon khong hop le. Vui long nhap lai.\n", 4);
+                print_color_long_space("Lua chon khong hop le. Vui long nhap lai.\n", 12);
                 break;
             }
         }
@@ -409,13 +409,13 @@ void handle_menu_loop(const string &flight_code,
 
 bool ask_to_continue_and_logout(const string &username) {
     cout << "\n";
-    print_color_long_space("Tiep tuc nhap cac chuyen bay khac? (Y/N): ", 3);
+    print_color_long_space("Tiep tuc nhap cac chuyen bay khac? (Y/N): ", 9);
     string out;
 
     while (true) {
         getline(cin, out);
         if (out.empty()) {
-            print_color_long_space("Khong duoc de trong.\n", 4);
+            print_color_long_space("Khong duoc de trong.\n", 12);
             continue;
         } else {
             break;

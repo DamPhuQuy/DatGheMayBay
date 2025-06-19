@@ -7,11 +7,11 @@ void display_seating_chart(const vector<vector<string>>& first_class, const vect
 	system("cls");
 
 	cout << "\n";
-	print_color_short_space("---------------------------------------------Chon Ghe May Bay---------------------------------------------\n", 2);
+	print_color_short_space("---------------------------------------------Chon Ghe May Bay---------------------------------------------\n", 14);
 
 	cout << "\n";
     cout << SHORT_SPACE << "----------------------------------------------------------------------------------------------------------\n";
-    print_color_short_space("|    First Class     |                                     Economy Class                                 |\n", 2);
+    print_color_short_space("|    First Class     |                                     Economy Class                                 |\n", 14);
     cout << SHORT_SPACE << "+--------------------------------------------------------------------------------------------------------+\n";
 
     cout << SHORT_SPACE << "|                    | ";
@@ -33,7 +33,7 @@ void display_seating_chart(const vector<vector<string>>& first_class, const vect
     cout << "   |\n";
 
     cout << SHORT_SPACE << "+--------------------------------------------------------------------------------------------------------+\n";
-    print_color_short_space("|                                               Loi di                                                   |\n", 2);
+    print_color_short_space("|                                               Loi di                                                   |\n", 14);
     cout << SHORT_SPACE << "+--------------------------------------------------------------------------------------------------------+\n";
 
     cout << SHORT_SPACE << "| " << first_class[0][2] << " " << first_class[1][2] << " " << first_class[2][2] << " " << first_class[3][2] << "        | ";
@@ -43,7 +43,7 @@ void display_seating_chart(const vector<vector<string>>& first_class, const vect
     cout << "   |\n";
 
     cout << SHORT_SPACE << "| " << first_class[0][3] << " " << first_class[1][3] << " " << first_class[2][3] << " " << first_class[3][3] << "        | ";
-    for (const auto &seat : economy_class[4]) {
+    for (const auto &seat : economy_class[12]) {
         cout << seat << " ";
     }
     cout << "   |\n";
@@ -99,7 +99,7 @@ bool update_seat(vector<vector<string>>& seatClass, const string& choice, string
 bool confirm(const string& choice, set<string>& seat_status) {
     string input;
     while (true) {
-        print_color_long_space("Xac nhan ghe " + choice + " (Y/N): ", 3);
+        print_color_long_space("Xac nhan ghe " + choice + " (Y/N): ", 9);
         getline(cin, input);
         
         // trim chuoi, tach khoang trang neu nguoi dung nhap vao
@@ -114,7 +114,7 @@ bool confirm(const string& choice, set<string>& seat_status) {
 
 
         if (input.empty()) {
-            print_color_long_space("Khong duoc de trong.\n", 4); 
+            print_color_long_space("Khong duoc de trong.\n", 12); 
             continue;
         }
         
@@ -125,7 +125,7 @@ bool confirm(const string& choice, set<string>& seat_status) {
         } else if (response == 'N') {
             return false; 
         } else {
-            print_color_long_space("Khong hop le. Vui long nhap 'Y' or 'N'.\n", 4);
+            print_color_long_space("Khong hop le. Vui long nhap 'Y' or 'N'.\n", 12);
         }
     }
 }
@@ -139,7 +139,7 @@ string select_seat(int index,
 
 	string seat_choice; 
 	while (true) {
-		print_color_long_space("Hay chon ghe (hoac exit): ", 3);
+		print_color_long_space("Hay chon ghe (hoac exit): ", 9);
         getline(cin, seat_choice);
 
 		if (seat_choice == "exit" || seat_choice == "Exit") {
@@ -150,7 +150,7 @@ string select_seat(int index,
         auto it = seat_status.find(seat_choice); 
         if (!is_valid_seat(seat_choice) || it != seat_status.end()) {
         	cout << "\n"; 
-        	print_color_long_space("Lua chon khong phu hop hoac ghe da dat!\n", 4); 
+        	print_color_long_space("Lua chon khong phu hop hoac ghe da dat!\n", 12); 
         	continue; 
         }
 
@@ -168,7 +168,7 @@ string select_seat(int index,
 	    }
 
 	    if (!seat_found) {
-	        print_color_long_space(error_message + "\n", 4);
+	        print_color_long_space(error_message + "\n", 12);
 	    }
 	    else {
 	    	break;
@@ -199,7 +199,7 @@ string select_seat(int index,
 				}
 			}
 		}
-		print_color_long_space("Lua chon ghe da bi huy.\n", 4); 
+		print_color_long_space("Lua chon ghe da bi huy.\n", 12); 
 		return "Chua dat ghe"; 
 	}
 }
@@ -220,7 +220,7 @@ int valid_number_of_tickets() {
 
 	while (true) {
 		cout << "\n"; 
-		print_color_long_space("So ve may bay can dat (hoac exit): ", 3);
+		print_color_long_space("So ve may bay can dat (hoac exit): ", 9);
 		getline(cin, input); 
 
 		if (input == "exit" || input == "Exit") {
@@ -228,7 +228,7 @@ int valid_number_of_tickets() {
 		}
 
 		if (input.empty()) {
-			print_color_long_space("Khong duoc de trong!\n", 3);
+			print_color_long_space("Khong duoc de trong!\n", 12);
 			continue; 
 		}
 
@@ -241,21 +241,21 @@ int valid_number_of_tickets() {
 		}
 
 		if (!is_number) {
-			print_color_long_space("Gia tri khong hop le!\n", 4); 
+			print_color_long_space("Gia tri khong hop le!\n", 12); 
 			continue; 
 		}
 
 		count = stoi(input); 
 		if (count <= 0) {
-			print_color_long_space("So ve phai lon hon 0.\n", 4); 
+			print_color_long_space("So ve phai lon hon 0.\n", 12); 
 			continue; 
 		}
 		if (count > MAX_SEAT) {
-			print_color_long_space("Vuot qua tong so ghe (" + to_string(MAX_SEAT) + "ghe).\n", 4); 
+			print_color_long_space("Vuot qua tong so ghe (" + to_string(MAX_SEAT) + "ghe).\n", 12); 
 			continue; 
 		}
 		if (count > available_seats) {
-			print_color_long_space("Khong du cho trong!\n", 4); 
+			print_color_long_space("Khong du cho trong!\n", 12); 
 			return -1; 
 		}
 		return count; 
@@ -265,14 +265,14 @@ int valid_number_of_tickets() {
 void update_seating_chart(const string& flight_code, const vector<vector<string>>& first_class, const vector<vector<string>>& economy_class) {
 	fs::path directory = fs::path("data") / flight_code;  
 	if (!fs::exists(directory) || !fs::is_directory(directory)) {
-		print_color_long_space("Chuyen bay khong ton tai!\n", 4); 
+		print_color_long_space("Chuyen bay khong ton tai!\n", 12); 
 		return; 
 	}
 	
 	fs::path booked_seating_path = directory / BOOKED_CHART; 
 	ofstream booked_seating_files(booked_seating_path); 
 	if (!booked_seating_files.is_open()) {
-		print_color_long_space("Loi khi mo file " + BOOKED_CHART + "\n", 4); 
+		print_color_long_space("Loi khi mo file " + BOOKED_CHART + "\n", 12); 
 		return; 
 	}
 
@@ -312,12 +312,12 @@ bool take_seat_code(const string& flight_code,
 		display_seating_chart(first_class, economy_class);
 		
 		cout << "\n";
-		print_color_long_space("STT ve may bay: " + to_string(ticket_count) + "\n", 2); 
+		print_color_long_space("STT ve may bay: " + to_string(ticket_count) + "\n", 9); 
 		
 		string ticket_code; 
 		int index;
 		while (true) {
-			print_color_long_space("Nhap ma so ve may bay (hoac exit): ", 3);
+			print_color_long_space("Nhap ma so ve may bay (hoac exit): ", 9);
             getline(cin, ticket_code);
 
 			if (ticket_code == "exit" || ticket_code == "Exit") {
@@ -325,8 +325,8 @@ bool take_seat_code(const string& flight_code,
 			}
 
             if (store_booked_tickets.find(ticket_code) != store_booked_tickets.end()) {
-                print_color_long_space("Ma so nay da dat ghe\n", 4);
-                print_color_long_space("Nhap lai!\n", 4);
+                print_color_long_space("Ma so nay da dat ghe\n", 12);
+                print_color_long_space("Nhap lai!\n", 12);
                 continue;
             }
             else {
@@ -339,13 +339,13 @@ bool take_seat_code(const string& flight_code,
             	break; 
             } 
             else {
-            	print_color_long_space("Khong tim thay khach hang!\n", 4); 
-            	print_color_long_space("Vui long nhap lai!\n", 4); 
+            	print_color_long_space("Khong tim thay khach hang!\n", 12); 
+            	print_color_long_space("Vui long nhap lai!\n", 12); 
             }
 		}
 
 		cout << "\n"; 
-		print_color_long_space("Class cua ve " + passengers[index].ticket_code + " : " + passengers[index].class_label + "\n", 2); 
+		print_color_long_space("Class cua ve " + passengers[index].ticket_code + " : " + passengers[index].class_label + "\n", 9); 
 
 		bool leave = false; 
 		string seat = select_seat(index, passengers, first_class, economy_class, seat_status, leave); 
@@ -365,7 +365,7 @@ bool take_seat_code(const string& flight_code,
 void reset_seating_chart(const string& flight_code) {
     fs::path directory = fs::path("data") / flight_code; 
     if (!fs::exists(directory) || !fs::is_directory(directory)) {
-        print_color_long_space("Chuyen bay khong ton tai\n", 4); 
+        print_color_long_space("Chuyen bay khong ton tai\n", 12); 
         return;
     }
     fs::path original_seating_path = directory / ORIGINAL_CHART;
@@ -373,13 +373,13 @@ void reset_seating_chart(const string& flight_code) {
 
     ifstream read_original_files(original_seating_path);
     if (!read_original_files.is_open()) {
-        print_color_long_space("Khong the mo file SeatingChart.txt\n", 4); 
+        print_color_long_space("Khong the mo file SeatingChart.txt\n", 12); 
         return; 
     }
 
     ofstream write_booked_chart_files(booked_seating_path, ios::trunc);
     if (!write_booked_chart_files.is_open()) {
-        print_color_long_space("Khong the mo file " + BOOKED_CHART + "\n", 4); 
+        print_color_long_space("Khong the mo file " + BOOKED_CHART + "\n", 12); 
         return;
     }
 
@@ -389,7 +389,7 @@ void reset_seating_chart(const string& flight_code) {
     }
     read_original_files.close();
     write_booked_chart_files.close();
-    print_color_long_space("So do ghe da duoc reset\n", 2);
+    print_color_long_space("So do ghe da duoc reset\n", 10);
 }
 
 void statistics() {
@@ -398,11 +398,11 @@ void statistics() {
    	int nums_space = 30; 
 
     cout << "\n"; 
-    print_color_short_space("-------------------------------------------------Thong ke-------------------------------------------------\n", 2); 
+    print_color_short_space("-------------------------------------------------Thong ke-------------------------------------------------\n", 14); 
     
     cout << "\n"; 
     cout << LONG_SPACE << "----------------------------------------------------\n";
-    print_color_long_space("|                   THONG KE SO GHE                |\n", 2);
+    print_color_long_space("|                   THONG KE SO GHE                |\n", 14);
     cout << LONG_SPACE << "+--------------------------------------------------+\n";
     cout << LONG_SPACE << "| Tong so ghe      : " << setw(nums_space) << left << MAX_SEAT << "|\n";
     cout << LONG_SPACE << "|                                                  |\n";

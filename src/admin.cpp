@@ -22,7 +22,7 @@ void loginFrame() {
 void load_accounts(unordered_map<string, string> &accounts) {
     ifstream readFile("accounts.txt");
     if (!readFile.is_open()) {
-      print_color_long_space("Khong truy xuat duoc thong tin he thong\n", 4);
+      print_color_long_space("Khong truy xuat duoc thong tin he thong\n", 12);
       return;
     }
     string line;
@@ -66,7 +66,7 @@ void input(string& username, string& password1, string& password2) {
 
         if (username.empty() || password1.empty() || password2.empty()) { 
             cout << "\n\n\n"; 
-            print_color_long_space("Khong duoc de trong thong tin!\n", 4);
+            print_color_long_space("Khong duoc de trong thong tin!\n", 12);
             Sleep(1000); 
         }
     } while (username.empty() || password1.empty() || password2.empty());
@@ -84,14 +84,14 @@ void admin_Login(string& username) {
         auto it = accounts.find(username);
         if (it == accounts.end()) {
             cout << "\n\n\n"; 
-            print_color_long_space("Tai khoan khong ton tai!\n", 4); 
+            print_color_long_space("Tai khoan khong ton tai!\n", 12); 
             Sleep(1000); 
             continue; 
         }
 
         if (password1 != it->second) {
             cout << "\n\n\n";
-            print_color_long_space("Mat khau sai!\n", 4); 
+            print_color_long_space("Mat khau sai!\n", 12); 
             attempts++; 
             Sleep(1000); 
             continue; 
@@ -99,7 +99,7 @@ void admin_Login(string& username) {
 
         if (password1 != password2) {
             cout << "\n\n\n";
-            print_color_long_space("Mat khau khong khop!\n", 4); 
+            print_color_long_space("Mat khau khong khop!\n", 12); 
             attempts++;
             Sleep(1000); 
             continue; 
@@ -113,13 +113,13 @@ void admin_Login(string& username) {
 
     if (success) {
         cout << "\n\n\n"; 
-        print_color_long_space("Dang nhap thanh cong!\n", 4);
+        print_color_long_space("Dang nhap thanh cong!\n", 10);
         logLogin(username); 
         Sleep(1000);
     }
     else {
         cout << "\n\n\n"; 
-        print_color_long_space("Qua nhieu lan thu, dang nhap that bai.\n", 4); 
+        print_color_long_space("Qua nhieu lan thu, dang nhap that bai.\n", 12); 
         exit(0); 
     }
 }
@@ -136,7 +136,7 @@ bool checkLogout() {
     cout << LONG_SPACE << "----------------------------------------------------\n"; 
     cout << "\n"; 
 
-    Goto(47, 4); 
+    Goto(47, 12); 
     password = input_hidden_pass(); 
     return password == "close"; 
 }
@@ -150,19 +150,19 @@ bool admin_Logout(const string& username) {
         if (checkLogout()) {
             logLogout(username); 
             cout << "\n\n"; 
-            print_color_long_space("Dang xuat...\n", 4); 
+            print_color_long_space("Dang xuat...\n", 12); 
             Sleep(1000); 
             return check = true; 
         }
         else {
             cout << "\n\n"; 
-            print_color_long_space("Sai mat khau!\n", 4); 
+            print_color_long_space("Sai mat khau!\n", 12); 
             Sleep(1000); 
             attempts++; 
         }
     }
     cout << "\n";
-    print_color_long_space("Vuot qua so lan cho phep. Khong the dang xuat.\n", 4); 
+    print_color_long_space("Vuot qua so lan cho phep. Khong the dang xuat.\n", 12); 
     Sleep(1000); 
     return check; 
 }

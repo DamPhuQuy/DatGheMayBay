@@ -14,10 +14,10 @@ void logLogin(const string &username) {
         logFile << "[" << getCurrentTime() << "] Nguoi dung \"" << username << "\" da dang nhap.\n";
         logFile.close();
         cout << "\n"; 
-        print_color_long_space("Du lieu dang nhap duoc ghi!\n", 2);
+        print_color_long_space("Du lieu dang nhap duoc ghi!\n", 10);
     } 
     else {
-        print_color_long_space("Khong the ghi du lieu dang nhap!\n", 4);
+        print_color_long_space("Khong the ghi du lieu dang nhap!\n", 12);
         return; 
     }
 }
@@ -28,9 +28,9 @@ void logLogout(const string &username) {
         logFile << "[" << getCurrentTime() << "] Nguoi dung \"" << username << "\" da dang xuat.\n";
         logFile.close();
         cout << "\n\n"; 
-        print_color_long_space("Du lieu dang xuat duoc ghi!\n", 2);
+        print_color_long_space("Du lieu dang xuat duoc ghi!\n", 10);
     } 
     else {
-        print_color_long_space("Khong the ghi du lieu dang xuat!\n", 4); 
+        print_color_long_space("Khong the ghi du lieu dang xuat!\n", 12); 
     }
 }
