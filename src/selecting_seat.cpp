@@ -83,11 +83,13 @@ string seat_replacement(const string& seat_choice) {
 	return seat_choice.length() == 2 ? "--" : "---"; 
 }
 
-bool update_seat(vector<vector<string>>& seatClass, const string& choice, string& error_message) {
+bool update_seat(vector<vector<string>>& seatClass, const string& choice, string& error_message, pair<int, int>& pos) {
     for (int i = 0; i < seatClass.size(); i++) {
         for (int j = 0; j < seatClass[i].size(); j++) {
             if (seatClass[i][j] == choice) {
                 seatClass[i][j] = seat_replacement(choice);
+				pos.first = i; 
+				pos.second = j; 
                 return true;
             }
         }
@@ -137,7 +139,8 @@ string select_seat(int index,
 				   set<string>& seat_status, 
 				   bool& leave) {
 
-	string seat_choice; 
+	string seat_choice;
+	pair<int, int> pos;   
 	while (true) {
 		print_color_long_space("Hay chon ghe (hoac exit): ", 14);
         getline(cin, seat_choice);
@@ -158,10 +161,10 @@ string select_seat(int index,
 	    bool seat_found = false;
 
 	    if (passengers[index].class_label == "First Class") {
-	        seat_found = update_seat(first_class, seat_choice, error_message);
+	        seat_found = update_seat(first_class, seat_choice, error_message, pos);
 	    } 
 	    else if (passengers[index].class_label == "Economy Class") {
-	        seat_found = update_seat(economy_class, seat_choice, error_message);
+	        seat_found = update_seat(economy_class, seat_choice, error_message, pos);
 	    } 
 	    else {
 	        error_message = "Class khong hop le!";
@@ -180,23 +183,13 @@ string select_seat(int index,
 	}
 	else {
 		if (passengers[index].class_label == "First Class") {
-			for (int i = 0; i < first_class.size(); i++) {
-				for (int j = 0; j < first_class[i].size(); j++) {
-					if (first_class[i][j] == seat_replacement(seat_choice)) {
-						first_class[i][j] = seat_choice; 
-						break; 
-					}
-				}
+			if (first_class[pos.first][pos.second] == seat_replacement(seat_choice)) {
+				first_class[pos.first][pos.second] = seat_choice; 
 			}
 		}
 		else if (passengers[index].class_label == "Economy Class") {
-			for (int i = 0; i < economy_class.size(); i++) {
-				for (int j = 0; j < economy_class[i].size(); j++) {
-					if (economy_class[i][j] == seat_replacement(seat_choice)) {
-						economy_class[i][j] = seat_choice;
-						break; 
-					}
-				}
+			if (economy_class[pos.first][pos.second] == seat_replacement(seat_choice)) {
+				economy_class[pos.first][pos.second] = seat_choice; 
 			}
 		}
 		print_color_long_space("Lua chon ghe da bi huy.\n", 12); 
