@@ -6,17 +6,17 @@ void introduction() {
     system("cls"); 
 
     cout << "\n"; 
-    cout << "       ----------------------------------------------------------------------------------------------------------\n";
-    cout << "       |                               Truong Dai Hoc Bach Khoa - Dai Hoc Da Nang                               |\n";
-    cout << "       +--------------------------------------------------------------------------------------------------------+\n";
-    cout << "       |   PBL1: Du an lap trinh tinh toan   | Xay dung ung dung dat ghe may bay cua hang hang khong ITF-Airway |\n";
-    cout << "       +--------------------------------------------------------------------------------------------------------+\n";
-    cout << "       |         Sinh vien thuc hien         |                                                                  |\n";
-    cout << "       |             Dam Phu Quy             |                     GVHD. Tran Ho Thuy Tien                      |\n";
-    cout << "       |            Dam Vinh Quang           |                                                                  |\n";
-    cout << "       ----------------------------------------------------------------------------------------------------------\n";
+    print_color_short_space("----------------------------------------------------------------------------------------------------------\n", 2);
+    print_color_short_space("|                               Truong Dai Hoc Bach Khoa - Dai Hoc Da Nang                               |\n", 2);
+    print_color_short_space("+--------------------------------------------------------------------------------------------------------+\n", 2);
+    print_color_short_space("|   PBL1: Du an lap trinh tinh toan   | Xay dung ung dung dat ghe may bay cua hang hang khong ITF-Airway |\n", 2);
+    print_color_short_space("+--------------------------------------------------------------------------------------------------------+\n", 2);
+    print_color_short_space("|         Sinh vien thuc hien         |                                                                  |\n", 2);
+    print_color_short_space("|             Dam Phu Quy             |                     GVHD. Tran Ho Thuy Tien                      |\n", 2);
+    print_color_short_space("|            Dam Vinh Quang           |                                                                  |\n", 2);
+    print_color_short_space("----------------------------------------------------------------------------------------------------------\n", 2);
     
-    cout << LONG_SPACE << "Nhan phim bat ki de bat dau...";                                                    
+    print_color_long_space("Nhan phim bat ki de bat dau...", 2);                                                    
     _getch(); 
 }
 
