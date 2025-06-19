@@ -202,6 +202,12 @@ void import_seating_chart(const string& flight_code, vector<vector<string>>& fir
 
 void import_flights(vector<string>& flights) {
 	ifstream read_flights("flights.txt"); 
+
+	if (!read_flights.is_open()) {
+		cout << LONG_SPACE << "Khong the mo file flights.txt\n"; 
+		return; 
+	}
+
 	string line; 
 	while (getline(read_flights, line)) {
 		flights.push_back(line); 

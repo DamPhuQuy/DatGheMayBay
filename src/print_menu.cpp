@@ -78,10 +78,19 @@ void input_flight_code(string& flight_code,
 		else 
 			break; 
 	}
- 
-	import_passengers_info(flight_code, passengers); 
-	import_booked_ticket(flight_code, store_booked_tickets, seat_status);
-	import_seating_chart(flight_code, first_class, economy_class);
+    
+	initialize_data(flight_code, first_class, economy_class, seat_status, store_booked_tickets, passengers);
+}
+
+void initialize_data(const string& flight_code,
+                    vector<vector<string>>& first_class,
+                    vector<vector<string>>& economy_class,
+                    set<string>& seat_status,
+                    set<string>& store_booked_tickets,
+                    vector<ticket>& passengers) {
+    import_passengers_info(flight_code, passengers); 
+    import_booked_ticket(flight_code, store_booked_tickets, seat_status);
+    import_seating_chart(flight_code, first_class, economy_class);
 }
 
 void output_ticket_info(

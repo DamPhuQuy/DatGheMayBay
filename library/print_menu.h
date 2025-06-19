@@ -26,9 +26,17 @@ void input_flight_code(
     set<string>& store_booked_tickets,
     set<string>& seat_status
 );
+void initialize_data(
+    const string& flight_code,
+    vector<vector<string>>& first_class,
+    vector<vector<string>>& economy_class,
+    set<string>& seat_status,
+    set<string>& store_booked_tickets,
+    vector<ticket>& passengers
+);
 void output_ticket_info(
-    std::ostream& os,
-    const std::vector<ticket> &passengers,
+    ostream& os,
+    const vector<ticket> &passengers,
     int index,
     bool delete_space = false
 );
