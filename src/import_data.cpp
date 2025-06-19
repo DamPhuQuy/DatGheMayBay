@@ -33,7 +33,7 @@ bool open_input_files(const string& flight_code, ifstream& personal_info_file, i
 
 bool read_flight_info(ifstream& flight_info_file, ticket& flight_data) {
 	cout << "\n";
-	print_color_long_space("Doc thong tin chuyen bay...\n", 12); 
+	print_color_long_space("Doc thong tin chuyen bay...\n", 15); 
 	Sleep(800); 
 
 	if (!getline(flight_info_file, flight_data.flight_code) 	||
@@ -45,9 +45,9 @@ bool read_flight_info(ifstream& flight_info_file, ticket& flight_data) {
     	return false; 
     }
 
-    print_color_long_space("Dang lay thong tin chuyen bay...\n", 12); 
+    print_color_long_space("Dang lay thong tin chuyen bay...\n", 15); 
     Sleep(800); 
-    print_color_long_space("Lay thong tin chuyen bay thanh cong!\n", 12); 
+    print_color_long_space("Lay thong tin chuyen bay thanh cong!\n", 10); 
     Sleep(800); 
 
    	return true; 
@@ -55,7 +55,7 @@ bool read_flight_info(ifstream& flight_info_file, ticket& flight_data) {
 
 bool read_passenger_info(ifstream& personal_info_file, ticket& flight_data, vector<ticket>& passengers) {
 	cout << "\n";
-	print_color_long_space("Doc thong tin hanh khach...\n", 12); 
+	print_color_long_space("Doc thong tin hanh khach...\n", 15); 
 	Sleep(800); 
 
 	string line; 
@@ -154,7 +154,7 @@ void import_booked_ticket(const string& flight_code, set<string>& store_booked_t
 	booked_ticket_files.close(); 
 
 	cout << "\n";
-	print_color_long_space("Kiem tra thong tin ve da dat...\n", 10); 
+	print_color_long_space("Kiem tra thong tin ve da dat...\n", 15); 
 	Sleep(800); 
 	print_color_long_space("Kiem tra thanh cong!\n", 10); 
 	Sleep(800); 

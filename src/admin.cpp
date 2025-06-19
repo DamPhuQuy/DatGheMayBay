@@ -114,8 +114,9 @@ void admin_Login(string& username) {
     if (success) {
         cout << "\n\n\n"; 
         print_color_long_space("Dang nhap thanh cong!\n", 10);
-        logLogin(username); 
         Sleep(1000);
+        logLogin(username); 
+        Sleep(2000);
     }
     else {
         cout << "\n\n\n"; 
@@ -136,7 +137,7 @@ bool checkLogout() {
     cout << LONG_SPACE << "----------------------------------------------------\n"; 
     cout << "\n"; 
 
-    Goto(47, 12); 
+    Goto(47, 3); 
     password = input_hidden_pass(); 
     return password == "close"; 
 }
