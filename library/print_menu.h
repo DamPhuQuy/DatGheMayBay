@@ -48,7 +48,6 @@ void end();
 void reset_ticket_info(const string& flight_code);
 void reset(const string& flight_code);
 void menu(); 
-void handle_login(string& username);
 void initialize_flight_data(string &flight_code,
                             vector<string> &flights,
                             vector<vector<string>> &first_class,

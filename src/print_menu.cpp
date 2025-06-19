@@ -254,7 +254,7 @@ void reset(const string& flight_code) {
 
 void menu() {
     string username;
-    handle_login(username);
+    admin_Login(username);
 
     string input_flight;
     vector<string> flights;
@@ -286,11 +286,6 @@ void menu() {
         reset(input_flight);
 
     } while (ask_to_continue_and_logout(username));
-}
-
-
-void handle_login(string& username) {
-	admin_Login(username); 
 }
 
 void initialize_flight_data(string &flight_code,
