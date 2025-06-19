@@ -364,6 +364,7 @@ void handle_menu_loop(const string &flight_code,
             case 3: {
                 vector<vector<string>> temp_first_class = first_class; 
                 vector<vector<string>> temp_economy_class = economy_class; 
+                set<string> temp_seat_status = seat_status; 
 
                 bool exit = take_seat_code(flight_code, seat_status, store_booked_tickets, booked_tickets_tracking, first_class, economy_class, passengers);
 
@@ -395,7 +396,8 @@ void handle_menu_loop(const string &flight_code,
 
                             first_class = temp_first_class; 
                             economy_class = temp_economy_class;
-                             
+                            seat_status = temp_seat_status;
+
                             break;
                         }
                     }
