@@ -140,7 +140,7 @@ string select_seat(int index,
 
 	string seat_choice; 
 	while (true) {
-		cout << LONG_SPACE<< "Hay chon ghe: ";
+		cout << LONG_SPACE<< "Hay chon ghe (hoac exit): ";
         getline(cin, seat_choice);
 
 		if (seat_choice == "exit" || seat_choice == "Exit") {
@@ -221,7 +221,7 @@ int valid_number_of_tickets() {
 
 	while (true) {
 		cout << "\n"; 
-		cout << LONG_SPACE << "So ve may bay can dat: ";
+		cout << LONG_SPACE << "So ve may bay can dat (hoac exit): ";
 		getline(cin, input); 
 
 		if (input == "exit" || input == "Exit") {
@@ -318,7 +318,7 @@ bool take_seat_code(const string& flight_code,
 		string ticket_code; 
 		int index;
 		while (true) {
-			cout << LONG_SPACE << "Nhap ma so ve may bay: ";
+			cout << LONG_SPACE << "Nhap ma so ve may bay (hoac exit): ";
             getline(cin, ticket_code);
 
 			if (ticket_code == "exit" || ticket_code == "Exit") {
