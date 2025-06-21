@@ -20,63 +20,64 @@ General project description:
 
 ## Distribution
 
-### 1. 📂 `library/` – Chứa các file header `.h`
+### 1. 📂 `library/` – Contains header files `.h`
 
-| File Name          | Mô tả                                |
-| ------------------ | ------------------------------------ |
-| `global.h`         | Biến toàn cục, định nghĩa dùng chung |
-| `admin.h`          | Hàm liên quan đến quản trị           |
-| `import_data.h`    | Hàm nhập dữ liệu                     |
-| `log_check.h`      | Hàm kiểm tra và ghi log              |
-| `print_menu.h`     | In menu giao diện                    |
-| `selecting_seat.h` | Hàm chọn ghế                         |
-
----
-
-### 2. 📂 `src/` – Chứa các file source code `.cpp`
-
-| File Name            | Mô tả                                     |
-| -------------------- | ----------------------------------------- |
-| `main.cpp`           | Hàm `main()`, điểm khởi động chương trình |
-| `admin.cpp`          | Cài đặt chức năng admin                   |
-| `import_data.cpp`    | Đọc dữ liệu từ file                       |
-| `log_check.cpp`      | Ghi và kiểm tra log                       |
-| `print_menu.cpp`     | In menu lựa chọn                          |
-| `selecting_seat.cpp` | Xử lý chọn ghế ngồi                       |
+| File Name          | Description                         |
+| ------------------ | ----------------------------------- |
+| `global.h`         | Global variables and shared defines |
+| `admin.h`          | Admin-related function declarations |
+| `import_data.h`    | Data importing functions            |
+| `log_check.h`      | Logging and checking utilities      |
+| `print_menu.h`     | Functions for displaying menus      |
+| `selecting_seat.h` | Seat selection functions            |
 
 ---
 
-### 3. 📂 `data/` – Chứa dữ liệu các chuyến bay
+### 2. 📂 `src/` – Contains source code files `.cpp`
 
-#### 📂 `data/ITF2023/` – Chuyến bay ITF2023
+| File Name            | Description                        |
+| -------------------- | ---------------------------------- |
+| `main.cpp`           | Entry point with `main()` function |
+| `admin.cpp`          | Admin functionalities              |
+| `global.cpp`         | Supportive functions               |
+| `import_data.cpp`    | Load data from files               |
+| `log_check.cpp`      | Log writing and checking           |
+| `print_menu.cpp`     | Print UI menus                     |
+| `selecting_seat.cpp` | Handle seat selection logic        |
 
-| File Name                 | Mô tả                |
+---
+
+### 3. 📂 `data/` – Contains flight data (text files)
+
+#### 📂 `data/ITF2023/` – Flight: ITF2023
+
+| File Name                 | Description          |
 | ------------------------- | -------------------- |
-| `BookedSeatingChart.txt`  | Danh sách ghế đã đặt |
-| `FlightInformation.txt`   | Thông tin chuyến bay |
-| `PersonalInformation.txt` | Dữ liệu hành khách   |
-| `SeatingChart.txt`        | Sơ đồ ghế            |
-| `TicketInformation.txt`   | Thông tin vé         |
+| `BookedSeatingChart.txt`  | List of booked seats |
+| `FlightInformation.txt`   | Flight details       |
+| `PersonalInformation.txt` | Passenger data       |
+| `SeatingChart.txt`        | Full seating chart   |
+| `TicketInformation.txt`   | Ticket details       |
 
 #### 📂 `data/ITF2024/`, `data/ITF2025/`
 
-> Các chuyến bay khác có cấu trúc dữ liệu tương tự.
+> Other flights with the same data structure.
 
 ---
 
-### 4. 📄 Các file dữ liệu khác
+### 4. 📄 Other data files
 
-| File Name      | Mô tả                       |
-| -------------- | --------------------------- |
-| `accounts.txt` | Tài khoản người dùng        |
-| `flights.txt`  | Danh sách các chuyến bay    |
-| `log.txt`      | Lưu thông tin log hoạt động |
+| File Name      | Description               |
+| -------------- | ------------------------- |
+| `accounts.txt` | User account information  |
+| `flights.txt`  | List of available flights |
+| `log.txt`      | Log of system activities  |
 
 ---
 
-### 5. 📂 `build/` – Chứa các file biên dịch đầu ra
+### 5. 📂 `build/` – Compiled output directory
 
-> Thư mục này chứa file `.o` sau khi build chương trình.
+> This folder contains the compiled output `.o` after building the program.
 
 ---
 
