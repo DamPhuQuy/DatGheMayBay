@@ -1,4 +1,4 @@
-# Đặt ghế máy bay
+# 📁 DatGheMayBay
 
 [Vietnamese]
 
@@ -15,6 +15,70 @@ General project description:
 - ITF-Airway airline operates an aircraft with MAX_SEATs seats.
 - The airline needs to develop a program to determine which seats are available for passenger allocation on each flight.
 - The seating layout on the aircraft is described in a file.
+
+---
+
+## Distribution
+
+### 1. 📂 `library/` – Chứa các file header `.h`
+
+| File Name          | Mô tả                                |
+| ------------------ | ------------------------------------ |
+| `global.h`         | Biến toàn cục, định nghĩa dùng chung |
+| `admin.h`          | Hàm liên quan đến quản trị           |
+| `import_data.h`    | Hàm nhập dữ liệu                     |
+| `log_check.h`      | Hàm kiểm tra và ghi log              |
+| `print_menu.h`     | In menu giao diện                    |
+| `selecting_seat.h` | Hàm chọn ghế                         |
+
+---
+
+### 2. 📂 `src/` – Chứa các file source code `.cpp`
+
+| File Name            | Mô tả                                     |
+| -------------------- | ----------------------------------------- |
+| `main.cpp`           | Hàm `main()`, điểm khởi động chương trình |
+| `admin.cpp`          | Cài đặt chức năng admin                   |
+| `import_data.cpp`    | Đọc dữ liệu từ file                       |
+| `log_check.cpp`      | Ghi và kiểm tra log                       |
+| `print_menu.cpp`     | In menu lựa chọn                          |
+| `selecting_seat.cpp` | Xử lý chọn ghế ngồi                       |
+
+---
+
+### 3. 📂 `data/` – Chứa dữ liệu các chuyến bay
+
+#### 📂 `data/ITF2023/` – Chuyến bay ITF2023
+
+| File Name                 | Mô tả                |
+| ------------------------- | -------------------- |
+| `BookedSeatingChart.txt`  | Danh sách ghế đã đặt |
+| `FlightInformation.txt`   | Thông tin chuyến bay |
+| `PersonalInformation.txt` | Dữ liệu hành khách   |
+| `SeatingChart.txt`        | Sơ đồ ghế            |
+| `TicketInformation.txt`   | Thông tin vé         |
+
+#### 📂 `data/ITF2024/`, `data/ITF2025/`
+
+> Các chuyến bay khác có cấu trúc dữ liệu tương tự.
+
+---
+
+### 4. 📄 Các file dữ liệu khác
+
+| File Name      | Mô tả                       |
+| -------------- | --------------------------- |
+| `accounts.txt` | Tài khoản người dùng        |
+| `flights.txt`  | Danh sách các chuyến bay    |
+| `log.txt`      | Lưu thông tin log hoạt động |
+
+---
+
+### 5. 📂 `build/` – Chứa các file biên dịch đầu ra
+
+> Thư mục này chứa file `.o` sau khi build chương trình.
+
+---
 
 ## Environment Variables
 
