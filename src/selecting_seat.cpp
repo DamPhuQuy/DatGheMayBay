@@ -116,7 +116,7 @@ int valid_number_of_tickets() {
 		}
 		if (count > available_seats) {
 			print_color_long_space("Khong du cho trong!\n", 12); 
-			return -1; 
+			continue; 
 		}
 		return count; 
 	}	
