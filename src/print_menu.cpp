@@ -302,7 +302,7 @@ void print_ticket(const string& flight_code, const vector<ticket>& passengers, c
     Sleep(800);
 }
 
-void ticket_output(ofstream& write_file, int index, const vector<ticket>& passengers) {
+void ticket_output(ostream& write_file, int index, const vector<ticket>& passengers) {
     if (index < passengers.size()) {
         output_ticket_info(write_file, passengers, index, true); 
     }

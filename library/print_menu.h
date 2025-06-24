@@ -32,7 +32,7 @@ void input_flight_code(
     set<string>& store_booked_tickets,
     set<string>& seat_status
 );
-void flight_menu();
+void flight_menu(const vector<string>& flights);
 void import(
     const string& flight_code,
     vector<vector<string>>& first_class,
@@ -50,15 +50,14 @@ void handle_menu_loop(const string &flight_code,
                       vector<ticket> &passengers);
 void display_menu();
 void display_flight(const ticket &flight_info);
-void display_info(const set<string>& booked_ticket, const vector<ticket>& passengers, int index);
-void print_ticket(const string& flight_code, vector<string> passengers);
-void ticket_output(ostream& write_file, int index);
+void display_info(const set<string>& booked_tickets_tracking, const vector<ticket>& passengers);
+void print_ticket(const string& flight_code, const vector<ticket>& passengers, const set<string>& booked_tickets_tracking);
+void ticket_output(ostream& write_file, int index, const vector<ticket>& passengers);
 void output_ticket_info(
     ostream& os,
     const vector<ticket> &passengers,
     int index,
-    bool delete_space = false
-);
+    bool delete_space = false);
 void reset(const string& flight_code);
 void reset_ticket_info(const string& flight_code);
 bool ask_to_continue_and_logout(const string &username);
