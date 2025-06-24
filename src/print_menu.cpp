@@ -54,6 +54,7 @@ void initialize_new_data(string &flight_code,
     store_booked_tickets.clear();
     booked_tickets_tracking.clear();
     passengers.clear();
+    flights.clear(); 
 
     import_flights(flights);
 }
